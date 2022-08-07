@@ -4,15 +4,44 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    Rigidbody2D rb2d;
+
+    [Header("Movement")]
+    [SerializeField] float speedX;
+    float moveX;
+
+    [Header("Jumping")]
+    [SerializeField] float jumpSpeed;
+    [SerializeField] Transform groundCheck;
+    [SerializeField] float groundCheckRadius;
+    [SerializeField] LayerMask groundLayer;
+    [SerializeField] bool isGrounded;
+
+    private void Awake()
+    {
+        rb2d = GetComponent<Rigidbody2D>();
+        
+    }
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        moveX = Input.GetAxis("Horizontal");
+
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            rb2d.velocity = new Vector2(rb2d.velocity.x, jumpSpeed);
+        }
+    }
+
+    void FixedUpdate()
+    {
+        rb2d.velocity = new Vector2(moveX * speedX * Time.deltaTime, rb2d.velocity.y);
     }
 }
