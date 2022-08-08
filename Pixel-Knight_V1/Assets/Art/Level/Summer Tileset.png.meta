@@ -940,8 +940,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
+      outline:
+      - - {x: -4, y: 4}
+        - {x: -4, y: 2}
+        - {x: -1, y: 0}
+        - {x: 4, y: 0}
+        - {x: 4, y: 4}
+      physicsShape:
+      - - {x: -4, y: 4}
+        - {x: -4, y: 2}
+        - {x: -1, y: 0}
+        - {x: 4, y: 0}
+        - {x: 4, y: 4}
       tessellationDetail: 0
       bones: []
       spriteID: e60a8d0130fa5f842b0972874ddcc0bc
@@ -961,8 +971,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
+      outline:
+      - - {x: -4, y: 4}
+        - {x: -4, y: 0}
+        - {x: 1, y: 0}
+        - {x: 4, y: 2}
+        - {x: 4, y: 4}
+      physicsShape:
+      - - {x: -4, y: 4}
+        - {x: -4, y: 0}
+        - {x: 1, y: 0}
+        - {x: 4, y: 2}
+        - {x: 4, y: 4}
       tessellationDetail: 0
       bones: []
       spriteID: 1fd4b4c407ecaa14e90641fe45b82def
@@ -1150,8 +1170,16 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
+      outline:
+      - - {x: -4, y: 4}
+        - {x: -4, y: 0}
+        - {x: 4, y: 0}
+        - {x: 4, y: 4}
+      physicsShape:
+      - - {x: -4, y: 4}
+        - {x: -4, y: 0}
+        - {x: 4, y: 0}
+        - {x: 4, y: 4}
       tessellationDetail: 0
       bones: []
       spriteID: b48dee6a9f434a94ea71c12dfa559675
@@ -1549,7 +1577,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Summer Tileset_23: -1153421744
+      Summer Tileset_48: -210209281
       Summer Tileset_5: -1692812908
       Summer Tileset_25: 7409398
       Summer Tileset_17: 2144979976
@@ -1615,7 +1643,7 @@ TextureImporter:
       Summer Tileset_52: 580725775
       Summer Tileset_59: 366098078
       Summer Tileset_3: 1837250990
-      Summer Tileset_48: -210209281
+      Summer Tileset_23: -1153421744
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

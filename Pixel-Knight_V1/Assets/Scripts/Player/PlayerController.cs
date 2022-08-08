@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb2d;
 
     [Header("Movement")]
-    [SerializeField] float speedX;
+    public float speedX;
     float moveX;
 
     [Header("Jumping")]
@@ -15,10 +15,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform groundCheck;
     [SerializeField] float groundCheckRadius;
     [SerializeField] LayerMask groundLayer;
-    [SerializeField] bool isGrounded;
+    public bool isGrounded;
+
+    public static PlayerController instance;
 
     private void Awake()
     {
+        instance = this;
         rb2d = GetComponent<Rigidbody2D>();
         
     }
