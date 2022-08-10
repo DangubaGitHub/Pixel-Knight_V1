@@ -38,37 +38,39 @@ public class PlayerAnimationManager : MonoBehaviour
 
     void Start()
     {
-        //ChangeAnimationState(BP_IDLE);
+        
     }
 
     void Update()
     {
-        
+    }
+
+    private void FixedUpdate()
+    {
+
+        if (PlayerController.instance.isGrounded)
+        {
+            if (rb2d.velocity.x == 0)
+            {
+                ChangeAnimationState(BP_IDLE);
+            }
+
+            if (rb2d.velocity.x != 0)
+            {
+                ChangeAnimationState(BP_RUN);
+            }
+        }
+
+
 
         if (rb2d.velocity.y > 0f && PlayerController.instance.isGrounded == false)
         {
             ChangeAnimationState(BP_JUMP);
         }
 
-        if(rb2d.velocity.y < 0f && PlayerController.instance.isGrounded == false)
+        if (rb2d.velocity.y < 0f && PlayerController.instance.isGrounded == false)
         {
             ChangeAnimationState(BP_FALL);
-        }
-    }
-
-    private void FixedUpdate()
-    {
-        if (PlayerController.instance.isGrounded)
-        {
-            if (rb2d.velocity.x != 0)
-            {
-                ChangeAnimationState(BP_RUN);
-            }
-
-            if (rb2d.velocity.x == 0)
-            {
-                ChangeAnimationState(BP_IDLE);
-            }
         }
     }
 
