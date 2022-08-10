@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class PlayerAnimationManager : MonoBehaviour
 {
-
+    public bool isBasic;
+    public bool isArmor;
+    public bool isFire;
+    public bool isIce;
 
     string currentState;
 
@@ -17,11 +20,16 @@ public class PlayerAnimationManager : MonoBehaviour
 
     //Armor Player
 
+    const string AP_IDLE = "ap_idle";
+    const string AP_RUN = "ap_run";
+    const string AP_JUMP = "ap_jump";
+    const string AP_FALL = "ap_fall";
+
     //Fire Player
 
     //Ice Player
 
-    
+
 
     public static PlayerAnimationManager instance;
 
@@ -47,30 +55,56 @@ public class PlayerAnimationManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-
-        if (PlayerController.instance.isGrounded)
+        if (isBasic)
         {
-            if (rb2d.velocity.x == 0)
+            if (PlayerController.instance.isGrounded)
             {
-                ChangeAnimationState(BP_IDLE);
+                if (rb2d.velocity.x == 0)
+                {
+                    ChangeAnimationState(BP_IDLE);
+                }
+
+                if (rb2d.velocity.x != 0)
+                {
+                    ChangeAnimationState(BP_RUN);
+                }
             }
 
-            if (rb2d.velocity.x != 0)
+            if (rb2d.velocity.y > 0f && PlayerController.instance.isGrounded == false)
             {
-                ChangeAnimationState(BP_RUN);
+                ChangeAnimationState(BP_JUMP);
+            }
+
+            if (rb2d.velocity.y < 0f && PlayerController.instance.isGrounded == false)
+            {
+                ChangeAnimationState(BP_FALL);
             }
         }
 
-
-
-        if (rb2d.velocity.y > 0f && PlayerController.instance.isGrounded == false)
+        if (isArmor)
         {
-            ChangeAnimationState(BP_JUMP);
-        }
+            if (PlayerController.instance.isGrounded)
+            {
+                if (rb2d.velocity.x == 0)
+                {
+                    ChangeAnimationState(AP_IDLE);
+                }
 
-        if (rb2d.velocity.y < 0f && PlayerController.instance.isGrounded == false)
-        {
-            ChangeAnimationState(BP_FALL);
+                if (rb2d.velocity.x != 0)
+                {
+                    ChangeAnimationState(AP_RUN);
+                }
+            }
+
+            if (rb2d.velocity.y > 0f && PlayerController.instance.isGrounded == false)
+            {
+                ChangeAnimationState(AP_JUMP);
+            }
+
+            if (rb2d.velocity.y < 0f && PlayerController.instance.isGrounded == false)
+            {
+                ChangeAnimationState(AP_FALL);
+            }
         }
     }
 
