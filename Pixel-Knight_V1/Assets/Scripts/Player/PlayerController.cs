@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] LayerMask groundLayer;
     public bool isGrounded;
 
+    public Transform firePoint;
+
     public static PlayerController instance;
 
     private void Awake()
@@ -41,6 +43,8 @@ public class PlayerController : MonoBehaviour
         {
             rb2d.velocity = new Vector2(rb2d.velocity.x, jumpSpeed);
         }
+
+        
     }
 
     void FixedUpdate()

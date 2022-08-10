@@ -1810,6 +1810,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   isGrounded: 0
+  firePoint: {fileID: 1838834653}
 --- !u!95 &1190310452
 Animator:
   serializedVersion: 4

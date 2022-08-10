@@ -51,6 +51,20 @@ public class PlayerAnimationManager : MonoBehaviour
 
     void Update()
     {
+        Vector3 characterScale = transform.localScale;
+
+        if (rb2d.velocity.x < -0.1f)
+        {
+            characterScale.x = -1;
+            PlayerController.instance.firePoint.transform.eulerAngles = new Vector3(0, 180, 0);
+        }
+        else if (rb2d.velocity.x > 0.1f)
+        {
+            characterScale.x = 1;
+            PlayerController.instance.firePoint.transform.eulerAngles = new Vector3(0, 0, 0);
+        }
+
+        transform.localScale = characterScale;
     }
 
     private void FixedUpdate()
