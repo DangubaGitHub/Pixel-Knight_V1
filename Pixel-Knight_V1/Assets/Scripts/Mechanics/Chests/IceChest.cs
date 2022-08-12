@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IronChest : MonoBehaviour
+public class IceChest : MonoBehaviour
 {
     const string CLOSED = "chest_closed";
     const string OPEN = "chest_open";
@@ -13,7 +13,7 @@ public class IronChest : MonoBehaviour
     [SerializeField] bool isOpen;
 
     [SerializeField] Transform spawnPoint;
-    [SerializeField] GameObject ironPopOut;
+    [SerializeField] GameObject icePopOut;
 
     Animator anim;
 
@@ -29,10 +29,10 @@ public class IronChest : MonoBehaviour
 
     void Update()
     {
-        if(atChest)
+        if (atChest)
         {
             if (!isOpen)
-            { 
+            {
                 ChestPopOut();
             }
         }
@@ -40,7 +40,7 @@ public class IronChest : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             atChest = true;
         }
@@ -48,7 +48,7 @@ public class IronChest : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if(other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             atChest = false;
         }
@@ -58,7 +58,7 @@ public class IronChest : MonoBehaviour
     {
         ChangeAnimationState(OPEN);
         isOpen = true;
-        GameObject item = Instantiate(ironPopOut, spawnPoint.position, spawnPoint.rotation);
+        GameObject item = Instantiate(icePopOut, spawnPoint.position, spawnPoint.rotation);
         Destroy(item, 1f);
     }
 
