@@ -27,9 +27,23 @@ public class PlayerAnimationManager : MonoBehaviour
 
     //Fire Player
 
+    const string FP_IDLE = "fp_idle";
+    const string FP_RUN = "fp_run";
+    const string FP_JUMP = "fp_jump";
+    const string FP_FALL = "fp_fall";
+    const string FP_ATTACK = "fp_attack";
+    const string FP_ATTACK_JUMP = "fp_attack_jump";
+    const string FP_ATTACK_FALL = "fp_attack_fall";
+
     //Ice Player
 
-
+    const string IP_IDLE = "ip_idle";
+    const string IP_RUN = "ip_run";
+    const string IP_JUMP = "ip_jump";
+    const string IP_FALL = "ip_fall";
+    const string IP_ATTACK = "ip_attack";
+    const string IP_ATTACK_JUMP = "ip_attack_jump";
+    const string IP_ATTACK_FALL = "ip_attack_fall";
 
     public static PlayerAnimationManager instance;
 
@@ -118,6 +132,32 @@ public class PlayerAnimationManager : MonoBehaviour
             if (rb2d.velocity.y < 0f && PlayerController.instance.isGrounded == false)
             {
                 ChangeAnimationState(AP_FALL);
+            }
+        }
+
+        if (isFire)
+        {
+            if (PlayerController.instance.isGrounded)
+            {
+                if (rb2d.velocity.x == 0)
+                {
+                    ChangeAnimationState(FP_IDLE);
+                }
+
+                if (rb2d.velocity.x != 0)
+                {
+                    ChangeAnimationState(FP_RUN);
+                }
+            }
+
+            if (rb2d.velocity.y > 0f && PlayerController.instance.isGrounded == false)
+            {
+                ChangeAnimationState(FP_JUMP);
+            }
+
+            if (rb2d.velocity.y < 0f && PlayerController.instance.isGrounded == false)
+            {
+                ChangeAnimationState(FP_FALL);
             }
         }
     }
