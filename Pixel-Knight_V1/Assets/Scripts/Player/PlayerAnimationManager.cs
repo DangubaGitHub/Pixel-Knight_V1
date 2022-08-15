@@ -137,7 +137,7 @@ public class PlayerAnimationManager : MonoBehaviour
 
         if (isFire)
         {
-            if (PlayerController.instance.isGrounded)
+            if (PlayerController.instance.isGrounded && !PlayerController.instance.isFireAttacking)
             {
                 if (rb2d.velocity.x == 0)
                 {
