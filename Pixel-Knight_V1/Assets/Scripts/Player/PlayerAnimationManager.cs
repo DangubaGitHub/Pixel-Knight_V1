@@ -159,6 +159,11 @@ public class PlayerAnimationManager : MonoBehaviour
             {
                 ChangeAnimationState(FP_FALL);
             }
+
+            if(PlayerController.instance.isFireAttacking && PlayerController.instance.isGrounded)
+            {
+                ChangeAnimationState(FP_ATTACK);
+            }
         }
     }
 

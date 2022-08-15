@@ -17,7 +17,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] LayerMask groundLayer;
     public bool isGrounded;
 
+    [Header("Magic")]
     public Transform firePoint;
+    [SerializeField] GameObject fireBulletPrefab;
+    [SerializeField] float fireSpeed;
+    [SerializeField] GameObject iceBulletPrefab;
+    [SerializeField] float iceSpeed;
+    public bool isFireAttacking;
+    public bool isIceAttacking;
+    public bool isFireAirAttacking;
+    public bool isIceAirAttacking;
 
     public static PlayerController instance;
 
@@ -25,12 +34,12 @@ public class PlayerController : MonoBehaviour
     {
         instance = this;
         rb2d = GetComponent<Rigidbody2D>();
-        
+
     }
 
     void Start()
     {
-        
+
     }
 
     void Update()
@@ -44,11 +53,50 @@ public class PlayerController : MonoBehaviour
             rb2d.velocity = new Vector2(rb2d.velocity.x, jumpSpeed);
         }
 
-        
+        if (PlayerAnimationManager.instance.isFire)
+        {
+            if (Input.GetButtonDown("Fire"))
+            {
+                if (!isFireAttacking && isGrounded)
+                {
+                    isFireAttacking = true;
+
+                    FireMagic();
+
+                    Invoke("MagicComplete", 0.4f);
+                }
+            }
+        }
+
+        if(PlayerAnimationManager.instance.isIce)
+        {
+            if(Input.GetButtonDown("Fire"))
+            {
+                IceMagic();
+            }
+        }
     }
 
     void FixedUpdate()
     {
         rb2d.velocity = new Vector2(moveX * speedX * Time.deltaTime, rb2d.velocity.y);
+    }
+
+    void FireMagic()
+    {
+        Instantiate(fireBulletPrefab, firePoint.position, transform.rotation);
+    }
+
+    void IceMagic()
+    {
+
+    }
+
+    void MagicComplete()
+    {
+        isFireAttacking = false;
+        isIceAttacking = false;
+        isFireAirAttacking = false;
+        isIceAirAttacking = false;
     }
 }
