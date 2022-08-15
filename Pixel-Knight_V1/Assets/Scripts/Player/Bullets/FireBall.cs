@@ -10,7 +10,7 @@ public class FireBall : MonoBehaviour
     string currentState;
     const string DESTROY = "fireball_destroy";
 
-    float force = 8;
+    float force = 10;
 
     private void Awake()
     {

@@ -34,7 +34,6 @@ public class PlayerController : MonoBehaviour
     {
         instance = this;
         rb2d = GetComponent<Rigidbody2D>();
-
     }
 
     void Start()
@@ -60,7 +59,7 @@ public class PlayerController : MonoBehaviour
                 if (!isFireAttacking && isGrounded)
                 {
                     isFireAttacking = true;
-
+   
                     FireMagic();
 
                     Invoke("MagicComplete", 0.4f);
@@ -75,6 +74,7 @@ public class PlayerController : MonoBehaviour
                 IceMagic();
             }
         }
+
     }
 
     void FixedUpdate()
@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour
 
     void FireMagic()
     {
-        Instantiate(fireBulletPrefab, firePoint.position, transform.rotation);
+        Instantiate(fireBulletPrefab, firePoint.position, firePoint.rotation);
     }
 
     void IceMagic()
