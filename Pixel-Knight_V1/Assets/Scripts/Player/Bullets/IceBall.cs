@@ -4,14 +4,39 @@ using UnityEngine;
 
 public class IceBall : MonoBehaviour
 {
-    // Start is called before the first frame update
+    Rigidbody2D rb2d;
+
+    float force = 15;
+
+    private void Awake()
+    {
+        rb2d = GetComponent<Rigidbody2D>();
+    }
+
     void Start()
+    {
+        rb2d.velocity = transform.right * force;
+    }
+
+    void Update()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.CompareTag("Ground"))
+        {
+            Destroy(gameObject);
+        }
+
+        if(other.CompareTag("Enemy"))
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
     {
         
     }

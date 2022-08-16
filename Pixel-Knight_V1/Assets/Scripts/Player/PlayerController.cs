@@ -64,6 +64,15 @@ public class PlayerController : MonoBehaviour
 
                     Invoke("MagicComplete", 0.4f);
                 }
+
+                else if(!isFireAirAttacking && !isGrounded)
+                {
+                    isFireAirAttacking = true;
+
+                    FireMagic();
+
+                    Invoke("MagicComplete", 0.4f);
+                }
             }
         }
 
@@ -71,10 +80,25 @@ public class PlayerController : MonoBehaviour
         {
             if(Input.GetButtonDown("Fire"))
             {
-                IceMagic();
+                if (!isIceAttacking && isGrounded)
+                {
+                    isIceAttacking = true;
+
+                    IceMagic();
+
+                    Invoke("MagicComplete", 0.4f);
+                }
+
+                else if(!isIceAirAttacking && !isGrounded)
+                {
+                    isIceAirAttacking = true;
+
+                    IceMagic();
+
+                    Invoke("MagicComplete", 0.4f);
+                }
             }
         }
-
     }
 
     void FixedUpdate()
@@ -89,7 +113,7 @@ public class PlayerController : MonoBehaviour
 
     void IceMagic()
     {
-
+        Instantiate(iceBulletPrefab, firePoint.position, firePoint.rotation);
     }
 
     void MagicComplete()

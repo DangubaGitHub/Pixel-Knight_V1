@@ -287,7 +287,7 @@ GameObject:
   - component: {fileID: 729058992}
   m_Layer: 3
   m_Name: Ground 2
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1694,23 +1694,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!1 &1057935725 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3640385851762777337, guid: 38a1cb625f3763a489e81391e6813949, type: 3}
-  m_PrefabInstance: {fileID: 3640385852718402964}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1057935729
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1057935725}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bd88c8558b5c124c9b5f3ba309cfc98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1190310446
 GameObject:
   m_ObjectHideFlags: 0
@@ -16546,7 +16529,7 @@ GameObject:
   - component: {fileID: 1797272514}
   m_Layer: 3
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20260,6 +20243,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fire Ball
       objectReference: {fileID: 0}
+    - target: {fileID: 2453173839708535657, guid: 38f341edd5de13241bdf5d5289c1e783, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2453173839708535658, guid: 38f341edd5de13241bdf5d5289c1e783, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -20303,10 +20290,6 @@ PrefabInstance:
     - target: {fileID: 2453173839708535658, guid: 38f341edd5de13241bdf5d5289c1e783, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2453173839708535659, guid: 38f341edd5de13241bdf5d5289c1e783, type: 3}
-      propertyPath: m_SortingOrder
-      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38f341edd5de13241bdf5d5289c1e783, type: 3}
@@ -20366,16 +20349,8 @@ PrefabInstance:
       value: Ice Spike
       objectReference: {fileID: 0}
     - target: {fileID: 3640385851762777337, guid: 38a1cb625f3763a489e81391e6813949, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3640385851762777337, guid: 38a1cb625f3763a489e81391e6813949, type: 3}
       propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3640385851762777339, guid: 38a1cb625f3763a489e81391e6813949, type: 3}
-      propertyPath: m_SortingOrder
-      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38a1cb625f3763a489e81391e6813949, type: 3}
@@ -20454,11 +20429,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4946668892552639704, guid: 92dfcdd0b267ebd46b978e80610c2566, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.838
+      value: 4.607
       objectReference: {fileID: 0}
     - target: {fileID: 4946668892552639704, guid: 92dfcdd0b267ebd46b978e80610c2566, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -14.368
+      value: 1.629
       objectReference: {fileID: 0}
     - target: {fileID: 4946668892552639704, guid: 92dfcdd0b267ebd46b978e80610c2566, type: 3}
       propertyPath: m_LocalPosition.z
@@ -20520,11 +20495,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6619619385016482296, guid: e56715e95196a104592ce628fe20e420, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.658866
+      value: -13.482
       objectReference: {fileID: 0}
     - target: {fileID: 6619619385016482296, guid: e56715e95196a104592ce628fe20e420, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.6435823
+      value: -14.39
       objectReference: {fileID: 0}
     - target: {fileID: 6619619385016482296, guid: e56715e95196a104592ce628fe20e420, type: 3}
       propertyPath: m_LocalPosition.z
