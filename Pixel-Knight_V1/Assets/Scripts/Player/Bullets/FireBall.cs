@@ -49,4 +49,13 @@ public class FireBall : MonoBehaviour
 
         currentState = newState;
     }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            Destroy(gameObject);
+            Destroy(other.gameObject);
+        }
+    }
 }

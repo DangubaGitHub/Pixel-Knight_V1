@@ -30,6 +30,12 @@ public class RunningZombieController : MonoBehaviour
             moveSpeed = -moveSpeed;
             FlipEnemy();
         }
+
+        if (other.CompareTag("Enemy"))
+        {
+            moveSpeed = -moveSpeed;
+            FlipEnemy();
+        }
     }
 
     void FlipEnemy()
