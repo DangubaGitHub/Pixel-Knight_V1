@@ -28,6 +28,9 @@ public class PlayerController : MonoBehaviour
     public bool isFireAirAttacking;
     public bool isIceAirAttacking;
 
+    [Header("Extra's")]
+    public float bounceForce;
+
     public static PlayerController instance;
 
     private void Awake()
@@ -122,5 +125,10 @@ public class PlayerController : MonoBehaviour
         isIceAttacking = false;
         isFireAirAttacking = false;
         isIceAirAttacking = false;
+    }
+
+    public void BounceOnEnemy()
+    {
+        rb2d.velocity = new Vector2(rb2d.velocity.x, bounceForce);
     }
 }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerStompBox : MonoBehaviour
 {
+    [SerializeField] GameObject enemyDeathEffect;
+
     void Start()
     {
         
@@ -19,6 +21,10 @@ public class PlayerStompBox : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             Destroy(other.gameObject);
+
+            PlayerController.instance.BounceOnEnemy();
+
+            Instantiate(enemyDeathEffect, other.transform.position, other.transform.rotation);
         }
     }
 }
