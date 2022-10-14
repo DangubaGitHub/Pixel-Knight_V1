@@ -30,9 +30,15 @@ public class IceBall : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if(other.CompareTag("Enemy"))
+        if (other.CompareTag("Wall"))
         {
             Destroy(gameObject);
+        }
+
+        if (other.CompareTag("Enemy"))
+        {
+            Destroy(gameObject);
+            Destroy(other.gameObject);
         }
     }
 
