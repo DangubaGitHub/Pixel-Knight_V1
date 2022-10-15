@@ -8,6 +8,8 @@ public class IceBall : MonoBehaviour
 
     float force = 15;
 
+    [SerializeField] GameObject enemyDeathEffect;
+
     private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -38,6 +40,7 @@ public class IceBall : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             Destroy(gameObject);
+            Instantiate(enemyDeathEffect, other.transform.position, other.transform.rotation);
             Destroy(other.gameObject);
         }
     }

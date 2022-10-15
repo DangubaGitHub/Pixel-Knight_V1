@@ -12,6 +12,8 @@ public class FireBall : MonoBehaviour
 
     float force = 10;
 
+    [SerializeField] GameObject enemyDeathEffect;
+
     private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -55,6 +57,7 @@ public class FireBall : MonoBehaviour
         if (other.gameObject.tag == "Enemy")
         {
             Destroy(gameObject);
+            Instantiate(enemyDeathEffect, other.transform.position, other.transform.rotation);
             Destroy(other.gameObject);
         }
     }
