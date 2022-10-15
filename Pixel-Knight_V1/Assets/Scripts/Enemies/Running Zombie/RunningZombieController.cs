@@ -5,6 +5,7 @@ using UnityEngine;
 public class RunningZombieController : MonoBehaviour
 {
     [SerializeField] float moveSpeed;
+    [SerializeField] GameObject enemyDeathEffect;
 
     Rigidbody2D rb2d;
 
@@ -35,6 +36,19 @@ public class RunningZombieController : MonoBehaviour
         {
             moveSpeed = -moveSpeed;
             FlipEnemy();
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.tag == "Player")
+        {
+            moveSpeed = -moveSpeed;
+            FlipEnemy();
+            if (PlayerAnimationManager.instance.isBasic == true)
+            {
+                Instantiate(enemyDeathEffect, other.transform.position, other.transform.rotation);
+            }
         }
     }
 
