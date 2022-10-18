@@ -4,15 +4,118 @@ using UnityEngine;
 
 public class JumpingZombieController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    ////////////////////  MOVEMENT  ///
+
+    [SerializeField] int nextJump;
+    float nextTime;
+    int jumpForce = 40;
+    
+    ////////////////////  ANIMATIONS  ///
+
+    const string IDLE = "Jumping_Zombie_Idle";
+    const string JUMP = "Jumping_Zombie_Jump";
+    const string FALL = "Jumping_Zombie_Fall";
+
+    string currentState;
+
+    ////////////////////  THE REST  ///
+
+    [SerializeField] bool isGrounded;
+
+    [SerializeField] GameObject enemyDeathEffect;
+
+    [SerializeField] GameObject Player;
+
+    Rigidbody2D rb2d;
+    Animator anim;
+
+    private void Awake()
+    {
+        rb2d = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+    }
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        ////////////////////  ANIMATIONS  ///
+
+        if (isGrounded)
+        {
+            ChangeAnimationState(IDLE);
+        }
+
+        if(!isGrounded)
+        {
+            if(rb2d.velocity.y >= 0)
+            {
+                ChangeAnimationState(JUMP);
+            }
+
+            else if(rb2d.velocity.y < 0)
+            {
+                ChangeAnimationState(FALL);
+            }
+        }
+
+        ////////////////////  ENEMY LOOK DIRECTION AND FLIPPING  ///
+
+        Vector3 scale = transform.localScale;
+
+        if(Player.transform.position.x > transform.position.x)
+        {
+            scale.x = Mathf.Abs(scale.x);
+        }
+
+        else
+        {
+            scale.x = Mathf.Abs(scale.x) * -1;
+        }
+
+        transform.localScale = scale;
+
+        ////////////////////  NEXT JUMP DELAY  ///
+
+        if (Time.time >nextTime)
+        {
+            rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
+
+            nextTime = Time.time + nextJump;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.CompareTag("Ground"))
+        {
+            isGrounded = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if(other.CompareTag("Ground"))
+        {
+            isGrounded = false;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.tag == "Player" && PlayerAnimationManager.instance.isBasic == true)
+        {
+            Instantiate(enemyDeathEffect, other.transform.position, other.transform.rotation);
+        }
+    }
+
+    void ChangeAnimationState(string newState)
+    {
+        if (currentState == newState) return;
+        anim.Play(newState);
+        currentState = newState;
     }
 }
