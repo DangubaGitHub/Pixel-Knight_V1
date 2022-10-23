@@ -94,6 +94,11 @@ public class JumpingZombieController : MonoBehaviour
         {
             isGrounded = true;
         }
+
+        if(other.CompareTag("Player"))
+        {
+            rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -106,9 +111,12 @@ public class JumpingZombieController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.tag == "Player" && PlayerAnimationManager.instance.isBasic == true)
+        if(other.gameObject.tag == "Player")
         {
-            Instantiate(enemyDeathEffect, other.transform.position, other.transform.rotation);
+            if (PlayerAnimationManager.instance.isBasic == true && PlayerHealthController.instance.invincibleLength <= 0)
+            {
+                Instantiate(enemyDeathEffect, other.transform.position, other.transform.rotation);
+            }
         }
     }
 
