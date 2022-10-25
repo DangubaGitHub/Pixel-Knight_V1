@@ -42,6 +42,7 @@ public class PlayerHealthController : MonoBehaviour
             {
                 PlayerAnimationManager.instance.isArmor = false;
                 PlayerAnimationManager.instance.isBasic = true;
+                PlayerController.instance.KnockBack();
                 Invincible();
             }
 
@@ -49,6 +50,7 @@ public class PlayerHealthController : MonoBehaviour
             {
                 PlayerAnimationManager.instance.isFire = false;
                 PlayerAnimationManager.instance.isBasic = true;
+                PlayerController.instance.KnockBack();
                 Invincible();
             }
 
@@ -56,6 +58,42 @@ public class PlayerHealthController : MonoBehaviour
             {
                 PlayerAnimationManager.instance.isIce = false;
                 PlayerAnimationManager.instance.isBasic = true;
+                PlayerController.instance.KnockBack();
+                Invincible();
+            }
+
+            else if (PlayerAnimationManager.instance.isBasic == true && invincibleLength <= 0)
+            {
+                Destroy(this.gameObject);
+            }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.CompareTag("Spikes"))
+        {
+            if (PlayerAnimationManager.instance.isArmor == true)
+            {
+                PlayerAnimationManager.instance.isArmor = false;
+                PlayerAnimationManager.instance.isBasic = true;
+                PlayerController.instance.KnockBack();
+                Invincible();
+            }
+
+            else if (PlayerAnimationManager.instance.isFire == true)
+            {
+                PlayerAnimationManager.instance.isFire = false;
+                PlayerAnimationManager.instance.isBasic = true;
+                PlayerController.instance.KnockBack();
+                Invincible();
+            }
+
+            else if (PlayerAnimationManager.instance.isIce == true)
+            {
+                PlayerAnimationManager.instance.isIce = false;
+                PlayerAnimationManager.instance.isBasic = true;
+                PlayerController.instance.KnockBack();
                 Invincible();
             }
 

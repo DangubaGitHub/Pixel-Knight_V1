@@ -30,6 +30,9 @@ public class PlayerController : MonoBehaviour
 
     [Header("Extra's")]
     public float bounceForce;
+    [SerializeField] float knockBackLength;
+    [SerializeField] float knockBackForce;
+    float knockBackCounter;
 
     public static PlayerController instance;
 
@@ -46,60 +49,79 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        moveX = Input.GetAxis("Horizontal");
-
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (knockBackCounter <= 0)
         {
-            rb2d.velocity = new Vector2(rb2d.velocity.x, jumpSpeed);
-        }
 
-        if (PlayerAnimationManager.instance.isFire)
-        {
-            if (Input.GetButtonDown("Fire"))
+            moveX = Input.GetAxis("Horizontal");
+
+            isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+
+            if (Input.GetButtonDown("Jump") && isGrounded)
             {
-                if (!isFireAttacking && isGrounded)
-                {
-                    isFireAttacking = true;
-   
-                    FireMagic();
+                rb2d.velocity = new Vector2(rb2d.velocity.x, jumpSpeed);
+            }
 
-                    Invoke("MagicComplete", 0.4f);
+            if (PlayerAnimationManager.instance.isFire)
+            {
+                if (Input.GetButtonDown("Fire"))
+                {
+                    if (!isFireAttacking && isGrounded)
+                    {
+                        isFireAttacking = true;
+
+                        FireMagic();
+
+                        Invoke("MagicComplete", 0.4f);
+                    }
+
+                    else if (!isFireAirAttacking && !isGrounded)
+                    {
+                        isFireAirAttacking = true;
+
+                        FireMagic();
+
+                        Invoke("MagicComplete", 0.4f);
+                    }
                 }
+            }
 
-                else if(!isFireAirAttacking && !isGrounded)
+            if (PlayerAnimationManager.instance.isIce)
+            {
+                if (Input.GetButtonDown("Fire"))
                 {
-                    isFireAirAttacking = true;
+                    if (!isIceAttacking && isGrounded)
+                    {
+                        isIceAttacking = true;
 
-                    FireMagic();
+                        IceMagic();
 
-                    Invoke("MagicComplete", 0.4f);
+                        Invoke("MagicComplete", 0.4f);
+                    }
+
+                    else if (!isIceAirAttacking && !isGrounded)
+                    {
+                        isIceAirAttacking = true;
+
+                        IceMagic();
+
+                        Invoke("MagicComplete", 0.4f);
+                    }
                 }
             }
         }
 
-        if(PlayerAnimationManager.instance.isIce)
+        else if(knockBackCounter > 0)
         {
-            if(Input.GetButtonDown("Fire"))
+            knockBackCounter -= Time.deltaTime;
+
+            if(rb2d.velocity.x > 0)
             {
-                if (!isIceAttacking && isGrounded)
-                {
-                    isIceAttacking = true;
+                rb2d.velocity = new Vector2(-knockBackForce, rb2d.velocity.y);
+            }
 
-                    IceMagic();
-
-                    Invoke("MagicComplete", 0.4f);
-                }
-
-                else if(!isIceAirAttacking && !isGrounded)
-                {
-                    isIceAirAttacking = true;
-
-                    IceMagic();
-
-                    Invoke("MagicComplete", 0.4f);
-                }
+            else if(transform.localScale.x < 0)
+            {
+                rb2d.velocity = new Vector2(knockBackForce, rb2d.velocity.y);
             }
         }
     }
@@ -125,6 +147,12 @@ public class PlayerController : MonoBehaviour
         isIceAttacking = false;
         isFireAirAttacking = false;
         isIceAirAttacking = false;
+    }
+
+    public void KnockBack()
+    {
+        knockBackCounter = knockBackLength;
+        rb2d.velocity = new Vector2(0, 0);
     }
 
     public void BounceOnEnemy()
