@@ -6,6 +6,7 @@ public class RunningZombieController : MonoBehaviour
 {
     [SerializeField] float moveSpeed;
     [SerializeField] GameObject enemyDeathEffect;
+    [SerializeField] bool touchesWall;
 
     Rigidbody2D rb2d;
 
@@ -23,7 +24,7 @@ public class RunningZombieController : MonoBehaviour
     {
         rb2d.velocity = new Vector2(moveSpeed, rb2d.velocity.y);
     }
-
+    
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Wall"))
@@ -45,6 +46,7 @@ public class RunningZombieController : MonoBehaviour
         {
             moveSpeed = -moveSpeed;
             FlipEnemy();
+
             if (PlayerAnimationManager.instance.isBasic == true && PlayerHealthController.instance.invincibleLength <= 0)
             {
                 Instantiate(enemyDeathEffect, other.transform.position, other.transform.rotation);
