@@ -34,6 +34,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float knockBackForce;
     float knockBackCounter;
 
+    public bool lookingRight;
+    public bool lookingLeft;
+
     public static PlayerController instance;
 
     private void Awake()
@@ -114,12 +117,12 @@ public class PlayerController : MonoBehaviour
         {
             knockBackCounter -= Time.deltaTime;
 
-            if(rb2d.velocity.x > 0)
+            if(lookingRight == true && lookingRight == false)
             {
                 rb2d.velocity = new Vector2(-knockBackForce, rb2d.velocity.y);
             }
 
-            else if(transform.localScale.x < 0)
+            else if(lookingLeft == true && lookingRight == false)
             {
                 rb2d.velocity = new Vector2(knockBackForce, rb2d.velocity.y);
             }
@@ -128,7 +131,10 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb2d.velocity = new Vector2(moveX * speedX * Time.deltaTime, rb2d.velocity.y);
+        if (knockBackCounter <= 0)
+        {
+            rb2d.velocity = new Vector2(moveX * speedX * Time.deltaTime, rb2d.velocity.y);
+        }
     }
 
     void FireMagic()
@@ -152,7 +158,7 @@ public class PlayerController : MonoBehaviour
     public void KnockBack()
     {
         knockBackCounter = knockBackLength;
-        rb2d.velocity = new Vector2(0, 0);
+        rb2d.velocity = new Vector2(0, knockBackForce);
     }
 
     public void BounceOnEnemy()

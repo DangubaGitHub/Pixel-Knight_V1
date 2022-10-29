@@ -71,11 +71,15 @@ public class PlayerAnimationManager : MonoBehaviour
         {
             characterScale.x = -1;
             PlayerController.instance.firePoint.transform.eulerAngles = new Vector3(0, 180, 0);
+            PlayerController.instance.lookingLeft = true;
+            PlayerController.instance.lookingRight = false;
         }
         else if (rb2d.velocity.x > 0.1f)
         {
             characterScale.x = 1;
             PlayerController.instance.firePoint.transform.eulerAngles = new Vector3(0, 0, 0);
+            PlayerController.instance.lookingRight = true;
+            PlayerController.instance.lookingLeft = false;
         }
 
         transform.localScale = characterScale;
