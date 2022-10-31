@@ -119,10 +119,10 @@ public class PlayerController : MonoBehaviour
 
             if(lookingRight == true && lookingRight == false)
             {
-                rb2d.velocity = new Vector2(-knockBackForce, rb2d.velocity.y);
+                rb2d.velocity = new Vector2(knockBackForce, rb2d.velocity.y);
             }
 
-            else if(lookingLeft == true && lookingRight == false)
+            if(lookingLeft == true && lookingRight == false)
             {
                 rb2d.velocity = new Vector2(knockBackForce, rb2d.velocity.y);
             }
