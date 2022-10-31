@@ -340,6 +340,68 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2957960770513995593, guid: 0c35c9ce89a775d4dac4a7366f90fddd, type: 3}
   m_PrefabInstance: {fileID: 214093970}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &218783125
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 218783126}
+  m_Layer: 7
+  m_Name: Lost Ice Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &218783126
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218783125}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.356, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1190310448}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &240992123
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 240992124}
+  m_Layer: 7
+  m_Name: Lost Fire Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &240992124
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 240992123}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.315, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1190310448}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &408421010
 GameObject:
   m_ObjectHideFlags: 0
@@ -26888,6 +26950,9 @@ Transform:
   - {fileID: 109542930}
   - {fileID: 1838834653}
   - {fileID: 2034970165}
+  - {fileID: 240992124}
+  - {fileID: 218783126}
+  - {fileID: 2088542373}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -27011,6 +27076,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   invincibleLength: 0
+  lostFirePoint: {fileID: 240992124}
+  lostIcePoint: {fileID: 218783126}
+  lostIronPoint: {fileID: 2088542373}
+  lostFirePrefab: {fileID: 1901900388389918854, guid: 653829557a568db46a47e01f7a093000, type: 3}
+  lostIcePrefab: {fileID: 4312141998631689250, guid: e7c555febdbe9d245a4266ad73a78e7a, type: 3}
+  lostIronPrefab: {fileID: 2330487922528747260, guid: 6d7c88e2a5286314c8b554d11d2f722a, type: 3}
 --- !u!1 &1203331987
 GameObject:
   m_ObjectHideFlags: 0
@@ -69889,6 +69960,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyDeathEffect: {fileID: 7149189125103132212, guid: afb8bf30d0a47a6439bce4ed7a8f9ee0, type: 3}
+--- !u!1 &2088542372
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2088542373}
+  m_Layer: 7
+  m_Name: Lost Iron Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2088542373
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2088542372}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.658, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1190310448}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2096698658
 GameObject:
   m_ObjectHideFlags: 0
@@ -70111,6 +70213,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lost Fire Particles
       objectReference: {fileID: 0}
+    - target: {fileID: 1901900388389918854, guid: 653829557a568db46a47e01f7a093000, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1901900388389918875, guid: 653829557a568db46a47e01f7a093000, type: 3}
       propertyPath: m_RootOrder
       value: 14
@@ -70211,6 +70317,10 @@ PrefabInstance:
     - target: {fileID: 2330487922528747260, guid: 6d7c88e2a5286314c8b554d11d2f722a, type: 3}
       propertyPath: m_Name
       value: Lost Iron Particles
+      objectReference: {fileID: 0}
+    - target: {fileID: 2330487922528747260, guid: 6d7c88e2a5286314c8b554d11d2f722a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d7c88e2a5286314c8b554d11d2f722a, type: 3}
@@ -70390,6 +70500,10 @@ PrefabInstance:
     - target: {fileID: 4312141998631689250, guid: e7c555febdbe9d245a4266ad73a78e7a, type: 3}
       propertyPath: m_Name
       value: Lost Ice Particles
+      objectReference: {fileID: 0}
+    - target: {fileID: 4312141998631689250, guid: e7c555febdbe9d245a4266ad73a78e7a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7c555febdbe9d245a4266ad73a78e7a, type: 3}

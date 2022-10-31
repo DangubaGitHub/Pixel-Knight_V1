@@ -9,6 +9,16 @@ public class PlayerHealthController : MonoBehaviour
 
     public static PlayerHealthController instance;
 
+    [Header("Particle Points")]
+    [SerializeField] Transform lostFirePoint;
+    [SerializeField] Transform lostIcePoint;
+    [SerializeField] Transform lostIronPoint;
+
+    [Header("Particle Prefabs")]
+    [SerializeField] GameObject lostFirePrefab;
+    [SerializeField] GameObject lostIcePrefab;
+    [SerializeField] GameObject lostIronPrefab;
+
     SpriteRenderer theSR;
 
     private void Awake()
@@ -44,6 +54,7 @@ public class PlayerHealthController : MonoBehaviour
                 PlayerAnimationManager.instance.isBasic = true;
                 PlayerController.instance.KnockBack();
                 Invincible();
+                LostIron();
             }
 
             else if(PlayerAnimationManager.instance.isFire == true)
@@ -52,6 +63,7 @@ public class PlayerHealthController : MonoBehaviour
                 PlayerAnimationManager.instance.isBasic = true;
                 PlayerController.instance.KnockBack();
                 Invincible();
+                LostFire();
             }
 
             else if (PlayerAnimationManager.instance.isIce == true)
@@ -60,6 +72,7 @@ public class PlayerHealthController : MonoBehaviour
                 PlayerAnimationManager.instance.isBasic = true;
                 PlayerController.instance.KnockBack();
                 Invincible();
+                LostIce();
             }
 
             else if (PlayerAnimationManager.instance.isBasic == true && invincibleLength <= 0)
@@ -79,6 +92,7 @@ public class PlayerHealthController : MonoBehaviour
                 PlayerAnimationManager.instance.isBasic = true;
                 PlayerController.instance.KnockBack();
                 Invincible();
+                LostIron();
             }
 
             else if (PlayerAnimationManager.instance.isFire == true)
@@ -87,6 +101,7 @@ public class PlayerHealthController : MonoBehaviour
                 PlayerAnimationManager.instance.isBasic = true;
                 PlayerController.instance.KnockBack();
                 Invincible();
+                LostFire();
             }
 
             else if (PlayerAnimationManager.instance.isIce == true)
@@ -95,6 +110,7 @@ public class PlayerHealthController : MonoBehaviour
                 PlayerAnimationManager.instance.isBasic = true;
                 PlayerController.instance.KnockBack();
                 Invincible();
+                LostIce();
             }
 
             else if (PlayerAnimationManager.instance.isBasic == true && invincibleLength <= 0)
@@ -117,5 +133,20 @@ public class PlayerHealthController : MonoBehaviour
     void VisibilityFull()
     {
         theSR.color = new Color(theSR.color.r, theSR.color.g, theSR.color.b, 1f);
+    }
+
+    void LostFire()
+    {
+        Instantiate(lostFirePrefab, lostFirePoint.position, lostFirePoint.rotation);
+    }
+
+    void LostIce()
+    {
+        Instantiate(lostIcePrefab, lostIcePoint.position, lostIcePoint.rotation);
+    }
+
+    void LostIron()
+    {
+        Instantiate(lostIronPrefab, lostIronPoint.position, lostIronPoint.rotation);
     }
 }
