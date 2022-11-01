@@ -9,15 +9,14 @@ public class PlayerHealthController : MonoBehaviour
 
     public static PlayerHealthController instance;
 
-    [Header("Particle Points")]
-    [SerializeField] Transform lostFirePoint;
-    [SerializeField] Transform lostIcePoint;
-    [SerializeField] Transform lostIronPoint;
+    [SerializeField] Transform particlePoint;
+    //[SerializeField] Transform lostIcePoint;
+    //[SerializeField] Transform lostIronPoint;
 
     [Header("Particle Prefabs")]
     [SerializeField] GameObject lostFirePrefab;
     [SerializeField] GameObject lostIcePrefab;
-    [SerializeField] GameObject lostIronPrefab;
+    [SerializeField] GameObject lostArmorPrefab;
 
     SpriteRenderer theSR;
 
@@ -44,6 +43,7 @@ public class PlayerHealthController : MonoBehaviour
             VisibilityFull();
         }
     }
+
     void OnCollisionEnter2D(Collision2D other)
     {
         if(other.gameObject.tag == "Enemy")
@@ -52,16 +52,16 @@ public class PlayerHealthController : MonoBehaviour
             {
                 PlayerAnimationManager.instance.isArmor = false;
                 PlayerAnimationManager.instance.isBasic = true;
-                PlayerController.instance.KnockBack();
+                //PlayerController.instance.KnockBack();
                 Invincible();
-                LostIron();
+                LostArmor();
             }
 
             else if(PlayerAnimationManager.instance.isFire == true)
             {
                 PlayerAnimationManager.instance.isFire = false;
                 PlayerAnimationManager.instance.isBasic = true;
-                PlayerController.instance.KnockBack();
+                //PlayerController.instance.KnockBack();
                 Invincible();
                 LostFire();
             }
@@ -70,7 +70,7 @@ public class PlayerHealthController : MonoBehaviour
             {
                 PlayerAnimationManager.instance.isIce = false;
                 PlayerAnimationManager.instance.isBasic = true;
-                PlayerController.instance.KnockBack();
+                //PlayerController.instance.KnockBack();
                 Invincible();
                 LostIce();
             }
@@ -90,16 +90,16 @@ public class PlayerHealthController : MonoBehaviour
             {
                 PlayerAnimationManager.instance.isArmor = false;
                 PlayerAnimationManager.instance.isBasic = true;
-                PlayerController.instance.KnockBack();
+                //PlayerController.instance.KnockBack();
                 Invincible();
-                LostIron();
+                LostArmor();
             }
 
             else if (PlayerAnimationManager.instance.isFire == true)
             {
                 PlayerAnimationManager.instance.isFire = false;
                 PlayerAnimationManager.instance.isBasic = true;
-                PlayerController.instance.KnockBack();
+                //PlayerController.instance.KnockBack();
                 Invincible();
                 LostFire();
             }
@@ -108,7 +108,7 @@ public class PlayerHealthController : MonoBehaviour
             {
                 PlayerAnimationManager.instance.isIce = false;
                 PlayerAnimationManager.instance.isBasic = true;
-                PlayerController.instance.KnockBack();
+                //PlayerController.instance.KnockBack();
                 Invincible();
                 LostIce();
             }
@@ -137,16 +137,16 @@ public class PlayerHealthController : MonoBehaviour
 
     void LostFire()
     {
-        Instantiate(lostFirePrefab, lostFirePoint.position, lostFirePoint.rotation);
+        Instantiate(lostFirePrefab, particlePoint.position, particlePoint.rotation);
     }
 
     void LostIce()
     {
-        Instantiate(lostIcePrefab, lostIcePoint.position, lostIcePoint.rotation);
+        Instantiate(lostIcePrefab, particlePoint.position, particlePoint.rotation);
     }
 
-    void LostIron()
+    void LostArmor()
     {
-        Instantiate(lostIronPrefab, lostIronPoint.position, lostIronPoint.rotation);
+        Instantiate(lostArmorPrefab, particlePoint.position, particlePoint.rotation);
     }
 }
