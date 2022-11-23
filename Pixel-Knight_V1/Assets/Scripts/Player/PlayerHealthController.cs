@@ -18,11 +18,6 @@ public class PlayerHealthController : MonoBehaviour
     [SerializeField] GameObject lostIcePrefab;
     [SerializeField] GameObject lostArmorPrefab;
 
-    [Header("Lose Power Effect Prefabs")]
-    [SerializeField] GameObject LostArmorAnim;
-    [SerializeField] GameObject LostFireAnim;
-    [SerializeField] GameObject LostIceAnim;
-
     SpriteRenderer theSR;
 
     private void Awake()
@@ -143,18 +138,15 @@ public class PlayerHealthController : MonoBehaviour
     void LostFire()
     {
         Instantiate(lostFirePrefab, particlePoint.position, particlePoint.rotation);
-        Instantiate(LostFireAnim, particlePoint.position, particlePoint.rotation);
     }
 
     void LostIce()
     {
         Instantiate(lostIcePrefab, particlePoint.position, particlePoint.rotation);
-        Instantiate(LostIceAnim, particlePoint.position, particlePoint.rotation);
     }
 
     void LostArmor()
     {
         Instantiate(lostArmorPrefab, particlePoint.position, particlePoint.rotation);
-        Instantiate(LostArmorAnim, particlePoint.position, particlePoint.rotation);
     }
 }
