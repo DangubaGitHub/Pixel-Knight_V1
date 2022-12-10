@@ -87,138 +87,146 @@ public class PlayerAnimationManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isBasic)
+        if (PlayerController.instance.isDead == false)
         {
-            if (PlayerController.instance.isGrounded)
+            if (isBasic)
             {
-                if (rb2d.velocity.x == 0)
+                if (PlayerController.instance.isGrounded)
                 {
-                    ChangeAnimationState(BP_IDLE);
+                    if (rb2d.velocity.x == 0)
+                    {
+                        ChangeAnimationState(BP_IDLE);
+                    }
+
+                    if (rb2d.velocity.x != 0)
+                    {
+                        ChangeAnimationState(BP_RUN);
+                    }
                 }
 
-                if (rb2d.velocity.x != 0)
+                if (rb2d.velocity.y > 0f && PlayerController.instance.isGrounded == false)
                 {
-                    ChangeAnimationState(BP_RUN);
+                    ChangeAnimationState(BP_JUMP);
+                }
+
+                if (rb2d.velocity.y < 0f && PlayerController.instance.isGrounded == false)
+                {
+                    ChangeAnimationState(BP_FALL);
                 }
             }
 
-            if (rb2d.velocity.y > 0f && PlayerController.instance.isGrounded == false)
+            if (isArmor)
             {
-                ChangeAnimationState(BP_JUMP);
+                if (PlayerController.instance.isGrounded)
+                {
+                    if (rb2d.velocity.x == 0)
+                    {
+                        ChangeAnimationState(AP_IDLE);
+                    }
+
+                    if (rb2d.velocity.x != 0)
+                    {
+                        ChangeAnimationState(AP_RUN);
+                    }
+                }
+
+                if (rb2d.velocity.y > 0f && PlayerController.instance.isGrounded == false)
+                {
+                    ChangeAnimationState(AP_JUMP);
+                }
+
+                if (rb2d.velocity.y < 0f && PlayerController.instance.isGrounded == false)
+                {
+                    ChangeAnimationState(AP_FALL);
+                }
             }
 
-            if (rb2d.velocity.y < 0f && PlayerController.instance.isGrounded == false)
+            if (isFire)
             {
-                ChangeAnimationState(BP_FALL);
+                if (PlayerController.instance.isGrounded && !PlayerController.instance.isFireAttacking)
+                {
+                    if (rb2d.velocity.x == 0)
+                    {
+                        ChangeAnimationState(FP_IDLE);
+                    }
+
+                    if (rb2d.velocity.x != 0)
+                    {
+                        ChangeAnimationState(FP_RUN);
+                    }
+                }
+
+                if (rb2d.velocity.y > 0f && PlayerController.instance.isGrounded == false && !PlayerController.instance.isFireAirAttacking)
+                {
+                    ChangeAnimationState(FP_JUMP);
+                }
+
+                else if (rb2d.velocity.y > 0f && PlayerController.instance.isGrounded == false && PlayerController.instance.isFireAirAttacking)
+                {
+                    ChangeAnimationState(FP_ATTACK_JUMP);
+                }
+
+                if (rb2d.velocity.y < 0f && PlayerController.instance.isGrounded == false && !PlayerController.instance.isFireAirAttacking)
+                {
+                    ChangeAnimationState(FP_FALL);
+                }
+
+                else if (rb2d.velocity.y < 0f && PlayerController.instance.isGrounded == false && PlayerController.instance.isFireAirAttacking)
+                {
+                    ChangeAnimationState(FP_ATTACK_FALL);
+                }
+
+                if (PlayerController.instance.isFireAttacking && PlayerController.instance.isGrounded)
+                {
+                    ChangeAnimationState(FP_ATTACK);
+                }
+            }
+
+            if (isIce)
+            {
+                if (PlayerController.instance.isGrounded && !PlayerController.instance.isIceAttacking)
+                {
+                    if (rb2d.velocity.x == 0)
+                    {
+                        ChangeAnimationState(IP_IDLE);
+                    }
+
+                    if (rb2d.velocity.x != 0)
+                    {
+                        ChangeAnimationState(IP_RUN);
+                    }
+                }
+
+                if (rb2d.velocity.y > 0f && PlayerController.instance.isGrounded == false && !PlayerController.instance.isIceAirAttacking)
+                {
+                    ChangeAnimationState(IP_JUMP);
+                }
+
+                else if (rb2d.velocity.y > 0f && PlayerController.instance.isGrounded == false && PlayerController.instance.isIceAirAttacking)
+                {
+                    ChangeAnimationState(IP_ATTACK_JUMP);
+                }
+
+                if (rb2d.velocity.y < 0f && PlayerController.instance.isGrounded == false && !PlayerController.instance.isIceAirAttacking)
+                {
+                    ChangeAnimationState(IP_FALL);
+                }
+
+                else if (rb2d.velocity.y < 0f && PlayerController.instance.isGrounded == false && PlayerController.instance.isIceAirAttacking)
+                {
+                    ChangeAnimationState(IP_ATTACK_FALL);
+                }
+
+                if (PlayerController.instance.isIceAttacking && PlayerController.instance.isGrounded)
+                {
+                    ChangeAnimationState(IP_ATTACK);
+                }
             }
         }
 
-        if (isArmor)
+        if(PlayerController.instance.isDead == true)
         {
-            if (PlayerController.instance.isGrounded)
-            {
-                if (rb2d.velocity.x == 0)
-                {
-                    ChangeAnimationState(AP_IDLE);
-                }
-
-                if (rb2d.velocity.x != 0)
-                {
-                    ChangeAnimationState(AP_RUN);
-                }
-            }
-
-            if (rb2d.velocity.y > 0f && PlayerController.instance.isGrounded == false)
-            {
-                ChangeAnimationState(AP_JUMP);
-            }
-
-            if (rb2d.velocity.y < 0f && PlayerController.instance.isGrounded == false)
-            {
-                ChangeAnimationState(AP_FALL);
-            }
-        }
-
-        if (isFire)
-        {
-            if (PlayerController.instance.isGrounded && !PlayerController.instance.isFireAttacking)
-            {
-                if (rb2d.velocity.x == 0)
-                {
-                    ChangeAnimationState(FP_IDLE);
-                }
-
-                if (rb2d.velocity.x != 0)
-                {
-                    ChangeAnimationState(FP_RUN);
-                }
-            }
-
-            if (rb2d.velocity.y > 0f && PlayerController.instance.isGrounded == false && !PlayerController.instance.isFireAirAttacking)
-            {
-                ChangeAnimationState(FP_JUMP);
-            }
-
-            else if(rb2d.velocity.y > 0f && PlayerController.instance.isGrounded == false && PlayerController.instance.isFireAirAttacking)
-            {
-                ChangeAnimationState(FP_ATTACK_JUMP);
-            }
-
-            if (rb2d.velocity.y < 0f && PlayerController.instance.isGrounded == false && !PlayerController.instance.isFireAirAttacking)
-            {
-                ChangeAnimationState(FP_FALL);
-            }
-
-            else if(rb2d.velocity.y < 0f && PlayerController.instance.isGrounded == false && PlayerController.instance.isFireAirAttacking)
-            {
-                ChangeAnimationState(FP_ATTACK_FALL);
-            }
-
-            if(PlayerController.instance.isFireAttacking && PlayerController.instance.isGrounded)
-            {
-                ChangeAnimationState(FP_ATTACK);
-            }
-        }
-
-        if (isIce)
-        {
-            if (PlayerController.instance.isGrounded && !PlayerController.instance.isIceAttacking)
-            {
-                if (rb2d.velocity.x == 0)
-                {
-                    ChangeAnimationState(IP_IDLE);
-                }
-
-                if (rb2d.velocity.x != 0)
-                {
-                    ChangeAnimationState(IP_RUN);
-                }
-            }
-
-            if (rb2d.velocity.y > 0f && PlayerController.instance.isGrounded == false && !PlayerController.instance.isIceAirAttacking)
-            {
-                ChangeAnimationState(IP_JUMP);
-            }
-
-            else if (rb2d.velocity.y > 0f && PlayerController.instance.isGrounded == false && PlayerController.instance.isIceAirAttacking)
-            {
-                ChangeAnimationState(IP_ATTACK_JUMP);
-            }
-
-            if (rb2d.velocity.y < 0f && PlayerController.instance.isGrounded == false && !PlayerController.instance.isIceAirAttacking)
-            {
-                ChangeAnimationState(IP_FALL);
-            }
-
-            else if (rb2d.velocity.y < 0f && PlayerController.instance.isGrounded == false && PlayerController.instance.isIceAirAttacking)
-            {
-                ChangeAnimationState(IP_ATTACK_FALL);
-            }
-
-            if (PlayerController.instance.isIceAttacking && PlayerController.instance.isGrounded)
-            {
-                ChangeAnimationState(IP_ATTACK);
-            }
+            ChangeAnimationState(BP_FALL);
         }
     }
 

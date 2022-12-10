@@ -6,6 +6,13 @@ public class PlayerStompBox : MonoBehaviour
 {
     [SerializeField] GameObject enemyDeathEffect;
 
+    BoxCollider2D boxCollider2d;
+
+    private void Awake()
+    {
+        boxCollider2d = GetComponent<BoxCollider2D>();
+    }
+
     void Start()
     {
         
@@ -13,7 +20,10 @@ public class PlayerStompBox : MonoBehaviour
 
     void Update()
     {
-        
+        if(PlayerController.instance.isDead == true)
+        {
+            boxCollider2d.enabled = false;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)

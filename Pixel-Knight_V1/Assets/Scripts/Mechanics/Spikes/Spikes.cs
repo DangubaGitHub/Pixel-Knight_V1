@@ -12,7 +12,7 @@ public class Spikes : MonoBehaviour
         {
             if (PlayerAnimationManager.instance.isBasic == true && PlayerHealthController.instance.invincibleLength <= 0)
             {
-                Instantiate(enemyDeathEffect, other.transform.position, other.transform.rotation);
+                //Instantiate(enemyDeathEffect, other.transform.position, other.transform.rotation);
             }
         }
     }

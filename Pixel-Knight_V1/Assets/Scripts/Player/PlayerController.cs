@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     Rigidbody2D rb2d;
+    Collider2D capsuleCollider2d;
 
     [Header("Movement")]
     public float speedX;
@@ -37,94 +38,100 @@ public class PlayerController : MonoBehaviour
     public bool lookingRight;
     public bool lookingLeft;
 
+    public bool isDead;
+
     public static PlayerController instance;
 
     private void Awake()
     {
         instance = this;
         rb2d = GetComponent<Rigidbody2D>();
+        capsuleCollider2d = GetComponent<Collider2D>();
     }
 
     void Start()
     {
-
+        isDead = false;
     }
 
     void Update()
     {
-        if (knockBackCounter <= 0)
+        if (!isDead)
         {
-
-            moveX = Input.GetAxis("Horizontal");
-
-            isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-
-            if (Input.GetButtonDown("Jump") && isGrounded)
+            if (knockBackCounter <= 0)
             {
-                rb2d.velocity = new Vector2(rb2d.velocity.x, jumpSpeed);
-            }
 
-            if (PlayerAnimationManager.instance.isFire)
-            {
-                if (Input.GetButtonDown("Fire"))
+                moveX = Input.GetAxis("Horizontal");
+
+                isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+
+                if (Input.GetButtonDown("Jump") && isGrounded)
                 {
-                    if (!isFireAttacking && isGrounded)
+                    rb2d.velocity = new Vector2(rb2d.velocity.x, jumpSpeed);
+                }
+
+                if (PlayerAnimationManager.instance.isFire)
+                {
+                    if (Input.GetButtonDown("Fire"))
                     {
-                        isFireAttacking = true;
+                        if (!isFireAttacking && isGrounded)
+                        {
+                            isFireAttacking = true;
 
-                        FireMagic();
+                            FireMagic();
 
-                        Invoke("MagicComplete", 0.4f);
+                            Invoke("MagicComplete", 0.4f);
+                        }
+
+                        else if (!isFireAirAttacking && !isGrounded)
+                        {
+                            isFireAirAttacking = true;
+
+                            FireMagic();
+
+                            Invoke("MagicComplete", 0.4f);
+                        }
                     }
+                }
 
-                    else if (!isFireAirAttacking && !isGrounded)
+                if (PlayerAnimationManager.instance.isIce)
+                {
+                    if (Input.GetButtonDown("Fire"))
                     {
-                        isFireAirAttacking = true;
+                        if (!isIceAttacking && isGrounded)
+                        {
+                            isIceAttacking = true;
 
-                        FireMagic();
+                            IceMagic();
 
-                        Invoke("MagicComplete", 0.4f);
+                            Invoke("MagicComplete", 0.4f);
+                        }
+
+                        else if (!isIceAirAttacking && !isGrounded)
+                        {
+                            isIceAirAttacking = true;
+
+                            IceMagic();
+
+                            Invoke("MagicComplete", 0.4f);
+                        }
                     }
                 }
             }
 
-            if (PlayerAnimationManager.instance.isIce)
+            else if (knockBackCounter > 0)
             {
-                if (Input.GetButtonDown("Fire"))
+                knockBackCounter -= Time.deltaTime;
+
+                if (lookingRight == true && lookingRight == false)
                 {
-                    if (!isIceAttacking && isGrounded)
-                    {
-                        isIceAttacking = true;
-
-                        IceMagic();
-
-                        Invoke("MagicComplete", 0.4f);
-                    }
-
-                    else if (!isIceAirAttacking && !isGrounded)
-                    {
-                        isIceAirAttacking = true;
-
-                        IceMagic();
-
-                        Invoke("MagicComplete", 0.4f);
-                    }
+                    rb2d.velocity = new Vector2(knockBackForce, rb2d.velocity.y);
                 }
-            }
-        }
 
-        else if(knockBackCounter > 0)
-        {
-            knockBackCounter -= Time.deltaTime;
-
-            if(lookingRight == true && lookingRight == false)
-            {
-                rb2d.velocity = new Vector2(knockBackForce, rb2d.velocity.y);
-            }
-
-            if(lookingLeft == true && lookingRight == false)
-            {
-                rb2d.velocity = new Vector2(knockBackForce, rb2d.velocity.y);
+                if (lookingLeft == true && lookingRight == false)
+                {
+                    rb2d.velocity = new Vector2(knockBackForce, rb2d.velocity.y);
+                }
             }
         }
     }

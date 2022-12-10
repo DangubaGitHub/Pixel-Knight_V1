@@ -24,11 +24,15 @@ public class PlayerHealthController : MonoBehaviour
     [SerializeField] GameObject lostArmorAnim;
 
     SpriteRenderer theSR;
+    Rigidbody2D rb2d;
+    Collider2D capsuleCollider2d;
 
     private void Awake()
     {
         instance = this;
         theSR = GetComponent<SpriteRenderer>();
+        rb2d = GetComponent<Rigidbody2D>();
+        capsuleCollider2d = GetComponent<Collider2D>();
     }
 
     void Start()
@@ -51,7 +55,7 @@ public class PlayerHealthController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.tag == "Enemy")
+        if(other.gameObject.tag == "Enemy" || other.gameObject.tag == "Spikes")
         {
             if(PlayerAnimationManager.instance.isArmor == true)
             {
@@ -83,11 +87,14 @@ public class PlayerHealthController : MonoBehaviour
             else if (PlayerAnimationManager.instance.isBasic == true && invincibleLength <= 0)
             {
                 //Destroy(this.gameObject);
+                PlayerController.instance.isDead = true;
+                Died();
+                Invoke("AfterDeath", 2f);
             }
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    /*private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.CompareTag("Spikes"))
         {
@@ -121,9 +128,12 @@ public class PlayerHealthController : MonoBehaviour
             else if (PlayerAnimationManager.instance.isBasic == true && invincibleLength <= 0)
             {
                 //Destroy(this.gameObject);
+                PlayerController.instance.isDead = true;
+                Died();
+                Invoke("AfterDeath", 2f);
             }
         }
-    }
+    }*/
 
     void Invincible()
     {
@@ -156,5 +166,20 @@ public class PlayerHealthController : MonoBehaviour
     {
         Instantiate(lostArmorPrefab, particlePoint.position, particlePoint.rotation);
         Instantiate(lostArmorAnim, particlePoint.position, particlePoint.rotation);
+    }
+
+    void Died()
+    {
+        rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+        capsuleCollider2d.enabled = false;
+    }
+
+    void AfterDeath()
+    {
+        //capsuleCollider2d.enabled = true;
+        rb2d.constraints = RigidbodyConstraints2D.None;
+        rb2d.constraints = RigidbodyConstraints2D.FreezePositionX;
+        //rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
+        rb2d.velocity = new Vector2(0f, 30f);
     }
 }

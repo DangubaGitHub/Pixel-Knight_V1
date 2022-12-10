@@ -47,10 +47,10 @@ public class RunningZombieController : MonoBehaviour
             moveSpeed = -moveSpeed;
             FlipEnemy();
 
-            if (PlayerAnimationManager.instance.isBasic == true && PlayerHealthController.instance.invincibleLength <= 0)
+            /*if (PlayerAnimationManager.instance.isBasic == true && PlayerHealthController.instance.invincibleLength <= 0)
             {
                 Instantiate(enemyDeathEffect, other.transform.position, other.transform.rotation);
-            }
+            }*/
         }
     }
 
