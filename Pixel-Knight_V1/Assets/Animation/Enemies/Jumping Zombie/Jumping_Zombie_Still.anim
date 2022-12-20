@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Zombie_Still
+  m_Name: Jumping_Zombie_Still
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,7 +20,7 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 1815575763, guid: f6fbe1c37a0650c4ba76a9c3a022706a, type: 3}
+      value: {fileID: 987570114, guid: 304eaf337bd7842418e23f1fa6cef1f9, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -40,7 +40,7 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 1815575763, guid: f6fbe1c37a0650c4ba76a9c3a022706a, type: 3}
+    - {fileID: 987570114, guid: 304eaf337bd7842418e23f1fa6cef1f9, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
