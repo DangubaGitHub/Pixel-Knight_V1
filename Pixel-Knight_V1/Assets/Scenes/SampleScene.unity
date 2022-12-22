@@ -26817,13 +26817,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedX: 500
-  jumpSpeed: 40
+  jumpSpeed: 20
   groundCheck: {fileID: 109542930}
   groundCheckRadius: 0.2
   groundLayer:
     serializedVersion: 2
     m_Bits: 520
   isGrounded: 0
+  jumpTime: 0.35
   firePoint: {fileID: 1838834653}
   fireBulletPrefab: {fileID: 2453173839708535657, guid: 38f341edd5de13241bdf5d5289c1e783, type: 3}
   fireSpeed: 5

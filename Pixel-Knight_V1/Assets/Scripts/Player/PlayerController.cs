@@ -17,6 +17,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float groundCheckRadius;
     [SerializeField] LayerMask groundLayer;
     public bool isGrounded;
+    float jumpTimeCounter;
+    [SerializeField] float jumpTime;
+    bool isJumping;
 
     [Header("Magic")]
     public Transform firePoint;
@@ -67,8 +70,31 @@ public class PlayerController : MonoBehaviour
 
                 if (Input.GetButtonDown("Jump") && isGrounded)
                 {
+                    isJumping = true;
+                    jumpTimeCounter = jumpTime;
                     rb2d.velocity = new Vector2(rb2d.velocity.x, jumpSpeed);
                 }
+
+                if (Input.GetButton("Jump") && isJumping == true)
+                {
+                    if (jumpTimeCounter > 0)
+                    {
+                        rb2d.velocity = new Vector2(rb2d.velocity.x, jumpSpeed);
+                        jumpTimeCounter -= Time.deltaTime;
+                    }
+
+                    else
+                    {
+                        isJumping = false;
+                    }
+                }
+
+                if (Input.GetButtonUp("Jump"))
+                {
+                    isJumping = false;
+                }
+
+
 
                 if (PlayerAnimationManager.instance.isFire)
                 {
