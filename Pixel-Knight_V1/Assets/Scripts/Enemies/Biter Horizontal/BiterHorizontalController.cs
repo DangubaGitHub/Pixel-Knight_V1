@@ -9,8 +9,8 @@ public class BiterHorizontalController : MonoBehaviour
 
     ////////////////////  ANIMATIONS  ///
 
-    const string BITING = "Biter_Horizontal_Still";
-    const string STILL = "Biter_Horizontal_Biting";
+    const string STILL = "Biter_Horizontal_Still";
+    const string BITING = "Biter_Horizontal_Biting";
 
     string currentState;
 
@@ -36,6 +36,15 @@ public class BiterHorizontalController : MonoBehaviour
     [SerializeField] bool foundDirection;
     [SerializeField] GameObject Player;
 
+    [SerializeField] bool isGrounded;
+
+    //[SerializeField] bool wallContact;
+
+    ////////////////////  Out of Bounds  ///
+
+    //[SerializeField] Transform OutOfBoundsRaycastPoint;
+    //[SerializeField] LayerMask WallLayer;
+
     private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -44,19 +53,22 @@ public class BiterHorizontalController : MonoBehaviour
 
     void Start()
     {
-        ChangeAnimationState(STILL);
+        //ChangeAnimationState(STILL);
+        //wallContact = true;
     }
 
     void Update()
     {
         isActive = Physics2D.OverlapCircle(PlayerCheck.position, PlayerCheckRadius, PlayerLayer);
 
-        Debug.DrawRay(RaycastPoint.position, Vector2.down * .5f, Color.red);
+        //Debug.DrawRay(RaycastPoint.position, Vector2.down * .5f, Color.red);
 
-        if(isActive)
+        if (isActive)
         {
-            if (GroundCheck())
-            {
+            ChangeAnimationState(BITING);
+
+            /*if (GroundCheck())
+            {*/
                 if (!foundDirection)
                 {
                     if (Player.transform.position.x > transform.position.x)
@@ -72,6 +84,8 @@ public class BiterHorizontalController : MonoBehaviour
                     foundDirection = true;
                 }
 
+            if (isGrounded)
+            {
                 rb2d.velocity = new Vector2(horizontalSpeed, verticalForce);
             }
         }
@@ -102,14 +116,74 @@ public class BiterHorizontalController : MonoBehaviour
         transform.localScale = characterScale;
     }
 
-    bool GroundCheck()
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.CompareTag("Ground"))
+        {
+            isGrounded = true;
+        }
+
+        /*if(other.CompareTag("Wall"))
+        {
+            horizontalSpeed = -horizontalSpeed;
+        }*/
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if(other.CompareTag("Ground"))
+        {
+            isGrounded = false;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.tag == "Player")
+        {
+            if (PlayerAnimationManager.instance.isArmor)
+            {
+                horizontalSpeed = -horizontalSpeed;
+                //ChangeAnimationState(BITING);
+            }
+
+            if (PlayerAnimationManager.instance.isFire)
+            {
+                horizontalSpeed = -horizontalSpeed;
+                //ChangeAnimationState(BITING);
+            }
+
+            if (PlayerAnimationManager.instance.isIce)
+            {
+                horizontalSpeed = -horizontalSpeed;
+                //ChangeAnimationState(BITING);
+            }
+
+            if (PlayerAnimationManager.instance.isBasic)
+            {
+                ChangeAnimationState(STILL);
+            }
+        }
+
+        if(other.gameObject.tag == "Enemy")
+        {
+            horizontalSpeed = -horizontalSpeed;
+        }
+
+        if(other.gameObject.tag == "Wall")
+        {
+            horizontalSpeed = -horizontalSpeed;
+        }
+    }
+
+    /*bool GroundCheck()
     {
         RaycastHit2D Grounded;
 
         Grounded = Physics2D.Raycast(RaycastPoint.position, Vector2.down, .5f, GroundLayer);
 
         return Grounded;
-    }
+    }*/
 
     void ChangeAnimationState(string newState)
     {
