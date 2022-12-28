@@ -76,7 +76,7 @@ public class RunningZombieController : MonoBehaviour
             foundDirection = false;
         }
 
-        ////////////////////
+        //////////////////// Fliping ///
 
         Vector3 characterScale = transform.localScale;
 
@@ -91,8 +91,6 @@ public class RunningZombieController : MonoBehaviour
         }
 
         transform.localScale = characterScale;
-
-        ////////////////////
     }
     
     void OnTriggerEnter2D(Collider2D other)

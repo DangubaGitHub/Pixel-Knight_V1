@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2007722870730243258}
   - component: {fileID: 2007722870730243256}
   - component: {fileID: 2007722870730243259}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Jumping Zombie
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2007722870730243255}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -10.467529, y: -11.670301, z: 2.386508}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
