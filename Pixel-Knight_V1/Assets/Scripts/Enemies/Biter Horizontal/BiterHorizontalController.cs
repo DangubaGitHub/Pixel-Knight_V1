@@ -38,13 +38,6 @@ public class BiterHorizontalController : MonoBehaviour
 
     [SerializeField] bool isGrounded;
 
-    //[SerializeField] bool wallContact;
-
-    ////////////////////  Out of Bounds  ///
-
-    //[SerializeField] Transform OutOfBoundsRaycastPoint;
-    //[SerializeField] LayerMask WallLayer;
-
     private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -53,36 +46,31 @@ public class BiterHorizontalController : MonoBehaviour
 
     void Start()
     {
-        //ChangeAnimationState(STILL);
-        //wallContact = true;
+
     }
 
     void Update()
     {
         isActive = Physics2D.OverlapCircle(PlayerCheck.position, PlayerCheckRadius, PlayerLayer);
 
-        //Debug.DrawRay(RaycastPoint.position, Vector2.down * .5f, Color.red);
-
         if (isActive)
         {
             ChangeAnimationState(BITING);
 
-            /*if (GroundCheck())
-            {*/
-                if (!foundDirection)
+            if (!foundDirection)
+            {
+                if (Player.transform.position.x > transform.position.x)
                 {
-                    if (Player.transform.position.x > transform.position.x)
-                    {
-                        horizontalSpeed = -horizontalSpeed;
-                    }
-
-                    if (Player.transform.position.x < transform.position.x)
-                    {
-                        horizontalSpeed = -horizontalSpeed;
-                    }
-
-                    foundDirection = true;
+                    horizontalSpeed = -horizontalSpeed;
                 }
+
+                if (Player.transform.position.x < transform.position.x)
+                {
+                    horizontalSpeed = -horizontalSpeed;
+                }
+
+                foundDirection = true;
+            }
 
             if (isGrounded)
             {
@@ -122,11 +110,6 @@ public class BiterHorizontalController : MonoBehaviour
         {
             isGrounded = true;
         }
-
-        /*if(other.CompareTag("Wall"))
-        {
-            horizontalSpeed = -horizontalSpeed;
-        }*/
     }
 
     private void OnTriggerExit2D(Collider2D other)
