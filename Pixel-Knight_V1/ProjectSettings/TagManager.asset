@@ -8,7 +8,8 @@ TagManager:
   - Enemy
   - Wall
   - Spikes
-  - Enemy Invulnerable
+  - Enemy Invulnerable Damaging
+  - Enemy Invulnerable Bounce
   layers:
   - Default
   - TransparentFX

@@ -36,7 +36,7 @@ public class BiterVerticalController : MonoBehaviour
     {
         if(rb2d.velocity.y > 0)
         {
-            gameObject.tag = "Enemy Invulnerable";
+            gameObject.tag = "Enemy Invulnerable Damaging";
             ChangeAnimationState(UP);
         }
 

@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RunningZombieController : MonoBehaviour
+public class CrawlerController : MonoBehaviour
 {
+    ////////////////////////////// Movement //////////
+
     [SerializeField] float moveSpeed;
-    [SerializeField] GameObject enemyDeathEffect;
-    [SerializeField] bool touchesWall;
-    [SerializeField] BoxCollider2D boxCollider;
+
+
+    ////////////////////////////// Activation //////////
 
     [Header("Activation")]
     [SerializeField] LayerMask PlayerLayer;
@@ -18,20 +20,19 @@ public class RunningZombieController : MonoBehaviour
 
     [SerializeField] GameObject Player;
 
-    Rigidbody2D rb2d;
+    ////////////////////////////// Animation //////////
 
-    ////////////////////////////// Animation Controlls //////////
-
-    const string ZOMBIE_STILL = "Zombie_Still";
-    const string ZOMBIE_RUN = "Zombie_Run";
+    const string STILL = "Crawler_Still";
+    const string WALK = "Crawler_Walk";
     string currentState;
+
     Animator anim;
+    Rigidbody2D rb2d;
 
     private void Awake()
     {
-        rb2d = GetComponent<Rigidbody2D>();
-        boxCollider = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
+        rb2d = GetComponent<Rigidbody2D>();
     }
 
     void Start()
@@ -45,7 +46,7 @@ public class RunningZombieController : MonoBehaviour
 
         if (isActive)
         {
-            ChangeAnimationState(ZOMBIE_RUN);
+            ChangeAnimationState(WALK);
 
             if (!foundDirection)
             {
@@ -67,7 +68,7 @@ public class RunningZombieController : MonoBehaviour
 
         else
         {
-            ChangeAnimationState(ZOMBIE_STILL);
+            ChangeAnimationState(STILL);
 
             rb2d.velocity = new Vector2(0f, rb2d.velocity.y);
 
@@ -90,23 +91,23 @@ public class RunningZombieController : MonoBehaviour
 
         transform.localScale = characterScale;
     }
-    
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Wall"))
         {
-             moveSpeed = -moveSpeed;
+            moveSpeed = -moveSpeed;
         }
 
         if (other.CompareTag("Enemy"))
         {
-             moveSpeed = -moveSpeed;
+            moveSpeed = -moveSpeed;
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if(other.CompareTag("Ground"))
+        if (other.CompareTag("Ground"))
         {
             moveSpeed = -moveSpeed;
         }
@@ -114,26 +115,26 @@ public class RunningZombieController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player")
         {
-            if(PlayerAnimationManager.instance.isArmor)
+            if (PlayerAnimationManager.instance.isArmor)
             {
                 moveSpeed = -moveSpeed;
             }
 
-            if(PlayerAnimationManager.instance.isFire)
+            if (PlayerAnimationManager.instance.isFire)
             {
                 moveSpeed = -moveSpeed;
             }
 
-            if(PlayerAnimationManager.instance.isIce)
+            if (PlayerAnimationManager.instance.isIce)
             {
                 moveSpeed = -moveSpeed;
             }
 
             if (PlayerAnimationManager.instance.isBasic == true)
             {
-                ChangeAnimationState(ZOMBIE_STILL);
+                ChangeAnimationState(STILL);
             }
         }
     }

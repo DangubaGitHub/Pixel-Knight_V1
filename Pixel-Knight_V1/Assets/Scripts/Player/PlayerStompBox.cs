@@ -36,5 +36,10 @@ public class PlayerStompBox : MonoBehaviour
 
             Instantiate(enemyDeathEffect, other.transform.position, other.transform.rotation);
         }
+
+        if(other.CompareTag("Enemy Invulnerable Bounce"))
+        {
+            PlayerController.instance.BounceOnEnemy();
+        }
     }
 }
