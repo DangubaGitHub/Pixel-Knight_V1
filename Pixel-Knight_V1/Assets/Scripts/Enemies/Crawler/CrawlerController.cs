@@ -7,8 +7,11 @@ public class CrawlerController : MonoBehaviour
     ////////////////////////////// Movement //////////
 
     [SerializeField] float moveSpeed;
-
-
+    public bool isCrouching;
+    public float crouchTimerCountdown;
+    //[SerializeField] float CrouchTime;
+    [SerializeField] bool timerSet;
+     
     ////////////////////////////// Activation //////////
 
     [Header("Activation")]
@@ -24,13 +27,16 @@ public class CrawlerController : MonoBehaviour
 
     const string STILL = "Crawler_Still";
     const string WALK = "Crawler_Walk";
+    const string CROUCH = "Crawler_Crouch";
     string currentState;
 
     Animator anim;
     Rigidbody2D rb2d;
+    public static CrawlerController instance; 
 
     private void Awake()
     {
+        instance = this;
         anim = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
     }
@@ -46,8 +52,6 @@ public class CrawlerController : MonoBehaviour
 
         if (isActive)
         {
-            ChangeAnimationState(WALK);
-
             if (!foundDirection)
             {
                 if (Player.transform.position.x > transform.position.x && transform.localScale.x == -1)
@@ -63,7 +67,27 @@ public class CrawlerController : MonoBehaviour
                 foundDirection = true;
             }
 
-            rb2d.velocity = new Vector2(moveSpeed, rb2d.velocity.y);
+            if (!isCrouching)
+            {
+                ChangeAnimationState(WALK);
+
+                rb2d.velocity = new Vector2(moveSpeed, rb2d.velocity.y);
+            }
+
+            if(isCrouching)
+            {
+                //TimerSet();
+                ChangeAnimationState(CROUCH);
+                rb2d.velocity = new Vector2(0f, 0f);
+                crouchTimerCountdown -= Time.deltaTime;
+            }
+
+            
+
+            if (crouchTimerCountdown <= 0)
+            {
+                isCrouching = false;
+            }
         }
 
         else
@@ -74,6 +98,8 @@ public class CrawlerController : MonoBehaviour
 
             foundDirection = false;
         }
+
+        
 
         //////////////////// Fliping ///
 
@@ -138,6 +164,16 @@ public class CrawlerController : MonoBehaviour
             }
         }
     }
+
+    /*void TimerSet()
+    {
+        if(timerSet)
+        {
+            crouchTimerCountdown = CrouchTime;
+        }
+
+        timerSet = false;
+    }*/
 
     public void ChangeAnimationState(string newState)
     {

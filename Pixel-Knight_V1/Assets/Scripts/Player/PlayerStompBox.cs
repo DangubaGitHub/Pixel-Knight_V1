@@ -40,6 +40,8 @@ public class PlayerStompBox : MonoBehaviour
         if(other.CompareTag("Enemy Invulnerable Bounce"))
         {
             PlayerController.instance.BounceOnEnemy();
+            CrawlerController.instance.isCrouching = true;
+            CrawlerController.instance.crouchTimerCountdown = 1f;
         }
     }
 }
