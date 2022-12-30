@@ -98,7 +98,7 @@ public class RunningZombieController : MonoBehaviour
              moveSpeed = -moveSpeed;
         }
 
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("Enemy") || other.CompareTag("Enemy Invulnerable Damaging") || other.CompareTag("Enemy Invulnerable Bounce"))
         {
              moveSpeed = -moveSpeed;
         }
@@ -131,7 +131,7 @@ public class RunningZombieController : MonoBehaviour
                 moveSpeed = -moveSpeed;
             }
 
-            if (PlayerAnimationManager.instance.isBasic == true)
+            if (PlayerAnimationManager.instance.isBasic)
             {
                 ChangeAnimationState(ZOMBIE_STILL);
             }

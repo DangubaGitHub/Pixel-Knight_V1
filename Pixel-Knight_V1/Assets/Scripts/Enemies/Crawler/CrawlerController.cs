@@ -43,7 +43,7 @@ public class CrawlerController : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     void Update()
@@ -82,8 +82,6 @@ public class CrawlerController : MonoBehaviour
                 crouchTimerCountdown -= Time.deltaTime;
             }
 
-            
-
             if (crouchTimerCountdown <= 0)
             {
                 isCrouching = false;
@@ -99,7 +97,6 @@ public class CrawlerController : MonoBehaviour
             foundDirection = false;
         }
 
-        
 
         //////////////////// Fliping ///
 
@@ -125,7 +122,9 @@ public class CrawlerController : MonoBehaviour
             moveSpeed = -moveSpeed;
         }
 
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("Enemy") || 
+            other.CompareTag("Enemy Invulnerable Damaging") || 
+            other.CompareTag("Enemy Invulnerable Bounce"))
         {
             moveSpeed = -moveSpeed;
         }
@@ -146,21 +145,25 @@ public class CrawlerController : MonoBehaviour
             if (PlayerAnimationManager.instance.isArmor)
             {
                 moveSpeed = -moveSpeed;
+                Debug.Log("isArmor Triggerd");
             }
 
             if (PlayerAnimationManager.instance.isFire)
             {
                 moveSpeed = -moveSpeed;
+                Debug.Log("isFire Triggerd");
             }
 
             if (PlayerAnimationManager.instance.isIce)
             {
                 moveSpeed = -moveSpeed;
+                Debug.Log("isIce Triggerd");
             }
 
-            if (PlayerAnimationManager.instance.isBasic == true)
+            if (PlayerAnimationManager.instance.isBasic)
             {
                 ChangeAnimationState(STILL);
+                Debug.Log("isBasic Triggerd");
             }
         }
     }
