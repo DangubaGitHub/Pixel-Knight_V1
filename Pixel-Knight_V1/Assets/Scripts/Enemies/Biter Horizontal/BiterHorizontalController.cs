@@ -159,6 +159,15 @@ public class BiterHorizontalController : MonoBehaviour
         }
     }
 
+    /*bool GroundCheck()
+    {
+        RaycastHit2D Grounded;
+
+        Grounded = Physics2D.Raycast(RaycastPoint.position, Vector2.down, .5f, GroundLayer);
+
+        return Grounded;
+    }*/
+
     void ChangeAnimationState(string newState)
     {
         if (currentState == newState) return;

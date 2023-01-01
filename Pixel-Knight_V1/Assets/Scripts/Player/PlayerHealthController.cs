@@ -55,10 +55,8 @@ public class PlayerHealthController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.tag == "Enemy" || 
-           other.gameObject.tag == "Spikes" ||
-           other.gameObject.tag == "Enemy Invulnerable Damaging" || 
-           other.gameObject.tag == "Enemy Invulnerable Bounce")
+        if(other.gameObject.tag == "Enemy" || other.gameObject.tag == "Spikes" ||
+           other.gameObject.tag == "Enemy Invulnerable Damaging" || other.gameObject.tag == "Enemy Invulnerable Bounce")
         {
             if(PlayerAnimationManager.instance.isArmor == true)
             {

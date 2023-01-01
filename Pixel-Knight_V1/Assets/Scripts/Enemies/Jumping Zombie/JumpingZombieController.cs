@@ -9,7 +9,7 @@ public class JumpingZombieController : MonoBehaviour
     [SerializeField] int nextJump;
     float nextTime;
     int jumpForce = 40;
-
+    
     ////////////////////  ANIMATIONS  ///
 
     const string IDLE = "Jumping_Zombie_Idle";
@@ -46,7 +46,7 @@ public class JumpingZombieController : MonoBehaviour
 
     void Start()
     {
-
+        
     }
 
     void Update()
@@ -114,10 +114,7 @@ public class JumpingZombieController : MonoBehaviour
             isGrounded = true;
         }
 
-        if (other.gameObject.tag == "Player" || 
-            other.gameObject.tag == "Enemy" || 
-            other.gameObject.tag == "Enemy Invulnerable Damaging" || 
-            other.gameObject.tag == "Enemy Invulnerable Bounce")
+        if (other.gameObject.tag == "Player")
         {
             rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
         }
