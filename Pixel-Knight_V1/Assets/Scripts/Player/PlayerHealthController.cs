@@ -10,8 +10,6 @@ public class PlayerHealthController : MonoBehaviour
     public static PlayerHealthController instance;
 
     [SerializeField] Transform particlePoint;
-    //[SerializeField] Transform lostIcePoint;
-    //[SerializeField] Transform lostIronPoint;
 
     [Header("Particle Prefabs")]
     [SerializeField] GameObject lostFirePrefab;
@@ -55,86 +53,40 @@ public class PlayerHealthController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.tag == "Enemy" || other.gameObject.tag == "Spikes" ||
-           other.gameObject.tag == "Enemy Invulnerable Damaging" || other.gameObject.tag == "Enemy Invulnerable Bounce")
+        if(other.gameObject.tag == "Enemy" || 
+            other.gameObject.tag == "Spikes" ||
+           other.gameObject.tag == "Enemy Invulnerable Damaging" || 
+           other.gameObject.tag == "Enemy Invulnerable Bounce")
         {
             if(PlayerAnimationManager.instance.isArmor == true)
             {
-                PlayerAnimationManager.instance.isArmor = false;
-                PlayerAnimationManager.instance.isBasic = true;
-                //PlayerController.instance.KnockBack();
+                Invoke("ChangeState", 0.1f);
                 Invincible();
                 LostArmor();
             }
 
             else if(PlayerAnimationManager.instance.isFire == true)
             {
-                PlayerAnimationManager.instance.isFire = false;
-                PlayerAnimationManager.instance.isBasic = true;
-                //PlayerController.instance.KnockBack();
+                Invoke("ChangeState", 0.1f);
                 Invincible();
                 LostFire();
             }
 
             else if (PlayerAnimationManager.instance.isIce == true)
             {
-                PlayerAnimationManager.instance.isIce = false;
-                PlayerAnimationManager.instance.isBasic = true;
-                //PlayerController.instance.KnockBack();
+                Invoke("ChangeState", 0.1f);
                 Invincible();
                 LostIce();
             }
 
             else if (PlayerAnimationManager.instance.isBasic == true && invincibleLength <= 0)
             {
-                //Destroy(this.gameObject);
                 PlayerController.instance.isDead = true;
                 Died();
                 Invoke("AfterDeath", 2f);
             }
         }
     }
-
-    /*private void OnTriggerEnter2D(Collider2D other)
-    {
-        if(other.CompareTag("Spikes"))
-        {
-            if (PlayerAnimationManager.instance.isArmor == true)
-            {
-                PlayerAnimationManager.instance.isArmor = false;
-                PlayerAnimationManager.instance.isBasic = true;
-                //PlayerController.instance.KnockBack();
-                Invincible();
-                LostArmor();
-            }
-
-            else if (PlayerAnimationManager.instance.isFire == true)
-            {
-                PlayerAnimationManager.instance.isFire = false;
-                PlayerAnimationManager.instance.isBasic = true;
-                //PlayerController.instance.KnockBack();
-                Invincible();
-                LostFire();
-            }
-
-            else if (PlayerAnimationManager.instance.isIce == true)
-            {
-                PlayerAnimationManager.instance.isIce = false;
-                PlayerAnimationManager.instance.isBasic = true;
-                //PlayerController.instance.KnockBack();
-                Invincible();
-                LostIce();
-            }
-
-            else if (PlayerAnimationManager.instance.isBasic == true && invincibleLength <= 0)
-            {
-                //Destroy(this.gameObject);
-                PlayerController.instance.isDead = true;
-                Died();
-                Invoke("AfterDeath", 2f);
-            }
-        }
-    }*/
 
     void Invincible()
     {
@@ -177,10 +129,16 @@ public class PlayerHealthController : MonoBehaviour
 
     void AfterDeath()
     {
-        //capsuleCollider2d.enabled = true;
         rb2d.constraints = RigidbodyConstraints2D.None;
         rb2d.constraints = RigidbodyConstraints2D.FreezePositionX;
-        //rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
         rb2d.velocity = new Vector2(0f, 30f);
+    }
+
+    void ChangeState()
+    {
+        PlayerAnimationManager.instance.isIce = false;
+        PlayerAnimationManager.instance.isFire = false;
+        PlayerAnimationManager.instance.isArmor = false;
+        PlayerAnimationManager.instance.isBasic = true;
     }
 }

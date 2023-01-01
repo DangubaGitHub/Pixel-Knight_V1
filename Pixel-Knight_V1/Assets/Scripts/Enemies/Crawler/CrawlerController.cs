@@ -9,7 +9,6 @@ public class CrawlerController : MonoBehaviour
     [SerializeField] float moveSpeed;
     public bool isCrouching;
     public float crouchTimerCountdown;
-    //[SerializeField] float CrouchTime;
     [SerializeField] bool timerSet;
      
     ////////////////////////////// Activation //////////
@@ -76,13 +75,10 @@ public class CrawlerController : MonoBehaviour
 
             if(isCrouching)
             {
-                //TimerSet();
                 ChangeAnimationState(CROUCH);
                 rb2d.velocity = new Vector2(0f, 0f);
                 crouchTimerCountdown -= Time.deltaTime;
             }
-
-            
 
             if (crouchTimerCountdown <= 0)
             {
@@ -99,7 +95,6 @@ public class CrawlerController : MonoBehaviour
             foundDirection = false;
         }
 
-        
 
         //////////////////// Fliping ///
 
@@ -143,37 +138,27 @@ public class CrawlerController : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            if (PlayerAnimationManager.instance.isArmor)
-            {
-                moveSpeed = -moveSpeed;
-            }
-
-            if (PlayerAnimationManager.instance.isFire)
-            {
-                moveSpeed = -moveSpeed;
-            }
-
-            if (PlayerAnimationManager.instance.isIce)
-            {
-                moveSpeed = -moveSpeed;
-            }
-
             if (PlayerAnimationManager.instance.isBasic == true)
             {
                 ChangeAnimationState(STILL);
             }
+
+            else if (PlayerAnimationManager.instance.isArmor)
+            {
+                moveSpeed = -moveSpeed;
+            }
+
+            else if (PlayerAnimationManager.instance.isFire)
+            {
+                moveSpeed = -moveSpeed;
+            }
+
+            else if (PlayerAnimationManager.instance.isIce)
+            {
+                moveSpeed = -moveSpeed;
+            }
         }
     }
-
-    /*void TimerSet()
-    {
-        if(timerSet)
-        {
-            crouchTimerCountdown = CrouchTime;
-        }
-
-        timerSet = false;
-    }*/
 
     public void ChangeAnimationState(string newState)
     {
