@@ -16,10 +16,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform groundCheck;
     [SerializeField] float groundCheckRadius;
     [SerializeField] LayerMask groundLayer;
+    
     public bool isGrounded;
+    
     float jumpTimeCounter;
     [SerializeField] float jumpTime;
     bool isJumping;
+
+    public float mushroomBounceForce;
 
     [Header("Magic")]
     public Transform firePoint;
@@ -34,6 +38,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Extra's")]
     public float bounceForce;
+    
     [SerializeField] float knockBackLength;
     [SerializeField] float knockBackForce;
     float knockBackCounter;
@@ -197,5 +202,10 @@ public class PlayerController : MonoBehaviour
     public void BounceOnEnemy()
     {
         rb2d.velocity = new Vector2(rb2d.velocity.x, bounceForce);
+    }
+
+    public void BounceOnMushroom()
+    {
+        rb2d.velocity = new Vector2(rb2d.velocity.x, mushroomBounceForce);
     }
 }

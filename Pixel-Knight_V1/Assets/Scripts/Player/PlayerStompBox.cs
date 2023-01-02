@@ -43,5 +43,11 @@ public class PlayerStompBox : MonoBehaviour
             CrawlerController.instance.isCrouching = true;
             CrawlerController.instance.crouchTimerCountdown = 1f;
         }
+
+        if (other.CompareTag("Mushroom"))
+        {
+            PlayerController.instance.BounceOnMushroom();
+            MushroomController.instance.mushroomIsActive = true;
+        }
     }
 }

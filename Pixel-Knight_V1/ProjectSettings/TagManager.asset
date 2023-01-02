@@ -10,6 +10,7 @@ TagManager:
   - Spikes
   - Enemy Invulnerable Damaging
   - Enemy Invulnerable Bounce
+  - Mushroom
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - Enemy
   - Spikes
   - Wall
-  - 
+  - Mushroom
   - 
   - 
   - 
