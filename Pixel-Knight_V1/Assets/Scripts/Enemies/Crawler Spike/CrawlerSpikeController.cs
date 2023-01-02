@@ -7,7 +7,9 @@ public class CrawlerSpikeController : MonoBehaviour
     //////////////////// Movement ///
 
     [SerializeField] float moveSpeed;
-
+    [SerializeField] Transform player;
+    [SerializeField] float crouchDistance;
+    [SerializeField] bool isCrouching;
 
     //////////////////// Activation ///
 
@@ -51,12 +53,117 @@ public class CrawlerSpikeController : MonoBehaviour
 
         if (isActive)
         {
+            if (!foundDirection)
+            {
+                if (Player.transform.position.x > transform.position.x && transform.localScale.x == -1)
+                {
+                    moveSpeed = -moveSpeed;
+                }
 
+                if (Player.transform.position.x < transform.position.x && transform.localScale.x == 1)
+                {
+                    moveSpeed = -moveSpeed;
+                }
+
+                foundDirection = true;
+            }
+
+            if (!isCrouching)
+            {
+                ChangeAnimationState(WALK);
+
+                rb2d.velocity = new Vector2(moveSpeed, rb2d.velocity.y);
+            }
+
+            if (Vector2.Distance(transform.position, player.position) < crouchDistance)
+            {
+                ChangeAnimationState(DOWN);
+                rb2d.velocity = new Vector2(0f, 0f);
+                isCrouching = true;
+            }
+
+
+            if (isCrouching)
+            {
+            if (Vector2.Distance(transform.position, player.position) > crouchDistance && isCrouching == true)
+                {
+                    ChangeAnimationState(UP);
+                    isCrouching = false;
+                }
+            }
         }
 
         else
         {
             ChangeAnimationState(STILL);
+
+            rb2d.velocity = new Vector2(0f, 0f);
+
+            foundDirection = false;
+        }
+        
+
+        //////////////////// Fliping ///
+
+        Vector3 characterScale = transform.localScale;
+
+        if (rb2d.velocity.x < -0.1f)
+        {
+            characterScale.x = -1;
+        }
+
+        else if (rb2d.velocity.x > 0.1f)
+        {
+            characterScale.x = 1;
+        }
+
+        transform.localScale = characterScale;
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Wall"))
+        {
+            moveSpeed = -moveSpeed;
+        }
+
+        if (other.CompareTag("Enemy"))
+        {
+            moveSpeed = -moveSpeed;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Ground"))
+        {
+            moveSpeed = -moveSpeed;
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            if (PlayerAnimationManager.instance.isBasic == true)
+            {
+                ChangeAnimationState(STILL);
+            }
+
+            else if (PlayerAnimationManager.instance.isArmor)
+            {
+                moveSpeed = -moveSpeed;
+            }
+
+            else if (PlayerAnimationManager.instance.isFire)
+            {
+                moveSpeed = -moveSpeed;
+            }
+
+            else if (PlayerAnimationManager.instance.isIce)
+            {
+                moveSpeed = -moveSpeed;
+            }
         }
     }
 
