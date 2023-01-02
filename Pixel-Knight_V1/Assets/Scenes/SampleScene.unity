@@ -6606,6 +6606,84 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!1001 &737586140
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1151759680}
+    m_Modifications:
+    - target: {fileID: 1322294973417209216, guid: 80ab97e5def0c0848b47e6fa5ca70172, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -6.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 1322294973746005496, guid: 80ab97e5def0c0848b47e6fa5ca70172, type: 3}
+      propertyPath: m_Name
+      value: Mushroom Summer
+      objectReference: {fileID: 0}
+    - target: {fileID: 1322294973746005501, guid: 80ab97e5def0c0848b47e6fa5ca70172, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1322294973746005501, guid: 80ab97e5def0c0848b47e6fa5ca70172, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 127.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1322294973746005501, guid: 80ab97e5def0c0848b47e6fa5ca70172, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -8.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 1322294973746005501, guid: 80ab97e5def0c0848b47e6fa5ca70172, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.3105358
+      objectReference: {fileID: 0}
+    - target: {fileID: 1322294973746005501, guid: 80ab97e5def0c0848b47e6fa5ca70172, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1322294973746005501, guid: 80ab97e5def0c0848b47e6fa5ca70172, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1322294973746005501, guid: 80ab97e5def0c0848b47e6fa5ca70172, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1322294973746005501, guid: 80ab97e5def0c0848b47e6fa5ca70172, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1322294973746005501, guid: 80ab97e5def0c0848b47e6fa5ca70172, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1322294973746005501, guid: 80ab97e5def0c0848b47e6fa5ca70172, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1322294973746005501, guid: 80ab97e5def0c0848b47e6fa5ca70172, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5964408894956100770, guid: 80ab97e5def0c0848b47e6fa5ca70172, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 6223264339050707603, guid: 80ab97e5def0c0848b47e6fa5ca70172, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8189971277557692789, guid: 80ab97e5def0c0848b47e6fa5ca70172, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 80ab97e5def0c0848b47e6fa5ca70172, type: 3}
+--- !u!4 &737586141 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1322294973746005501, guid: 80ab97e5def0c0848b47e6fa5ca70172, type: 3}
+  m_PrefabInstance: {fileID: 737586140}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &764241967
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16536,7 +16614,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1151759680}
   m_Layer: 0
-  m_Name: Muchrooms
+  m_Name: Mushrooms
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16554,6 +16632,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 737586141}
   - {fileID: 505866125}
   m_Father: {fileID: 1830146181}
   m_RootOrder: 1
@@ -27381,7 +27460,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1190310446}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 84.3, y: -1.57, z: 0}
+  m_LocalPosition: {x: 84.5, y: -1.667, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -70325,9 +70404,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mushroom
       objectReference: {fileID: 0}
+    - target: {fileID: 1322294973746005496, guid: 80ab97e5def0c0848b47e6fa5ca70172, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1322294973746005501, guid: 80ab97e5def0c0848b47e6fa5ca70172, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1322294973746005501, guid: 80ab97e5def0c0848b47e6fa5ca70172, type: 3}
       propertyPath: m_LocalPosition.x
