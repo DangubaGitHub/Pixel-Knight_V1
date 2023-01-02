@@ -27,7 +27,7 @@ public class CrawlerSpikeController : MonoBehaviour
     const string STILL = "Crawler_Spike_Still";
     const string WALK = "Crawler_Spike_Walk";
     const string DOWN = "Crawler_Spike_Crouch_Down";
-    const string UP = "Crown_Spike_Crouch_Up";
+    const string UP = "Crawler_Spike_Crouch_Up";
 
     string currentState;
 
