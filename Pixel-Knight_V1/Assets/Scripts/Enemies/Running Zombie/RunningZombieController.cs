@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class RunningZombieController : MonoBehaviour
 {
+    ////////////////////////////// Movement //////////
+
     [SerializeField] float moveSpeed;
     [SerializeField] GameObject enemyDeathEffect;
     [SerializeField] bool touchesWall;
     [SerializeField] BoxCollider2D boxCollider;
+
+    ////////////////////////////// Activation //////////
 
     [Header("Activation")]
     [SerializeField] LayerMask PlayerLayer;
@@ -18,13 +22,15 @@ public class RunningZombieController : MonoBehaviour
 
     [SerializeField] GameObject Player;
 
-    Rigidbody2D rb2d;
-
     ////////////////////////////// Animation Controlls //////////
 
     const string ZOMBIE_STILL = "Zombie_Still";
     const string ZOMBIE_RUN = "Zombie_Run";
     string currentState;
+    
+    ////////////////////////////// Declerations //////////
+
+    Rigidbody2D rb2d;
     Animator anim;
 
     private void Awake()
