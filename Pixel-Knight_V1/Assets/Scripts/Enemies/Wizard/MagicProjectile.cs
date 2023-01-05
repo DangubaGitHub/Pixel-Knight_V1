@@ -4,33 +4,43 @@ using UnityEngine;
 
 public class MagicProjectile : MonoBehaviour
 {
-    Vector3 playerPosition;
+    GameObject player;
     [SerializeField] float velocity;
 
 
     const string MAGIC = "Magic_Projectile";
     string currentState;
 
+    public bool hitPlayer;
+
     Animator anim;
+    Rigidbody2D rb2d;
+    public static MagicProjectile instance;
 
     private void Awake()
     {
+        instance = this;
         anim = GetComponent<Animator>();
+        rb2d = GetComponent<Rigidbody2D>();
     }
 
     void Start()
     {
-        playerPosition = FindObjectOfType<PlayerController>().transform.position;
         ChangeAnimationState(MAGIC);
+
+        player = GameObject.FindGameObjectWithTag("Player");
+        Vector3 direction = player.transform.position - transform.position;
+        rb2d.velocity = new Vector2(direction.x, direction.y).normalized * velocity;
+
+        float rotation = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, rotation + 180);
     }
 
     void Update()
     {
-        transform.position = Vector2.MoveTowards(transform.position, playerPosition, velocity * Time.deltaTime);
-
-        if(transform.position == playerPosition)
+        if(hitPlayer)
         {
-            Destroy(gameObject);
+            rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
         }
     }
 

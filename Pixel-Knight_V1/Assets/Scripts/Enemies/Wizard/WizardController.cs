@@ -4,21 +4,10 @@ using UnityEngine;
 
 public class WizardController : MonoBehaviour
 {
-    ////////////////////////////// Attack //////////
-
+    ////////////////////////////// Shooting //////////
+    [Header("Shooting")]
+    [SerializeField] GameObject magicProjectile;
     [SerializeField] Transform firePoint;
-    [SerializeField] GameObject magicPrefab;
-    float animationTimeCounter;
-    [SerializeField] float animationTime;
-
-    //[SerializeField] float invokeFireMagic;
-    //[SerializeField] float invokeResetAttackTimer;
-    //bool isFiring;
-
-    //[SerializeField] float timeBetweenAnimations;
-    //float nextAnimationTime;
-    [SerializeField] float timeBetweenShots;
-    float nextShotTime;
 
     ////////////////////////////// Activation //////////
 
@@ -34,24 +23,29 @@ public class WizardController : MonoBehaviour
     ////////////////////////////// Animation //////////
 
     const string STILL = "Wizard_Still";
+    const string VISIBLE = "Wizard_Still_Visible";
     const string ATTACK = "Wizard_Attack";
 
     string currentState;
+
+    public bool isVisible;
 
     ////////////////////////////// Declerations //////////
 
     Rigidbody2D rb2d;
     Animator anim;
+    public static WizardController instance;
 
     private void Awake()
     {
+        instance = this;
         rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
 
     void Start()
     {
-        animationTimeCounter = animationTime;
+        
     }
 
     void Update()
@@ -60,31 +54,25 @@ public class WizardController : MonoBehaviour
 
         if(isActive)
         {
-            
-
-
-
-            animationTimeCounter -= Time.deltaTime;
-
-            if(animationTimeCounter <= 0)
-            {
-                ChangeAnimationState(ATTACK);
-                
-                if(Time.time > nextShotTime)
-                {
-                    Instantiate(magicPrefab, firePoint.position, firePoint.rotation);
-                    nextShotTime = Time.time + timeBetweenShots;
-                    animationTimeCounter = animationTime;
-                }
-            }
+            ChangeAnimationState(ATTACK);
 
             
         }
 
         else
         {
-            ChangeAnimationState(STILL);
+            if (isVisible)
+            {
+                ChangeAnimationState(VISIBLE);
+            }
+
+            else if (!isVisible)
+            {
+                ChangeAnimationState(STILL);
+            }
         }
+
+        
 
         Vector3 characterScale = transform.localScale;
 
@@ -102,6 +90,12 @@ public class WizardController : MonoBehaviour
     }
 
     
+
+    public void Shoot()
+    {
+        Instantiate(magicProjectile, firePoint.position, Quaternion.identity);
+
+    }
 
     public void ChangeAnimationState(string newState)
     {

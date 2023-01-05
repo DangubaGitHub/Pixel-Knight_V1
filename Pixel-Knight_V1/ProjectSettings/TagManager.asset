@@ -11,6 +11,8 @@ TagManager:
   - Enemy Invulnerable Damaging
   - Enemy Invulnerable Bounce
   - Mushroom
+  - Magic Projectile
+  - Enemy Wizard
   layers:
   - Default
   - TransparentFX

@@ -56,8 +56,7 @@ public class PlayerHealthController : MonoBehaviour
         if(other.gameObject.tag == "Enemy" || 
             other.gameObject.tag == "Spikes" ||
            other.gameObject.tag == "Enemy Invulnerable Damaging" || 
-           other.gameObject.tag == "Enemy Invulnerable Bounce" ||
-           other.gameObject.tag == "Magic Projectile")
+           other.gameObject.tag == "Enemy Invulnerable Bounce")
         {
             if(PlayerAnimationManager.instance.isArmor == true)
             {
@@ -82,6 +81,76 @@ public class PlayerHealthController : MonoBehaviour
 
             else if (PlayerAnimationManager.instance.isBasic == true && invincibleLength <= 0)
             {
+                PlayerController.instance.isDead = true;
+                Died();
+                Invoke("AfterDeath", 2f);
+            }
+        }
+
+        if(other.gameObject.tag == "Magic Projectile")
+        {
+            if (PlayerAnimationManager.instance.isArmor == true)
+            {
+                Invoke("ChangeState", 0.1f);
+                Invincible();
+                LostArmor();
+                Destroy(other.gameObject);
+            }
+
+            else if (PlayerAnimationManager.instance.isFire == true)
+            {
+                Invoke("ChangeState", 0.1f);
+                Invincible();
+                LostFire();
+                Destroy(other.gameObject);
+            }
+
+            else if (PlayerAnimationManager.instance.isIce == true)
+            {
+                Invoke("ChangeState", 0.1f);
+                Invincible();
+                LostIce();
+                Destroy(other.gameObject);
+            }
+
+            else if (PlayerAnimationManager.instance.isBasic == true && invincibleLength <= 0)
+            {
+                MagicProjectile.instance.hitPlayer = true;
+                PlayerController.instance.isDead = true;
+                Died();
+                Invoke("AfterDeath", 2f);
+            }
+        }
+
+        if (other.gameObject.tag == "Enemy Wizard")
+        {
+            if (PlayerAnimationManager.instance.isArmor == true)
+            {
+                Invoke("ChangeState", 0.1f);
+                Invincible();
+                LostArmor();
+                Destroy(other.gameObject);
+            }
+
+            else if (PlayerAnimationManager.instance.isFire == true)
+            {
+                Invoke("ChangeState", 0.1f);
+                Invincible();
+                LostFire();
+                Destroy(other.gameObject);
+            }
+
+            else if (PlayerAnimationManager.instance.isIce == true)
+            {
+                Invoke("ChangeState", 0.1f);
+                Invincible();
+                LostIce();
+                Destroy(other.gameObject);
+            }
+
+            else if (PlayerAnimationManager.instance.isBasic == true && invincibleLength <= 0)
+            {
+                WizardController.instance.isVisible = true;
                 PlayerController.instance.isDead = true;
                 Died();
                 Invoke("AfterDeath", 2f);
