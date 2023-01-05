@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5623358650859857852}
   - component: {fileID: 5623358650859857853}
   - component: {fileID: 5623358650859857854}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Thunder Cloud
   m_TagString: Untagged
   m_Icon: {fileID: 0}

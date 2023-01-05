@@ -13,6 +13,8 @@ TagManager:
   - Mushroom
   - Magic Projectile
   - Enemy Wizard
+  - Laser Eye Target Box
+  - Laser Projectile
   layers:
   - Default
   - TransparentFX
@@ -28,7 +30,7 @@ TagManager:
   - Mushroom
   - Cinemachine Confiner
   - Magic Projectile
-  - 
+  - Laser Projectile
   - 
   - 
   - 

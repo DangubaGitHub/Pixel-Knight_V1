@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 7386766554187312243}
   - component: {fileID: 7386766554187312244}
   - component: {fileID: 7386766554187312245}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Crawler Spike
   m_TagString: Enemy Invulnerable Damaging
   m_Icon: {fileID: 0}

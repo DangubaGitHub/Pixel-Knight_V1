@@ -87,7 +87,9 @@ public class PlayerHealthController : MonoBehaviour
             }
         }
 
-        if(other.gameObject.tag == "Magic Projectile")
+
+
+        if (other.gameObject.tag == "Laser Projectile")
         {
             if (PlayerAnimationManager.instance.isArmor == true)
             {
@@ -110,6 +112,51 @@ public class PlayerHealthController : MonoBehaviour
                 Invoke("ChangeState", 0.1f);
                 Invincible();
                 LostIce();
+                Destroy(other.gameObject);
+            }
+
+            else if (PlayerAnimationManager.instance.isBasic == true && invincibleLength > 0)
+            {
+                Destroy(other.gameObject);
+            }
+
+            else if (PlayerAnimationManager.instance.isBasic == true && invincibleLength <= 0)
+            {
+                LaserProjectile.instance.hitPlayer = true;
+                PlayerController.instance.isDead = true;
+                Died();
+                Invoke("AfterDeath", 2f);
+            }
+        }
+
+        if (other.gameObject.tag == "Magic Projectile")
+        {
+            if (PlayerAnimationManager.instance.isArmor == true)
+            {
+                Invoke("ChangeState", 0.1f);
+                Invincible();
+                LostArmor();
+                Destroy(other.gameObject);
+            }
+
+            else if (PlayerAnimationManager.instance.isFire == true)
+            {
+                Invoke("ChangeState", 0.1f);
+                Invincible();
+                LostFire();
+                Destroy(other.gameObject);
+            }
+
+            else if (PlayerAnimationManager.instance.isIce == true)
+            {
+                Invoke("ChangeState", 0.1f);
+                Invincible();
+                LostIce();
+                Destroy(other.gameObject);
+            }
+
+            else if (PlayerAnimationManager.instance.isBasic == true && invincibleLength > 0)
+            {
                 Destroy(other.gameObject);
             }
 

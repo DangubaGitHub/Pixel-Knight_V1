@@ -9,6 +9,8 @@ public class LaserEyeController : MonoBehaviour
     [SerializeField] GameObject laserPrefab;
     [SerializeField] Transform firePoint;
 
+    public bool isOpening;
+
     ////////////////////////////// Activation //////////
 
     [Header("Activation")]
@@ -16,16 +18,14 @@ public class LaserEyeController : MonoBehaviour
     [SerializeField] Transform PlayerCheck;
     [SerializeField] float PlayerCheckRadius;
     [SerializeField] bool isActive;
-    [SerializeField] bool foundDirection;
 
     [SerializeField] GameObject Player;
 
     ////////////////////////////// Animation Controlls //////////
 
     const string STILL = "Laser_Eye_Still";
-    const string Active = "Laser_Eye_Active";
+    const string ACTIVE = "Laser_Eye_Active";
     const string OPENING = "Laser_Eye_Opening";
-    const string CLOSING = "Laser_Eye_Closing";
 
     string currentState;
 
@@ -33,9 +33,11 @@ public class LaserEyeController : MonoBehaviour
 
     Rigidbody2D rb2d;
     Animator anim;
+    public static LaserEyeController instance;
 
     private void Awake()
     {
+        instance = this;
         rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
@@ -51,8 +53,40 @@ public class LaserEyeController : MonoBehaviour
 
         if (isActive)
         {
+            if (!isOpening)
+            {
+                ChangeAnimationState(ACTIVE);
+            }
 
+            else if(isOpening)
+            {
+                ChangeAnimationState(OPENING);
+            }
         }
+
+        else
+        {
+            ChangeAnimationState(STILL);
+        }
+
+        Vector3 characterScale = transform.localScale;
+
+        if (Player.transform.position.x <= transform.position.x)
+        {
+            characterScale.x = 1;
+        }
+
+        else if (Player.transform.position.x > transform.position.x)
+        {
+            characterScale.x = -1;
+        }
+
+        transform.localScale = characterScale;
+    }
+
+    public void ShootLaser()
+    {
+        Instantiate(laserPrefab, firePoint.position, Quaternion.identity);
     }
 
     public void ChangeAnimationState(string newState)

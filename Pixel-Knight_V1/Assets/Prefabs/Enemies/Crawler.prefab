@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 82520202623643939}
   - component: {fileID: 82520202623643948}
   - component: {fileID: 82520202623643949}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Crawler
   m_TagString: Enemy Invulnerable Bounce
   m_Icon: {fileID: 0}
@@ -156,12 +156,12 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 10
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 6
+  m_Constraints: 4
 --- !u!70 &82520202623643939
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
