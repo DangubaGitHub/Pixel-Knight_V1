@@ -55,12 +55,12 @@ public class RunningZombieController : MonoBehaviour
             {
                 if (Player.transform.position.x > transform.position.x && transform.localScale.x == -1)
                 {
-                    moveSpeed = -moveSpeed;
+                    ChangeDirection();
                 }
 
                 if (Player.transform.position.x < transform.position.x && transform.localScale.x == 1)
                 {
-                    moveSpeed = -moveSpeed;
+                    ChangeDirection();
                 }
 
                 foundDirection = true;
@@ -99,12 +99,12 @@ public class RunningZombieController : MonoBehaviour
     {
         if (other.CompareTag("Wall"))
         {
-             moveSpeed = -moveSpeed;
+            ChangeDirection();
         }
 
         if (other.CompareTag("Enemy"))
         {
-             moveSpeed = -moveSpeed;
+            ChangeDirection();
         }
     }
 
@@ -113,7 +113,7 @@ public class RunningZombieController : MonoBehaviour
         if(other.CompareTag("Ground") ||
             other.CompareTag("Ground 2"))
         {
-            moveSpeed = -moveSpeed;
+            ChangeDirection();
         }
     }
 
@@ -123,17 +123,17 @@ public class RunningZombieController : MonoBehaviour
         {
             if(PlayerAnimationManager.instance.isArmor)
             {
-                moveSpeed = -moveSpeed;
+                ChangeDirection();
             }
 
             if(PlayerAnimationManager.instance.isFire)
             {
-                moveSpeed = -moveSpeed;
+                ChangeDirection();
             }
 
             if(PlayerAnimationManager.instance.isIce)
             {
-                moveSpeed = -moveSpeed;
+                ChangeDirection();
             }
 
             if (PlayerAnimationManager.instance.isBasic == true)
@@ -141,6 +141,11 @@ public class RunningZombieController : MonoBehaviour
                 ChangeAnimationState(ZOMBIE_STILL);
             }
         }
+    }
+
+    void ChangeDirection()
+    {
+        moveSpeed = -moveSpeed;
     }
 
     public void ChangeAnimationState(string newState)

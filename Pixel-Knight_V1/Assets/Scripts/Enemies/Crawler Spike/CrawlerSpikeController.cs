@@ -57,12 +57,12 @@ public class CrawlerSpikeController : MonoBehaviour
             {
                 if (Player.transform.position.x > transform.position.x && transform.localScale.x == -1)
                 {
-                    moveSpeed = -moveSpeed;
+                    ChangeDirection();
                 }
 
                 if (Player.transform.position.x < transform.position.x && transform.localScale.x == 1)
                 {
-                    moveSpeed = -moveSpeed;
+                    ChangeDirection();
                 }
 
                 foundDirection = true;
@@ -85,7 +85,7 @@ public class CrawlerSpikeController : MonoBehaviour
 
             if (isCrouching)
             {
-            if (Vector2.Distance(transform.position, player.position) > crouchDistance && isCrouching == true)
+                if (Vector2.Distance(transform.position, player.position) > crouchDistance && isCrouching == true)
                 {
                     ChangeAnimationState(UP);
                     isCrouching = false;
@@ -124,20 +124,21 @@ public class CrawlerSpikeController : MonoBehaviour
     {
         if (other.CompareTag("Wall"))
         {
-            moveSpeed = -moveSpeed;
+            ChangeDirection();
         }
 
         if (other.CompareTag("Enemy"))
         {
-            moveSpeed = -moveSpeed;
+            ChangeDirection();
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Ground"))
+        if (other.CompareTag("Ground") ||
+            other.CompareTag("Ground 2"))
         {
-            moveSpeed = -moveSpeed;
+            ChangeDirection();
         }
     }
 
@@ -152,19 +153,24 @@ public class CrawlerSpikeController : MonoBehaviour
 
             else if (PlayerAnimationManager.instance.isArmor)
             {
-                moveSpeed = -moveSpeed;
+                ChangeDirection();
             }
 
             else if (PlayerAnimationManager.instance.isFire)
             {
-                moveSpeed = -moveSpeed;
+                ChangeDirection();
             }
 
             else if (PlayerAnimationManager.instance.isIce)
             {
-                moveSpeed = -moveSpeed;
+                ChangeDirection();
             }
         }
+    }
+
+    void ChangeDirection()
+    {
+        moveSpeed = -moveSpeed;
     }
 
     public void ChangeAnimationState(string newState)

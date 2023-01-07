@@ -43,11 +43,6 @@ public class WizardController : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
         isActive = Physics2D.OverlapCircle(PlayerCheck.position, PlayerCheckRadius, PlayerLayer);
@@ -55,8 +50,6 @@ public class WizardController : MonoBehaviour
         if(isActive)
         {
             ChangeAnimationState(ATTACK);
-
-            
         }
 
         else
@@ -71,8 +64,6 @@ public class WizardController : MonoBehaviour
                 ChangeAnimationState(STILL);
             }
         }
-
-        
 
         Vector3 characterScale = transform.localScale;
 
@@ -94,7 +85,6 @@ public class WizardController : MonoBehaviour
     public void Shoot()
     {
         Instantiate(magicProjectile, firePoint.position, Quaternion.identity);
-
     }
 
     public void ChangeAnimationState(string newState)

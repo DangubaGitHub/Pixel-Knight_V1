@@ -54,14 +54,14 @@ public class FloatingHeadController : MonoBehaviour
 
             if (!foundDirection)
             {
-                if (Player.transform.position.x > transform.position.x && transform.localScale.x == 1)
+                if (Player.transform.position.x > transform.position.x && transform.localScale.x == -1)
                 {
-                    velocity = -velocity;
+                    ChangeDirection();
                 }
 
                 if (Player.transform.position.x < transform.position.x && transform.localScale.x == 1)
                 {
-                    velocity = -velocity;
+                    ChangeDirection();
                 }
 
                 foundDirection = true;
@@ -81,18 +81,44 @@ public class FloatingHeadController : MonoBehaviour
 
         if (rb2d.velocity.x < -0.1f)
         {
-            characterScale.x = 1;
+            characterScale.x = -1;
         }
 
         else if (rb2d.velocity.x > 0.1f)
         {
-            characterScale.x = -1;
+            characterScale.x = 1;
         }
 
         transform.localScale = characterScale;
     }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.tag == "Wall")
+        {
+            ChangeDirection();
+        }
 
+        if (other.gameObject.tag == "Enemy")
+        {
+            ChangeDirection();
+        }
+
+        if (other.gameObject.tag == "Turn Around Trigger")
+        {
+            ChangeDirection();
+        }
+
+        if (other.gameObject.tag == "Player" && !PlayerAnimationManager.instance.isBasic)
+        {
+            ChangeDirection();
+        }
+    }
+
+    void ChangeDirection()
+    {
+        velocity = -velocity;
+    }
 
     public void ChangeAnimationState(string newState)
     {

@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class BiterHorizontalController : MonoBehaviour
 {
-    //public static BiterHorizontalController instance;
     Rigidbody2D rb2d;
     Animator anim;
-
-    [SerializeField] bool enteredTrigger;
 
     ////////////////////  ANIMATIONS  ///
 
@@ -37,7 +34,6 @@ public class BiterHorizontalController : MonoBehaviour
 
     private void Awake()
     {
-        //instance = this;
         rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
@@ -59,12 +55,12 @@ public class BiterHorizontalController : MonoBehaviour
             {
                 if (Player.transform.position.x > transform.position.x && transform.localScale.x == -1)
                 {
-                    horizontalVelocity = -horizontalVelocity;
+                    ChangeDirection();
                 }
 
-                else if (Player.transform.position.x < transform.position.x)
+                else if (Player.transform.position.x < transform.position.x && transform.localScale.x == 1)
                 {
-                    horizontalVelocity = -horizontalVelocity;
+                    ChangeDirection();
                 }
 
                 foundDirection = true;
@@ -110,12 +106,6 @@ public class BiterHorizontalController : MonoBehaviour
         {
             isGrounded = true;
         }
-
-        if(other.CompareTag("Turn Around Trigger"))
-        {
-            horizontalVelocity = -horizontalVelocity;
-            enteredTrigger = true;
-        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -134,17 +124,17 @@ public class BiterHorizontalController : MonoBehaviour
         {
             if (PlayerAnimationManager.instance.isArmor)
             {
-                horizontalVelocity = -horizontalVelocity;
+                ChangeDirection();
             }
 
             if (PlayerAnimationManager.instance.isFire)
             {
-                horizontalVelocity = -horizontalVelocity;
+                ChangeDirection();
             }
 
             if (PlayerAnimationManager.instance.isIce)
             {
-                horizontalVelocity = -horizontalVelocity;
+                ChangeDirection();
             }
 
             if (PlayerAnimationManager.instance.isBasic)
@@ -155,13 +145,23 @@ public class BiterHorizontalController : MonoBehaviour
 
         if(other.gameObject.tag == "Enemy")
         {
-            horizontalVelocity = -horizontalVelocity;
+            ChangeDirection();
         }
 
         if(other.gameObject.tag == "Wall")
         {
-            horizontalVelocity = -horizontalVelocity;
+            ChangeDirection();
         }
+
+        if (other.gameObject.tag == "Turn Around Trigger")
+        {
+            ChangeDirection();
+        }
+    }
+
+    void ChangeDirection()
+    {
+        horizontalVelocity = -horizontalVelocity;
     }
 
     void ChangeAnimationState(string newState)

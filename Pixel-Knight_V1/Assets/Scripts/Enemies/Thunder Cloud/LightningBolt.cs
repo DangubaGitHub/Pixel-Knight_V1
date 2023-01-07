@@ -37,7 +37,8 @@ public class LightningBolt : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (other.gameObject.tag == "Ground")
+        if (other.gameObject.tag == "Ground" ||
+            other.gameObject.tag == "Ground 2")
         {
             Instantiate(lightningHitPrefab, transform.position, transform.rotation);
             capsulCollider.enabled = false;
