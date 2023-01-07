@@ -109,7 +109,8 @@ public class JumpingZombieController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Ground")
+        if (other.gameObject.tag == "Ground" ||
+            other.gameObject.tag == "Grounded 2")
         {
             isGrounded = true;
         }
@@ -122,7 +123,8 @@ public class JumpingZombieController : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D other)
     {
-        if(other.gameObject.tag == "Ground")
+        if(other.gameObject.tag == "Ground" ||
+            other.gameObject.tag == "Ground 2")
         {
             isGrounded = false;
         }

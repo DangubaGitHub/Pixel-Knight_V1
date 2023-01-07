@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class BiterHorizontalController : MonoBehaviour
 {
+    //public static BiterHorizontalController instance;
     Rigidbody2D rb2d;
     Animator anim;
+
+    [SerializeField] bool enteredTrigger;
 
     ////////////////////  ANIMATIONS  ///
 
@@ -22,16 +25,10 @@ public class BiterHorizontalController : MonoBehaviour
     [SerializeField] float PlayerCheckRadius;
     [SerializeField] bool isActive;
 
-    ////////////////////  GroundCheck  ///
-
-    [Header("Ground Check")]
-    [SerializeField] Transform RaycastPoint;
-    [SerializeField] LayerMask GroundLayer;
-
     ////////////////////  Movement  ///
 
     [Header("Movement")]
-    [SerializeField] float horizontalSpeed;
+    public float horizontalVelocity;
     [SerializeField] float verticalForce;
     [SerializeField] bool foundDirection;
     [SerializeField] GameObject Player;
@@ -40,6 +37,7 @@ public class BiterHorizontalController : MonoBehaviour
 
     private void Awake()
     {
+        //instance = this;
         rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
@@ -59,14 +57,14 @@ public class BiterHorizontalController : MonoBehaviour
 
             if (!foundDirection)
             {
-                if (Player.transform.position.x > transform.position.x)
+                if (Player.transform.position.x > transform.position.x && transform.localScale.x == -1)
                 {
-                    horizontalSpeed = -horizontalSpeed;
+                    horizontalVelocity = -horizontalVelocity;
                 }
 
-                if (Player.transform.position.x < transform.position.x)
+                else if (Player.transform.position.x < transform.position.x)
                 {
-                    horizontalSpeed = -horizontalSpeed;
+                    horizontalVelocity = -horizontalVelocity;
                 }
 
                 foundDirection = true;
@@ -74,7 +72,7 @@ public class BiterHorizontalController : MonoBehaviour
 
             if (isGrounded)
             {
-                rb2d.velocity = new Vector2(horizontalSpeed, verticalForce);
+                rb2d.velocity = new Vector2(horizontalVelocity, verticalForce);
             }
         }
 
@@ -93,12 +91,12 @@ public class BiterHorizontalController : MonoBehaviour
 
         if (rb2d.velocity.x < -0.1f)
         {
-            characterScale.x = 1;
+            characterScale.x = -1;
         }
 
         else if (rb2d.velocity.x > 0.1f)
         {
-            characterScale.x = -1;
+            characterScale.x = 1;
         }
 
         transform.localScale = characterScale;
@@ -106,15 +104,25 @@ public class BiterHorizontalController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("Ground"))
+        if(other.CompareTag("Ground") ||
+            other.CompareTag("Ground 2") ||
+            other.CompareTag("Spikes"))
         {
             isGrounded = true;
+        }
+
+        if(other.CompareTag("Turn Around Trigger"))
+        {
+            horizontalVelocity = -horizontalVelocity;
+            enteredTrigger = true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if(other.CompareTag("Ground"))
+        if(other.CompareTag("Ground") ||
+            other.CompareTag("Ground 2") ||
+            other.CompareTag("Spikes"))
         {
             isGrounded = false;
         }
@@ -126,20 +134,17 @@ public class BiterHorizontalController : MonoBehaviour
         {
             if (PlayerAnimationManager.instance.isArmor)
             {
-                horizontalSpeed = -horizontalSpeed;
-                //ChangeAnimationState(BITING);
+                horizontalVelocity = -horizontalVelocity;
             }
 
             if (PlayerAnimationManager.instance.isFire)
             {
-                horizontalSpeed = -horizontalSpeed;
-                //ChangeAnimationState(BITING);
+                horizontalVelocity = -horizontalVelocity;
             }
 
             if (PlayerAnimationManager.instance.isIce)
             {
-                horizontalSpeed = -horizontalSpeed;
-                //ChangeAnimationState(BITING);
+                horizontalVelocity = -horizontalVelocity;
             }
 
             if (PlayerAnimationManager.instance.isBasic)
@@ -150,23 +155,14 @@ public class BiterHorizontalController : MonoBehaviour
 
         if(other.gameObject.tag == "Enemy")
         {
-            horizontalSpeed = -horizontalSpeed;
+            horizontalVelocity = -horizontalVelocity;
         }
 
         if(other.gameObject.tag == "Wall")
         {
-            horizontalSpeed = -horizontalSpeed;
+            horizontalVelocity = -horizontalVelocity;
         }
     }
-
-    /*bool GroundCheck()
-    {
-        RaycastHit2D Grounded;
-
-        Grounded = Physics2D.Raycast(RaycastPoint.position, Vector2.down, .5f, GroundLayer);
-
-        return Grounded;
-    }*/
 
     void ChangeAnimationState(string newState)
     {

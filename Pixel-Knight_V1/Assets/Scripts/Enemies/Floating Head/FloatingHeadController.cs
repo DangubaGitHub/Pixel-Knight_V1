@@ -54,7 +54,7 @@ public class FloatingHeadController : MonoBehaviour
 
             if (!foundDirection)
             {
-                if (Player.transform.position.x > transform.position.x && transform.localScale.x == -1)
+                if (Player.transform.position.x > transform.position.x && transform.localScale.x == 1)
                 {
                     velocity = -velocity;
                 }
@@ -72,7 +72,9 @@ public class FloatingHeadController : MonoBehaviour
 
         else
         {
+            rb2d.velocity = new Vector2(0, 0);
             ChangeAnimationState(STILL);
+            foundDirection = false;
         }
 
         Vector3 characterScale = transform.localScale;

@@ -186,9 +186,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  enemyDeathEffect: {fileID: 7149189125103132212, guid: afb8bf30d0a47a6439bce4ed7a8f9ee0, type: 3}
-  touchesWall: 0
-  boxCollider: {fileID: 0}
   PlayerLayer:
     serializedVersion: 2
     m_Bits: 128

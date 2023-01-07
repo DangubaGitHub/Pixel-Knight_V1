@@ -15,6 +15,8 @@ TagManager:
   - Enemy Wizard
   - Laser Eye Target Box
   - Laser Projectile
+  - Ground 2
+  - Turn Around Trigger
   layers:
   - Default
   - TransparentFX
@@ -32,7 +34,7 @@ TagManager:
   - Magic Projectile
   - Laser Projectile
   - Trigger Box
-  - 
+  - Ground 2
   - 
   - 
   - 

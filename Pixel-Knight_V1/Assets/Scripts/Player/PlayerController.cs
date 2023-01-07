@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     Rigidbody2D rb2d;
-    Collider2D capsuleCollider2d;
+    //Collider2D capsuleCollider2d;
 
     [Header("Movement")]
     public float speedX;
@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
     {
         instance = this;
         rb2d = GetComponent<Rigidbody2D>();
-        capsuleCollider2d = GetComponent<Collider2D>();
+        //capsuleCollider2d = GetComponent<Collider2D>();
     }
 
     void Start()

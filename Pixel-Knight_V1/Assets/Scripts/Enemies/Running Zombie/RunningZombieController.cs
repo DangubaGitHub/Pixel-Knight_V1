@@ -7,9 +7,8 @@ public class RunningZombieController : MonoBehaviour
     ////////////////////////////// Movement //////////
 
     [SerializeField] float moveSpeed;
-    [SerializeField] GameObject enemyDeathEffect;
-    [SerializeField] bool touchesWall;
-    [SerializeField] BoxCollider2D boxCollider;
+    //[SerializeField] GameObject enemyDeathEffect;
+    //[SerializeField] bool touchesWall;
 
     ////////////////////////////// Activation //////////
 
@@ -36,7 +35,6 @@ public class RunningZombieController : MonoBehaviour
     private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        boxCollider = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
     }
 
@@ -112,7 +110,8 @@ public class RunningZombieController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if(other.CompareTag("Ground"))
+        if(other.CompareTag("Ground") ||
+            other.CompareTag("Ground 2"))
         {
             moveSpeed = -moveSpeed;
         }
