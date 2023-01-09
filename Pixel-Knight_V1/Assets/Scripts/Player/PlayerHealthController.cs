@@ -56,7 +56,8 @@ public class PlayerHealthController : MonoBehaviour
         if(other.gameObject.tag == "Enemy" || 
             other.gameObject.tag == "Spikes" ||
            other.gameObject.tag == "Enemy Invulnerable Damaging" || 
-           other.gameObject.tag == "Enemy Invulnerable Bounce")
+           other.gameObject.tag == "Enemy Invulnerable Bounce" ||
+           other.gameObject.tag == "Slime")
         {
             if(PlayerAnimationManager.instance.isArmor == true)
             {

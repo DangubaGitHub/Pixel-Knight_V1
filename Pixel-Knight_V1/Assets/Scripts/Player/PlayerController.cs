@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    Rigidbody2D rb2d;
+    public Rigidbody2D rb2d;
     //Collider2D capsuleCollider2d;
 
     [Header("Movement")]

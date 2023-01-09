@@ -28,27 +28,51 @@ public class PlayerStompBox : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy") ||
-            other.CompareTag("Enemy Wizard"))
+        if (PlayerController.instance.rb2d.velocity.y < 0)
         {
-            Destroy(other.gameObject);
+            if (other.CompareTag("Enemy") ||
+                other.CompareTag("Enemy Wizard"))
+            {
+                Destroy(other.gameObject);
 
-            PlayerController.instance.BounceOnEnemy();
+                PlayerController.instance.BounceOnEnemy();
 
-            Instantiate(enemyDeathEffect, other.transform.position, other.transform.rotation);
-        }
+                Instantiate(enemyDeathEffect, other.transform.position, other.transform.rotation);
+            }
 
-        if(other.CompareTag("Enemy Invulnerable Bounce"))
-        {
-            PlayerController.instance.BounceOnEnemy();
-            CrawlerController.instance.isCrouching = true;
-            CrawlerController.instance.crouchTimerCountdown = 1f;
-        }
+            if (other.CompareTag("Enemy Invulnerable Bounce"))
+            {
+                PlayerController.instance.BounceOnEnemy();
+                CrawlerController.instance.isCrouching = true;
+                CrawlerController.instance.crouchTimerCountdown = 1f;
+            }
 
-        if (other.CompareTag("Mushroom"))
-        {
-            PlayerController.instance.BounceOnMushroom();
-            MushroomController.instance.mushroomIsActive = true;
+            if (other.CompareTag("Mushroom"))
+            {
+                PlayerController.instance.BounceOnMushroom();
+                MushroomController.instance.mushroomIsActive = true;
+            }
+
+            if (other.CompareTag("Slime"))
+            {
+                if (!SlimeGreenController.instance.isGrounded)
+                {
+                    Destroy(other.gameObject);
+
+                    PlayerController.instance.BounceOnEnemy();
+
+                    Instantiate(enemyDeathEffect, other.transform.position, other.transform.rotation);
+                }
+
+                else if (SlimeGreenController.instance.isGrounded)
+                {
+                    SlimeGreenController.instance.isAlive = false;
+
+                    PlayerController.instance.BounceOnEnemy();
+
+                    Destroy(other.gameObject, 1.7f);
+                }
+            }
         }
     }
 }

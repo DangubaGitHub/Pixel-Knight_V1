@@ -17,6 +17,7 @@ TagManager:
   - Laser Projectile
   - Ground 2
   - Turn Around Trigger
+  - Slime
   layers:
   - Default
   - TransparentFX

@@ -9,11 +9,10 @@ public class SlimeGreenController : MonoBehaviour
     public float velocityX;
     public float velocityY;
     [SerializeField] bool foundDirection;
-    [SerializeField] bool isGrounded;
-    [SerializeField] float nextJumpTime;
+    public bool isGrounded;
 
-    float nextTime;
-    //float nextJump = Random.Range(2, 3);
+    float timeBetweenJumps;
+    float nextJumpTime;
 
     ////////////////////////////// Activation //////////
 
@@ -24,7 +23,7 @@ public class SlimeGreenController : MonoBehaviour
     [SerializeField] bool isActive;
 
     [SerializeField] GameObject Player;
-    [SerializeField] bool isAlive;
+    public bool isAlive;
 
     ////////////////////////////// Animation Controlls //////////
 
@@ -40,9 +39,11 @@ public class SlimeGreenController : MonoBehaviour
 
     Rigidbody2D rb2d;
     Animator anim;
+    public static SlimeGreenController instance;
 
     private void Awake()
     {
+        instance = this;
         rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
@@ -50,7 +51,6 @@ public class SlimeGreenController : MonoBehaviour
     void Start()
     {
         isAlive = true;
-        nextJumpTime = 1;
     }
 
     void Update()
@@ -59,12 +59,8 @@ public class SlimeGreenController : MonoBehaviour
 
         if (isActive)
         {
-            nextJumpTime -= Time.deltaTime;
-
             if (isAlive)
             {
-                ChangeAnimationState(IDLE);
-
                 if (!foundDirection)
                 {
                     if (Player.transform.position.x > transform.position.x && transform.localScale.x == -1)
@@ -82,34 +78,24 @@ public class SlimeGreenController : MonoBehaviour
 
                 if (isGrounded)
                 {
-                    rb2d.velocity = new Vector2(velocityX, velocityY);
+                    ChangeAnimationState(IDLE);
+                    rb2d.velocity = new Vector2(velocityX, rb2d.velocity.y);
+
+                    if(Time.time > nextJumpTime)
+                    {
+                        rb2d.velocity = new Vector2(rb2d.velocity.x, velocityY);
+                        nextJumpTime = Time.time + Random.Range(2, 4);
+                    }
                 }
 
-                /*if (nextJumpTime < 0 && nextJumpTime > -0.1f)
-                {
-                    rb2d.velocity = new Vector2(velocityX, velocityY);
-                    //nextJumpTime = Random.Range(1f, 3f);
-                }*/
-
-                /*if (Time.time > nextTime)
-                {
-                    rb2d.velocity = new Vector2(velocityX, velocityY);
-
-                    nextTime = Time.time + Random.Range(2, 4);
-                }
-
-                else if (nextJumpTime > 0)
-                {
-                    rb2d.velocity = new Vector2(0, 0);
-                }*/
                 if (!isGrounded)
                 {
-                    if (rb2d.velocity.y > 0.1f)
+                    if (rb2d.velocity.y > 0)
                     {
                         ChangeAnimationState(UP);
                     }
 
-                    else if (rb2d.velocity.y < -0.1f)
+                    else if (rb2d.velocity.y < 0)
                     {
                         ChangeAnimationState(DOWN);
                     }
@@ -119,6 +105,7 @@ public class SlimeGreenController : MonoBehaviour
             else if(!isAlive && isGrounded)
             {
                 ChangeAnimationState(DEATH);
+                rb2d.velocity = new Vector2(0, 0);
             }
         }
 
@@ -126,7 +113,7 @@ public class SlimeGreenController : MonoBehaviour
         {
             ChangeAnimationState(STILL);
             foundDirection = false;
-            rb2d.velocity = new Vector2(0, 0);
+            rb2d.velocity = new Vector2(0, rb2d.velocity.y);
         }
 
         Vector3 characterScale = transform.localScale;
@@ -154,6 +141,14 @@ public class SlimeGreenController : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if(other.CompareTag("Spikes"))
+        {
+            isGrounded = true;
+        }
+    }
+
     private void OnTriggerExit2D(Collider2D other)
     {
         if(other.CompareTag("Ground") ||
@@ -161,7 +156,15 @@ public class SlimeGreenController : MonoBehaviour
             other.CompareTag("Spikes"))
         {
             isGrounded = false;
-            //nextJumpTime = Random.Range(1f, 3f);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.tag == "Wall" ||
+            other.gameObject.tag == "Turn Around Trigger")
+        {
+            ChangeDirection();
         }
     }
 
