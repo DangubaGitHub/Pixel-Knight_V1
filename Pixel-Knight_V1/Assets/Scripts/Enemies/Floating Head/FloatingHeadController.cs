@@ -39,11 +39,6 @@ public class FloatingHeadController : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
         isActive = Physics2D.OverlapCircle(PlayerCheck.position, PlayerCheckRadius, PlayerLayer);
