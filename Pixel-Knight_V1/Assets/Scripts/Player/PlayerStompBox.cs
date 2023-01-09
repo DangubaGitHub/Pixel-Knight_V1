@@ -28,7 +28,7 @@ public class PlayerStompBox : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (PlayerController.instance.rb2d.velocity.y < 0)
+        if (PlayerController.instance.rb2d.velocity.y <= 0)
         {
             if (other.CompareTag("Enemy") ||
                 other.CompareTag("Enemy Wizard"))
