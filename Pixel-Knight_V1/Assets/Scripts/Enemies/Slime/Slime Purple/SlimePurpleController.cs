@@ -10,7 +10,7 @@ public class SlimePurpleController : MonoBehaviour
     public float velocityX;
     [SerializeField] bool foundDirection;
     public bool isGrounded;
-    //public bool elementActive;
+    [SerializeField] bool elementActive;
 
     //float timeBetweenJumps = 2f;
     [SerializeField] float nextElementBurst;
@@ -84,17 +84,51 @@ public class SlimePurpleController : MonoBehaviour
                     foundDirection = true;
                 }
 
-                if (isGrounded)
+                if (!elementActive)
+                {
+                    ChangeAnimationState(MOVE);
+                    rb2d.velocity = new Vector2(velocityX, 0);
+                }
+
+                else if (elementActive)
+                {
+                    ChangeAnimationState(ELEMENT);
+                    rb2d.velocity = new Vector2(0, 0);
+                    Invoke("EndElement", 1.775f);
+                }
+
+
+                if (rb2d.velocity.y > 0)
+                {
+                    ChangeAnimationState(UP);
+                }
+
+                else if (rb2d.velocity.y < 0)
+                {
+                    ChangeAnimationState(DOWN);
+                }
+
+                
+
+                if (Time.time > nextElementBurst)
+                {
+                    elementActive = true;
+                    nextElementBurst = Time.time + Random.Range(1, 3);
+                }
+
+                /*if (isGrounded)
                 {
                     ChangeAnimationState(MOVE);
                     rb2d.velocity = new Vector2(velocityX, 0);
 
-                    /*if (Time.time > nextElementBurst)
+                    if (Time.time > nextElementBurst)
                     {
+                        elementActive = true;
                         ChangeAnimationState(ELEMENT);
                         rb2d.velocity = new Vector2(0 , 0);
+                        Invoke("EndElement", 2.5f);
                         nextElementBurst = Time.time + Random.Range(2, 4);
-                    }*/
+                    }
                 }
 
                 if (!isGrounded)
@@ -108,7 +142,7 @@ public class SlimePurpleController : MonoBehaviour
                     {
                         ChangeAnimationState(DOWN);
                     }
-                }
+                }*/
             }
 
             else if (!isAlive && isGrounded)
@@ -184,12 +218,18 @@ public class SlimePurpleController : MonoBehaviour
             other.gameObject.tag == "Enemy" ||
             other.gameObject.tag == "Slime" ||
             other.gameObject.tag == "Slime Red" ||
+            other.gameObject.tag == "Slime Purple" ||
             other.gameObject.tag == "Enemy Wizard" ||
             other.gameObject.tag == "Enemy Invulnerable Bounce" ||
             other.gameObject.tag == "Enemy Invulnerable Damaging")
         {
             ChangeDirection();
         }
+    }
+
+    void EndElement()
+    {
+        elementActive = false;
     }
 
     public void ElementBurst()

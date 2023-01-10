@@ -51,6 +51,40 @@ public class PlayerHealthController : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.CompareTag("Element Burst"))
+        {
+            if (PlayerAnimationManager.instance.isArmor == true)
+            {
+                Invoke("ChangeState", 0.1f);
+                Invincible();
+                LostArmor();
+            }
+
+            else if (PlayerAnimationManager.instance.isFire == true)
+            {
+                Invoke("ChangeState", 0.1f);
+                Invincible();
+                LostFire();
+            }
+
+            else if (PlayerAnimationManager.instance.isIce == true)
+            {
+                Invoke("ChangeState", 0.1f);
+                Invincible();
+                LostIce();
+            }
+
+            else if (PlayerAnimationManager.instance.isBasic == true && invincibleLength <= 0)
+            {
+                PlayerController.instance.isDead = true;
+                Died();
+                Invoke("AfterDeath", 2f);
+            }
+        }
+    }
+
     void OnCollisionEnter2D(Collision2D other)
     {
         if(other.gameObject.tag == "Enemy" || 

@@ -74,6 +74,15 @@ public class PlayerStompBox : MonoBehaviour
                 }
             }
 
+            if(other.CompareTag("Slime Purple"))
+            {
+                SlimePurpleController.instance.isAlive = false;
+
+                PlayerController.instance.BounceOnEnemy();
+
+                Destroy(other.gameObject, 1.7f);
+            }
+
             if (other.CompareTag("Slime Red"))
             {
                 if (!SlimeRedController.instance.isGrounded)
