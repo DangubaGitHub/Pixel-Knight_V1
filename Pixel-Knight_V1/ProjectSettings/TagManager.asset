@@ -19,6 +19,8 @@ TagManager:
   - Turn Around Trigger
   - Slime
   - Slime Red
+  - Slime Purple
+  - Element Burst
   layers:
   - Default
   - TransparentFX
