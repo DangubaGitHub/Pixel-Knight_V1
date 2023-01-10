@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SlimeRedController : MonoBehaviour
-{   
+{
     ////////////////////////////// Movement //////////
 
     public float velocityX;
@@ -13,7 +13,7 @@ public class SlimeRedController : MonoBehaviour
     //public bool elementActive;
 
     float timeBetweenJumps = 2f;
-    float nextJumpTime;
+    [SerializeField] float nextJumpTime;
 
     ////////////////////////////// Activation //////////
 
@@ -81,7 +81,7 @@ public class SlimeRedController : MonoBehaviour
                 if (isGrounded)
                 {
                     ChangeAnimationState(ELEMENT);
-                    rb2d.velocity = new Vector2(0, 0);
+                    //rb2d.velocity = new Vector2(0, rb2d.velocity.y);
 
                     if (Time.time > nextJumpTime)
                     {
@@ -136,11 +136,18 @@ public class SlimeRedController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Ground") ||
-            other.CompareTag("Ground 2") ||
             other.CompareTag("Spikes") ||
             other.CompareTag("Enemy"))
         {
             isGrounded = true;
+        }
+
+        if(other.CompareTag("Ground 2"))
+        {
+            if (rb2d.velocity.y <= 0)
+            {
+                isGrounded = true;
+            }
         }
     }
 
@@ -166,7 +173,13 @@ public class SlimeRedController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "Wall" ||
-            other.gameObject.tag == "Turn Around Trigger")
+            other.gameObject.tag == "Turn Around Trigger" ||
+            other.gameObject.tag == "Enemy" ||
+            other.gameObject.tag == "Slime" ||
+            other.gameObject.tag == "Slime Red" ||
+            other.gameObject.tag == "Enemy Wizard" ||
+            other.gameObject.tag == "Enemy Invulnerable Bounce" ||
+            other.gameObject.tag == "Enemy Invulnerable Damaging")
         {
             ChangeDirection();
         }

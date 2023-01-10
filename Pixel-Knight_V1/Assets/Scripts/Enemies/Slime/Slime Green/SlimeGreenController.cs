@@ -164,7 +164,13 @@ public class SlimeGreenController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         if(other.gameObject.tag == "Wall" ||
-            other.gameObject.tag == "Turn Around Trigger")
+            other.gameObject.tag == "Turn Around Trigger" ||
+            other.gameObject.tag == "Enemy" ||
+            other.gameObject.tag == "Slime" ||
+            other.gameObject.tag == "Slime Red" ||
+            other.gameObject.tag == "Enemy Wizard" ||
+            other.gameObject.tag == "Enemy Invulnerable Bounce" ||
+            other.gameObject.tag == "Enemy Invulnerable Damaging")
         {
             ChangeDirection();
         }

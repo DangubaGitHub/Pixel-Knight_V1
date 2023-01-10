@@ -18,6 +18,7 @@ TagManager:
   - Ground 2
   - Turn Around Trigger
   - Slime
+  - Slime Red
   layers:
   - Default
   - TransparentFX
