@@ -2,16 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlimeGreenController : MonoBehaviour
-{
+public class SlimeRedController : MonoBehaviour
+{   
     ////////////////////////////// Movement //////////
 
     public float velocityX;
     public float velocityY;
     [SerializeField] bool foundDirection;
     public bool isGrounded;
+    //public bool elementActive;
 
-    float timeBetweenJumps;
+    float timeBetweenJumps = 2f;
     float nextJumpTime;
 
     ////////////////////////////// Activation //////////
@@ -27,11 +28,12 @@ public class SlimeGreenController : MonoBehaviour
 
     ////////////////////////////// Animation Controlls //////////
 
-    const string STILL = "Slime_Green_Still";
-    const string IDLE = "Slime_Green_Idle";
-    const string UP = "Slime_Green_Up";
-    const string DOWN = "Slime_Green_Down";
-    const string DEATH = "Slime_Green_Death";
+    const string STILL = "Slime_Red_Still";
+    const string IDLE = "Slime_Red_Idle";
+    const string ELEMENT = "Slime_Red_Fire";
+    const string UP = "Slime_Red_Up";
+    const string DOWN = "Slime_Red_Down";
+    const string DEATH = "Slime_Red_Death";
 
     string currentState;
 
@@ -39,7 +41,7 @@ public class SlimeGreenController : MonoBehaviour
 
     Rigidbody2D rb2d;
     Animator anim;
-    public static SlimeGreenController instance;
+    public static SlimeRedController instance;
 
     private void Awake()
     {
@@ -78,13 +80,13 @@ public class SlimeGreenController : MonoBehaviour
 
                 if (isGrounded)
                 {
-                    ChangeAnimationState(IDLE);
-                    rb2d.velocity = new Vector2(velocityX, rb2d.velocity.y);
+                    ChangeAnimationState(ELEMENT);
+                    rb2d.velocity = new Vector2(0, 0);
 
-                    if(Time.time > nextJumpTime)
+                    if (Time.time > nextJumpTime)
                     {
-                        rb2d.velocity = new Vector2(rb2d.velocity.x, velocityY);
-                        nextJumpTime = Time.time + Random.Range(2, 4);
+                        rb2d.velocity = new Vector2(velocityX, velocityY);
+                        nextJumpTime = Time.time + timeBetweenJumps;
                     }
                 }
 
@@ -102,7 +104,7 @@ public class SlimeGreenController : MonoBehaviour
                 }
             }
 
-            else if(!isAlive && isGrounded)
+            else if (!isAlive && isGrounded)
             {
                 ChangeAnimationState(DEATH);
                 rb2d.velocity = new Vector2(0, 0);
@@ -133,9 +135,10 @@ public class SlimeGreenController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("Ground") ||
+        if (other.CompareTag("Ground") ||
             other.CompareTag("Ground 2") ||
-            other.CompareTag("Spikes"))
+            other.CompareTag("Spikes") ||
+            other.CompareTag("Enemy"))
         {
             isGrounded = true;
         }
@@ -143,7 +146,7 @@ public class SlimeGreenController : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if(other.CompareTag("Spikes"))
+        if (other.CompareTag("Spikes"))
         {
             isGrounded = true;
         }
@@ -151,9 +154,10 @@ public class SlimeGreenController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if(other.CompareTag("Ground") ||
+        if (other.CompareTag("Ground") ||
             other.CompareTag("Ground 2") ||
-            other.CompareTag("Spikes"))
+            other.CompareTag("Spikes") ||
+            other.CompareTag("Enemy"))
         {
             isGrounded = false;
         }
@@ -161,7 +165,7 @@ public class SlimeGreenController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.tag == "Wall" ||
+        if (other.gameObject.tag == "Wall" ||
             other.gameObject.tag == "Turn Around Trigger")
         {
             ChangeDirection();
