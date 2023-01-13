@@ -169,6 +169,7 @@ public class SlimeGreenController : MonoBehaviour
             other.gameObject.tag == "Slime" ||
             other.gameObject.tag == "Slime Red" ||
             other.gameObject.tag == "Slime Purple" ||
+            other.gameObject.tag == "Slime Blue" ||
             other.gameObject.tag == "Enemy Wizard" ||
             other.gameObject.tag == "Enemy Invulnerable Bounce" ||
             other.gameObject.tag == "Enemy Invulnerable Damaging")

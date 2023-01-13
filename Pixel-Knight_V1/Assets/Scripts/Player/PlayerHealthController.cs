@@ -92,7 +92,8 @@ public class PlayerHealthController : MonoBehaviour
            other.gameObject.tag == "Enemy Invulnerable Damaging" || 
            other.gameObject.tag == "Enemy Invulnerable Bounce" ||
            other.gameObject.tag == "Slime" ||
-           other.gameObject.tag == "Slime Red")
+           other.gameObject.tag == "Slime Red" ||
+           other.gameObject.tag == "Slime Blue")
         {
             if(PlayerAnimationManager.instance.isArmor == true)
             {
@@ -123,7 +124,44 @@ public class PlayerHealthController : MonoBehaviour
             }
         }
 
+        if(other.gameObject.tag == "Element Spikes")
+        {
+            if (PlayerAnimationManager.instance.isArmor == true)
+            {
+                Invoke("ChangeState", 0.1f);
+                Invincible();
+                LostArmor();
+                PlayerController.instance.BounceOnEnemy();
+            }
 
+            else if (PlayerAnimationManager.instance.isFire == true)
+            {
+                Invoke("ChangeState", 0.1f);
+                Invincible();
+                LostFire();
+                PlayerController.instance.BounceOnEnemy();
+            }
+
+            else if (PlayerAnimationManager.instance.isIce == true)
+            {
+                Invoke("ChangeState", 0.1f);
+                Invincible();
+                LostIce();
+                PlayerController.instance.BounceOnEnemy();
+            }
+
+            else if (PlayerAnimationManager.instance.isBasic == true && invincibleLength > 0)
+            {
+                PlayerController.instance.BounceOnEnemy();
+            }
+
+            else if (PlayerAnimationManager.instance.isBasic == true && invincibleLength <= 0)
+            {
+                PlayerController.instance.isDead = true;
+                Died();
+                Invoke("AfterDeath", 2f);
+            }
+        }
 
         if (other.gameObject.tag == "Laser Projectile")
         {

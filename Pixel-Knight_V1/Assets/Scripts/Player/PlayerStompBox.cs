@@ -94,6 +94,27 @@ public class PlayerStompBox : MonoBehaviour
                     Instantiate(enemyDeathEffect, other.transform.position, other.transform.rotation);
                 }
             }
+
+            if (other.CompareTag("Slime Blue"))
+            {
+                if(!SlimeBlueController.instance.isGrounded)
+                {
+                    Destroy(other.gameObject);
+
+                    PlayerController.instance.BounceOnEnemy();
+
+                    Instantiate(enemyDeathEffect, other.transform.position, other.transform.rotation);
+                }
+
+                if(SlimeBlueController.instance.isGrounded)
+                {
+                    SlimeBlueController.instance.isAlive = false;
+
+                    PlayerController.instance.BounceOnEnemy();
+
+                    Destroy(other.gameObject, 1.7f);
+                }
+            }
         }
     }
 }

@@ -13,8 +13,8 @@ public class SlimeBlueController : MonoBehaviour
     public bool isGrounded;
     public bool elementActive;
 
-    //float timeBetweenJumps = 2f;
-    [SerializeField] float nextJumpTime;
+    [SerializeField] float timeBetweenJumps;
+    float nextJumpTime;
     [SerializeField] bool nearWall;
 
     ////////////////////////////// Attack //////////
@@ -87,23 +87,31 @@ public class SlimeBlueController : MonoBehaviour
 
                 if (isGrounded)
                 {
+
                     if (!nearWall)
                     {
                         ChangeAnimationState(ELEMENT);
-                        rb2d.velocity = new Vector2(0, 0);
                     }
+                    //rb2d.velocity = new Vector2(0, rb2d.velocity.y);
+                    
+
+                    
 
                     /*if(!elementActive)
                     {
                         rb2d.velocity = new Vector2(velocityX, velocityY);
+                    }*/
+                    if(nearWall)
+                    {
+                        rb2d.velocity = new Vector2(velocityX, velocityY);
                     }
 
 
-                    /*else if (Time.time > nextJumpTime)
+                    if(Time.time > nextJumpTime)
                     {
                         rb2d.velocity = new Vector2(velocityX, velocityY);
                         nextJumpTime = Time.time + timeBetweenJumps;
-                    }*/
+                    }
                 }
 
                 if (!isGrounded)
@@ -120,7 +128,7 @@ public class SlimeBlueController : MonoBehaviour
                 }
             }
 
-            else if (!isAlive && isGrounded && elementActive)
+            else if (!isAlive && isGrounded)
             {
                 ChangeAnimationState(DEATH);
                 rb2d.velocity = new Vector2(0, 0);
@@ -154,6 +162,7 @@ public class SlimeBlueController : MonoBehaviour
         if (other.CompareTag("Wall"))
         {
             nearWall = true;
+            //ChangeDirection();//////////
         }
     }
 
@@ -170,6 +179,7 @@ public class SlimeBlueController : MonoBehaviour
         if(other.gameObject.tag == "Ground")
         {
             isGrounded = true;
+            rb2d.velocity = new Vector2(0, 0);//////////
         }
 
         if (other.gameObject.tag == "Wall" ||
@@ -177,6 +187,7 @@ public class SlimeBlueController : MonoBehaviour
             other.gameObject.tag == "Enemy" ||
             other.gameObject.tag == "Slime" ||
             other.gameObject.tag == "Slime Red" ||
+            other.gameObject.tag == "Slime Blue" ||
             other.gameObject.tag == "Slime Purple" ||
             other.gameObject.tag == "Enemy Wizard" ||
             other.gameObject.tag == "Enemy Invulnerable Bounce" ||

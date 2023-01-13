@@ -10965,7 +10965,7 @@ MonoBehaviour:
   foundDirection: 0
   isGrounded: 0
   elementActive: 0
-  nextJumpTime: 3.35
+  timeBetweenJumps: 4.3
   nearWall: 0
   elementSpikePrefab: {fileID: 6443369335023894581, guid: e4101ce99d8988a4a9972258d898e02c, type: 3}
   firePoint: {fileID: 1054610021}
@@ -106298,7 +106298,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1021057517842884308, guid: e0d5605e80fa3144ebca31ca63154561, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1021057517842884309, guid: e0d5605e80fa3144ebca31ca63154561, type: 3}
       propertyPath: Player
@@ -106847,7 +106847,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6722853469921110597, guid: 8a681afd416de144d9ecba02f33336e4, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6722853469921110606, guid: 8a681afd416de144d9ecba02f33336e4, type: 3}
       propertyPath: m_RootOrder
@@ -107046,7 +107046,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8620327364651725127, guid: f21d26a2cb737d2419c91e3e9bb57f18, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 112.39247
+      value: 110.01
       objectReference: {fileID: 0}
     - target: {fileID: 8620327364651725127, guid: f21d26a2cb737d2419c91e3e9bb57f18, type: 3}
       propertyPath: m_LocalPosition.y
@@ -107090,7 +107090,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8620327364651725144, guid: f21d26a2cb737d2419c91e3e9bb57f18, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8620327364651725145, guid: f21d26a2cb737d2419c91e3e9bb57f18, type: 3}
       propertyPath: Player
