@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class FireChest : MonoBehaviour
 {
-    const string CLOSED = "chest_closed";
-    const string OPEN = "chest_open";
+    const string CLOSED = "Chest_Fire_Closed";
+    const string OPEN = "Chest_Fire_Open";
 
     string currentState;
 

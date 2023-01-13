@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class IceChest : MonoBehaviour
 {
-    const string CLOSED = "chest_closed";
-    const string OPEN = "chest_open";
+    const string CLOSED = "Chest_Ice_Closed";
+    const string OPEN = "Chest_Ice_Open";
 
     string currentState;
 

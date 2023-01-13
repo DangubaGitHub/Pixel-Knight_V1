@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class IronChest : MonoBehaviour
 {
-    const string CLOSED = "chest_closed";
-    const string OPEN = "chest_open";
+    const string CLOSED = "Chest_Armor_Closed";
+    const string OPEN = "Chest_Armor_Open";
 
     string currentState;
 
