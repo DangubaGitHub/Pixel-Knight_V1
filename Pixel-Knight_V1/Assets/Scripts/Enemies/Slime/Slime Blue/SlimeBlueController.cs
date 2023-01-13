@@ -6,14 +6,22 @@ public class SlimeBlueController : MonoBehaviour
 {
     ////////////////////////////// Movement //////////
 
+    [Header("Movement")]
     public float velocityX;
     public float velocityY;
     [SerializeField] bool foundDirection;
     public bool isGrounded;
-    //public bool elementActive;
+    public bool elementActive;
 
-    float timeBetweenJumps = 2f;
+    //float timeBetweenJumps = 2f;
     [SerializeField] float nextJumpTime;
+    [SerializeField] bool nearWall;
+
+    ////////////////////////////// Attack //////////
+
+    [Header("Attack")]
+    [SerializeField] GameObject elementSpikePrefab;
+    [SerializeField] Transform firePoint;
 
     ////////////////////////////// Activation //////////
 
@@ -79,14 +87,23 @@ public class SlimeBlueController : MonoBehaviour
 
                 if (isGrounded)
                 {
-                    ChangeAnimationState(ELEMENT);
-                    //rb2d.velocity = new Vector2(0, rb2d.velocity.y);
+                    if (!nearWall)
+                    {
+                        ChangeAnimationState(ELEMENT);
+                        rb2d.velocity = new Vector2(0, 0);
+                    }
 
-                    if (Time.time > nextJumpTime)
+                    /*if(!elementActive)
+                    {
+                        rb2d.velocity = new Vector2(velocityX, velocityY);
+                    }
+
+
+                    /*else if (Time.time > nextJumpTime)
                     {
                         rb2d.velocity = new Vector2(velocityX, velocityY);
                         nextJumpTime = Time.time + timeBetweenJumps;
-                    }
+                    }*/
                 }
 
                 if (!isGrounded)
@@ -103,7 +120,7 @@ public class SlimeBlueController : MonoBehaviour
                 }
             }
 
-            else if (!isAlive && isGrounded)
+            else if (!isAlive && isGrounded && elementActive)
             {
                 ChangeAnimationState(DEATH);
                 rb2d.velocity = new Vector2(0, 0);
@@ -134,43 +151,27 @@ public class SlimeBlueController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Ground") ||
-            other.CompareTag("Spikes") ||
-            other.CompareTag("Enemy"))
+        if (other.CompareTag("Wall"))
         {
-            isGrounded = true;
-        }
-
-        if (other.CompareTag("Ground 2"))
-        {
-            if (rb2d.velocity.y <= 0)
-            {
-                isGrounded = true;
-            }
-        }
-    }
-
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.CompareTag("Spikes"))
-        {
-            isGrounded = true;
+            nearWall = true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Ground") ||
-            other.CompareTag("Ground 2") ||
-            other.CompareTag("Spikes") ||
-            other.CompareTag("Enemy"))
+        if (other.CompareTag("Wall"))
         {
-            isGrounded = false;
+            nearWall = false;
         }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        if(other.gameObject.tag == "Ground")
+        {
+            isGrounded = true;
+        }
+
         if (other.gameObject.tag == "Wall" ||
             other.gameObject.tag == "Turn Around Trigger" ||
             other.gameObject.tag == "Enemy" ||
@@ -185,9 +186,45 @@ public class SlimeBlueController : MonoBehaviour
         }
     }
 
+    private void OnCollisionStay2D(Collision2D other)
+    {
+        if(other.gameObject.tag == "Spikes")
+        {
+            isGrounded = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if(other.gameObject.tag == "Ground")
+        {
+            isGrounded = false;
+        }
+    }
+
     void ChangeDirection()
     {
         velocityX = -velocityX;
+    }
+
+    public void ElementActive()
+    {
+        elementActive = true;
+    }
+
+    public void ElementInactive()
+    {
+        elementActive = false;
+    }
+
+    public void ElementSpikes()
+    {
+        Instantiate(elementSpikePrefab, firePoint.position, Quaternion.identity);
+    }
+
+    public void Jump()
+    {
+        rb2d.velocity = new Vector2(velocityX, velocityY);
     }
 
     public void ChangeAnimationState(string newState)

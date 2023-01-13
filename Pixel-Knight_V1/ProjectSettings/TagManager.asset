@@ -22,6 +22,7 @@ TagManager:
   - Slime Purple
   - Element Burst
   - Slime Blue
+  - Element Spikes
   layers:
   - Default
   - TransparentFX
@@ -41,7 +42,7 @@ TagManager:
   - Trigger Box
   - Ground 2
   - Turn Around Trigger
-  - 
+  - Element Spikes
   - 
   - 
   - 
