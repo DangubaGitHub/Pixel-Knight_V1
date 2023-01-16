@@ -83,6 +83,46 @@ public class PlayerHealthController : MonoBehaviour
                 Invoke("AfterDeath", 2f);
             }
         }
+
+        if (other.CompareTag("Skeleton Arrow"))
+        {
+            if (PlayerAnimationManager.instance.isArmor == true)
+            {
+                Invoke("ChangeState", 0.1f);
+                Invincible();
+                LostArmor();
+                Destroy(other.gameObject);
+            }
+
+            else if (PlayerAnimationManager.instance.isFire == true)
+            {
+                Invoke("ChangeState", 0.1f);
+                Invincible();
+                LostFire();
+                Destroy(other.gameObject);
+            }
+
+            else if (PlayerAnimationManager.instance.isIce == true)
+            {
+                Invoke("ChangeState", 0.1f);
+                Invincible();
+                LostIce();
+                Destroy(other.gameObject);
+            }
+
+            else if (PlayerAnimationManager.instance.isBasic == true && invincibleLength > 0)
+            {
+                Destroy(other.gameObject);
+            }
+
+            else if (PlayerAnimationManager.instance.isBasic == true && invincibleLength <= 0)
+            {
+                ArrowController.instance.hitPlayer = true;
+                PlayerController.instance.isDead = true;
+                Died();
+                Invoke("AfterDeath", 2f);
+            }
+        }
     }
 
     void OnCollisionEnter2D(Collision2D other)
