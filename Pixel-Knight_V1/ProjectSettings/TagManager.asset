@@ -25,6 +25,8 @@ TagManager:
   - Element Spikes
   - Skeleton Sword
   - Skeleton Arrow
+  - Bomb Worm
+  - Bomb Explosion
   layers:
   - Default
   - TransparentFX
