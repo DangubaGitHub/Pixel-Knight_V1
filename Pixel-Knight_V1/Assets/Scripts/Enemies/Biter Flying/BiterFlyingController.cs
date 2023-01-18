@@ -4,6 +4,36 @@ using UnityEngine;
 
 public class BiterFlyingController : MonoBehaviour
 {
+    ////////////////////////////// Activation //////////
+
+    [Header("Activation")]
+    [SerializeField] LayerMask PlayerLayer;
+    [SerializeField] Transform PlayerCheck;
+    [SerializeField] float PlayerCheckRadius;
+    [SerializeField] bool isActive;
+
+    [SerializeField] GameObject Player;
+
+    ////////////////////////////// Animation Controlls //////////
+
+    const string STILL = "Biter_Flying_Stationary_Still";
+    const string MOVE = "Biter_Flying_Stationary_Move";
+
+    string currentState;
+
+    ////////////////////////////// Declerations //////////
+
+    Rigidbody2D rb2d;
+    Animator anim;
+    public static BiterFlyingController instance;
+
+    private void Awake()
+    {
+        instance = this;
+        rb2d = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+    }
+
     void Start()
     {
         
@@ -11,6 +41,37 @@ public class BiterFlyingController : MonoBehaviour
 
     void Update()
     {
-        
+        isActive = Physics2D.OverlapCircle(PlayerCheck.position, PlayerCheckRadius, PlayerLayer);
+
+        if (isActive)
+        {
+            ChangeAnimationState(MOVE);
+        }
+
+        else
+        {
+            ChangeAnimationState(STILL);
+        }
+
+        Vector3 characterScale = transform.localScale;
+
+        if (Player.transform.position.x <= transform.position.x)
+        {
+            characterScale.x = -1;
+        }
+
+        else if (Player.transform.position.x > transform.position.x)
+        {
+            characterScale.x = 1;
+        }
+
+        transform.localScale = characterScale;
+    }
+
+    public void ChangeAnimationState(string newState)
+    {
+        if (currentState == newState) return;
+        anim.Play(newState);
+        currentState = newState;
     }
 }
