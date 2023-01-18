@@ -540,9 +540,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocityX: 10
   velocityY: 15
-  topEdge: {fileID: 55595504}
-  bottomEdge: {fileID: 169473490}
   foundDirection: 0
+  maxPositionY: 20
+  minPositionY: 0
   PlayerLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -667,7 +667,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 331885265}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 309.4, y: 18.6, z: 0}
+  m_LocalPosition: {x: 309.4, y: 5.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

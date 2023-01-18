@@ -10,10 +10,10 @@ public class BatController : MonoBehaviour
     [SerializeField] float velocityX;
     [SerializeField] float velocityY;
 
-    [SerializeField] Transform topEdge;
-    [SerializeField] Transform bottomEdge;
-
     [SerializeField] bool foundDirection;
+
+    [SerializeField] float maxPositionY;
+    [SerializeField] float minPositionY;
 
     ////////////////////////////// Activation //////////
 
@@ -75,30 +75,22 @@ public class BatController : MonoBehaviour
 
             rb2d.velocity = new Vector2(velocityX, velocityY);
 
-            if (transform.position.y > transform.position.y + 10)
+            if (transform.position.y >= maxPositionY && rb2d.velocity.y > 0)
             {
                 ChangeVerticalDirection();
             }
 
-            if (transform.position.y < transform.position.y - 10)
+            if (transform.position.y <= minPositionY && rb2d.velocity.y < 0)
             {
                 ChangeVerticalDirection();
             }
-
-            /*if (transform.position.y > topEdge.transform.position.y)
-            {
-                ChangeVerticalDirection();
-            }
-
-            if (transform.position.y < bottomEdge.transform.position.y)
-            {
-                ChangeVerticalDirection();
-            }*/
         }
 
         else
         {
             ChangeAnimationState(STILL);
+            rb2d.velocity = new Vector2(0, 0);
+            foundDirection = false;
         }
 
         Vector3 characterScale = transform.localScale;
