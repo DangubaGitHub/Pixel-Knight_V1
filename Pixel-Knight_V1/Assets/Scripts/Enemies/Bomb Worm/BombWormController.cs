@@ -9,6 +9,7 @@ public class BombWormController : MonoBehaviour
     [SerializeField] GameObject bombPrefab;
     [SerializeField] Transform firePoint;
     [SerializeField] bool isAttacking;
+    [SerializeField] bool nearWall;
 
     ////////////////////////////// Movement //////////
 
@@ -139,10 +140,13 @@ public class BombWormController : MonoBehaviour
 
             //////////////////////////////////////////////////////////// Attack //////////
 
-            if (Time.time > nextAttackTime )
+            if (!nearWall)
             {
-                isAttacking = true;
-                nextAttackTime = Time.time + timeBetweenAttacks;
+                if (Time.time > nextAttackTime)
+                {
+                    isAttacking = true;
+                    nextAttackTime = Time.time + timeBetweenAttacks;
+                }
             }
         }
 
@@ -188,8 +192,22 @@ public class BombWormController : MonoBehaviour
         }
     }
 
-    
-   
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.CompareTag("Wall"))
+        {
+            nearWall = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Wall"))
+        {
+            nearWall = false;
+        }
+    }
+
     void ChangeDirection()
     {
         velocityX = -velocityX;
