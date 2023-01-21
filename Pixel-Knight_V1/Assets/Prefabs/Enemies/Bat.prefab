@@ -198,6 +198,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   PlayerCheck: {fileID: 5399394769677730605}
-  PlayerCheckRadius: 35
+  PlayerCheckRadius: 46
   isActive: 0
   Player: {fileID: 0}
