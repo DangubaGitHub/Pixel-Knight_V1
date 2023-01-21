@@ -134,7 +134,8 @@ public class PlayerHealthController : MonoBehaviour
            other.gameObject.tag == "Slime" ||
            other.gameObject.tag == "Slime Red" ||
            other.gameObject.tag == "Slime Blue" ||
-           other.gameObject.tag == "Skeleton Sword")
+           other.gameObject.tag == "Skeleton Sword" ||
+           other.gameObject.tag == "Bomb Worm")
         {
             if(PlayerAnimationManager.instance.isArmor == true)
             {

@@ -115,6 +115,20 @@ public class PlayerStompBox : MonoBehaviour
                     Destroy(other.gameObject, 1.7f);
                 }
             }
+
+            if (other.CompareTag("Bomb Worm"))
+            {
+                if (!BombWormController.instance.enraged)
+                {
+                    PlayerController.instance.BounceOnEnemy();
+                    BombWormController.instance.isChanging = true;
+                }
+
+                else if (BombWormController.instance.enraged == true)
+                {
+                    PlayerController.instance.BounceOnEnemy();
+                }
+            }
         }
     }
 }

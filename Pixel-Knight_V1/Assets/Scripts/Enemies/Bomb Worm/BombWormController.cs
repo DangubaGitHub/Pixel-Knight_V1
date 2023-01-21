@@ -23,6 +23,9 @@ public class BombWormController : MonoBehaviour
 
     [SerializeField] bool turning;
 
+    [SerializeField] bool hasChanged;
+    public bool isChanging;
+
     ////////////////////////////// Activation //////////
 
     [Header("Activation")]
@@ -49,7 +52,7 @@ public class BombWormController : MonoBehaviour
 
     string currentState;
 
-    [SerializeField] bool enraged;
+    public bool enraged;
 
     ////////////////////////////// Declerations //////////
 
@@ -92,7 +95,7 @@ public class BombWormController : MonoBehaviour
 
             //////////////////////////////////////////////////////////// Normal //////////
 
-            if (!enraged)
+            if (!enraged && !isChanging)
             {
                 if (!turning && !isAttacking)
                 {
@@ -116,7 +119,11 @@ public class BombWormController : MonoBehaviour
 
             //////////////////////////////////////////////////////////// Enraged //////////
 
-            else if (enraged)
+
+            
+
+
+            if (enraged && !isChanging)
             {
                 if (!turning && !isAttacking)
                 {
@@ -136,6 +143,12 @@ public class BombWormController : MonoBehaviour
                     rb2d.velocity = new Vector2(0, 0);//
                     ChangeAnimationState(A_ATTACK);
                 }
+            }
+
+            if (isChanging)
+            {
+                ChangeAnimationState(HIT);
+                rb2d.velocity = new Vector2(0, 0);
             }
 
             //////////////////////////////////////////////////////////// Attack //////////
@@ -208,9 +221,16 @@ public class BombWormController : MonoBehaviour
         }
     }
 
+    public void HasChanged()
+    {
+        isChanging = false;
+        enraged = true;
+    }
+
     void ChangeDirection()
     {
         velocityX = -velocityX;
+        enragedVelocityX = -enragedVelocityX;
     }
 
     public void EndAttack()
