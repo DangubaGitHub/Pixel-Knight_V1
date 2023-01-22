@@ -128,8 +128,7 @@ public class SkeletonController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Ground") ||
-            other.CompareTag("Spikes") ||
-            other.CompareTag("Enemy"))
+            other.CompareTag("Spikes"))
         {
             isGrounded = true;
         }

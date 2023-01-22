@@ -132,6 +132,7 @@ public class SlimeBlueController : MonoBehaviour
             {
                 ChangeAnimationState(DEATH);
                 rb2d.velocity = new Vector2(0, 0);
+                rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
             }
         }
 
