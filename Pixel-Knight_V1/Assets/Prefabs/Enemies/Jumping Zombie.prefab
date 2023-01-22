@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 2007722870730243252}
   - component: {fileID: 2007722870730243253}
   - component: {fileID: 2007722870730243254}
-  - component: {fileID: 2007722870730243257}
   - component: {fileID: 2007722870730243256}
+  - component: {fileID: 2007722870730243257}
   - component: {fileID: 2007722870730243259}
   m_Layer: 8
   m_Name: Jumping Zombie
@@ -109,22 +109,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!70 &2007722870730243257
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2007722870730243255}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.31993592}
-  m_Size: {x: 1.5268967, y: 2.0267951}
-  m_Direction: 0
 --- !u!50 &2007722870730243256
 Rigidbody2D:
   serializedVersion: 4
@@ -144,8 +128,24 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 5
+--- !u!70 &2007722870730243257
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007722870730243255}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.31993592}
+  m_Size: {x: 1.5268967, y: 2.0267951}
+  m_Direction: 0
 --- !u!114 &2007722870730243259
 MonoBehaviour:
   m_ObjectHideFlags: 0
