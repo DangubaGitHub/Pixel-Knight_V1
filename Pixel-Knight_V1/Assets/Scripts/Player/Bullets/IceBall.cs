@@ -9,6 +9,7 @@ public class IceBall : MonoBehaviour
     float force = 15;
 
     [SerializeField] GameObject enemyDeathEffect;
+    [SerializeField] GameObject bulletDestroyAnimation;
 
     private void Awake()
     {
@@ -29,24 +30,48 @@ public class IceBall : MonoBehaviour
     {
         if(other.CompareTag("Ground"))
         {
+            Instantiate(bulletDestroyAnimation, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
 
         if (other.CompareTag("Wall"))
         {
+            Instantiate(bulletDestroyAnimation, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
 
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("Enemy") ||
+            other.CompareTag("Enemy Wizard") ||
+            other.CompareTag("Slime") ||
+            other.CompareTag("Slime Red") ||
+            other.CompareTag("Slime Purple"))
         {
-            Destroy(gameObject);
             Instantiate(enemyDeathEffect, other.transform.position, other.transform.rotation);
             Destroy(other.gameObject);
+            Destroy(gameObject);
         }
-    }
 
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        
+        if (other.CompareTag("Enemy Invulnerable Bounce") ||
+            other.CompareTag("Enemy Invulnerable Damaging") ||
+            other.CompareTag("Slime Blue"))
+        {
+            Instantiate(bulletDestroyAnimation, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
+
+        if (other.CompareTag("Bomb Worm"))
+        {
+            if (!BombWormController.instance.enraged)
+            {
+                BombWormController.instance.isChanging = true;
+                Destroy(gameObject);
+            }
+
+            if (BombWormController.instance.enraged)
+            {
+                Instantiate(bulletDestroyAnimation, transform.position, Quaternion.identity);
+                Destroy(gameObject);
+            }
+        }
     }
 }
