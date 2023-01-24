@@ -81,6 +81,7 @@ public class PlayerHealthController : MonoBehaviour
                 PlayerController.instance.isDead = true;
                 Died();
                 Invoke("AfterDeath", 2f);
+                Invoke("CallPauseMenuAfterDeath", 4); /////////////////////////////////// Testing //////////
             }
         }
 
@@ -121,6 +122,7 @@ public class PlayerHealthController : MonoBehaviour
                 PlayerController.instance.isDead = true;
                 Died();
                 Invoke("AfterDeath", 2f);
+                Invoke("CallPauseMenuAfterDeath", 4); /////////////////////////////////// Testing //////////
             }
         }
     }
@@ -163,6 +165,7 @@ public class PlayerHealthController : MonoBehaviour
                 PlayerController.instance.isDead = true;
                 Died();
                 Invoke("AfterDeath", 2f);
+                Invoke("CallPauseMenuAfterDeath", 3); /////////////////////////////////// Testing //////////
             }
         }
 
@@ -202,6 +205,7 @@ public class PlayerHealthController : MonoBehaviour
                 PlayerController.instance.isDead = true;
                 Died();
                 Invoke("AfterDeath", 2f);
+                Invoke("CallPauseMenuAfterDeath", 4); /////////////////////////////////// Testing //////////
             }
         }
 
@@ -242,6 +246,7 @@ public class PlayerHealthController : MonoBehaviour
                 PlayerController.instance.isDead = true;
                 Died();
                 Invoke("AfterDeath", 2f);
+                Invoke("CallPauseMenuAfterDeath", 4); /////////////////////////////////// Testing //////////
             }
         }
 
@@ -282,6 +287,7 @@ public class PlayerHealthController : MonoBehaviour
                 PlayerController.instance.isDead = true;
                 Died();
                 Invoke("AfterDeath", 2f);
+                Invoke("CallPauseMenuAfterDeath", 4); /////////////////////////////////// Testing //////////
             }
         }
 
@@ -317,6 +323,7 @@ public class PlayerHealthController : MonoBehaviour
                 PlayerController.instance.isDead = true;
                 Died();
                 Invoke("AfterDeath", 2f);
+                Invoke("CallPauseMenuAfterDeath", 4); /////////////////////////////////// Testing //////////
             }
         }
     }
@@ -365,6 +372,11 @@ public class PlayerHealthController : MonoBehaviour
         rb2d.constraints = RigidbodyConstraints2D.None;
         rb2d.constraints = RigidbodyConstraints2D.FreezePositionX;
         rb2d.velocity = new Vector2(0f, 30f);
+    }
+
+    void CallPauseMenuAfterDeath()
+    {
+        PauseMenu.instance.PauseUnpause();
     }
 
     void ChangeState()

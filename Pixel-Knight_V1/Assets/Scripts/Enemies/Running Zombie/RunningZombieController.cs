@@ -141,11 +141,6 @@ public class RunningZombieController : MonoBehaviour
                 ChangeAnimationState(ZOMBIE_STILL);
             }
         }
-
-        /*if (other.gameObject.tag == "Wall")
-        {
-            ChangeDirection();
-        }*/
     }
 
     void ChangeDirection()
