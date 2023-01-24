@@ -36,6 +36,12 @@ public class PlayerController : MonoBehaviour
     public bool isFireAirAttacking;
     public bool isIceAirAttacking;
 
+    ////////////////////////////////////////////////// Fire Magic ////////////
+
+    float MagicTime;
+    [SerializeField] float MagicTimer;
+
+
     [Header("Extra's")]
     public float bounceForce;
     
@@ -60,10 +66,15 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         isDead = false;
+
+        MagicTime = 1.5f;
+        MagicTimer = MagicTime;
     }
 
     void Update()
     {
+        MagicTimer -= Time.deltaTime;
+
         if (!isDead)
         {
             if (knockBackCounter <= 0)
@@ -103,48 +114,51 @@ public class PlayerController : MonoBehaviour
 
                 if (PlayerAnimationManager.instance.isFire)
                 {
-                    if (Input.GetButtonDown("Fire"))
+                    if (MagicTimer < 0)
                     {
-                        if (!isFireAttacking && isGrounded)
+                        if (Input.GetButtonDown("Fire"))
                         {
-                            isFireAttacking = true;
+                            if (!isFireAttacking && isGrounded)
+                            {
+                                isFireAttacking = true;
+                                FireMagic();
+                                Invoke("MagicComplete", 0.4f);
+                                ResetMagicTimer();
+                            }
 
-                            FireMagic();
-
-                            Invoke("MagicComplete", 0.4f);
-                        }
-
-                        else if (!isFireAirAttacking && !isGrounded)
-                        {
-                            isFireAirAttacking = true;
-
-                            FireMagic();
-
-                            Invoke("MagicComplete", 0.4f);
+                            else if (!isFireAirAttacking && !isGrounded)
+                            {
+                                isFireAirAttacking = true;
+                                FireMagic();
+                                Invoke("MagicComplete", 0.4f);
+                                ResetMagicTimer();
+                            }
                         }
                     }
                 }
 
                 if (PlayerAnimationManager.instance.isIce)
                 {
-                    if (Input.GetButtonDown("Fire"))
+                    if (MagicTimer < 0)
                     {
-                        if (!isIceAttacking && isGrounded)
+                        if (Input.GetButtonDown("Fire"))
                         {
-                            isIceAttacking = true;
+                            if (!isIceAttacking && isGrounded)
+                            {
+                                isIceAttacking = true;
 
-                            IceMagic();
+                                IceMagic();
+                                Invoke("MagicComplete", 0.4f);
+                                ResetMagicTimer();
+                            }
 
-                            Invoke("MagicComplete", 0.4f);
-                        }
-
-                        else if (!isIceAirAttacking && !isGrounded)
-                        {
-                            isIceAirAttacking = true;
-
-                            IceMagic();
-
-                            Invoke("MagicComplete", 0.4f);
+                            else if (!isIceAirAttacking && !isGrounded)
+                            {
+                                isIceAirAttacking = true;
+                                IceMagic();
+                                Invoke("MagicComplete", 0.4f);
+                                ResetMagicTimer();
+                            }
                         }
                     }
                 }
@@ -165,6 +179,8 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+
+        
     }
 
     void FixedUpdate()
@@ -175,9 +191,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void ResetMagicTimer()
+    {
+        MagicTimer = MagicTime;
+    }
+
     void FireMagic()
     {
-        Instantiate(fireBulletPrefab, firePoint.position, firePoint.rotation);
+            Instantiate(fireBulletPrefab, firePoint.position, firePoint.rotation);
     }
 
     void IceMagic()
