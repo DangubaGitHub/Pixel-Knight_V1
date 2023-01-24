@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 1637508612447174505}
   m_Layer: 8
   m_Name: Skull
-  m_TagString: Enemy Invulnerable Damaging
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

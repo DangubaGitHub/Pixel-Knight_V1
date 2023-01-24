@@ -44,11 +44,16 @@ public class FireBall : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "Enemy" ||
+            other.gameObject.tag == "Slime" ||
+            other.gameObject.tag == "Slime Purple" ||
+            other.gameObject.tag == "Slime Blue" ||
+            other.gameObject.tag == "Enemy Wizard")
         {
-            Destroy(gameObject);
+            
             Instantiate(enemyDeathEffect, other.transform.position, other.transform.rotation);
             Destroy(other.gameObject);
+            Destroy(gameObject);
         }
 
         if (other.gameObject.tag == "Ground" ||
@@ -60,17 +65,40 @@ public class FireBall : MonoBehaviour
 
         if (other.gameObject.tag == "Wall")
         {
-            ChangeDirection();
+            rb2d.velocity = new Vector2(0, 0);
+            Instantiate(bulletDestroyAnimation, transform.position, Quaternion.identity);
+            sr.enabled = false;
+            rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+            Invoke("DestroyBall", 1f);
         }
 
         if (other.gameObject.tag == "Enemy Invulnerable Damaging" ||
-            other.gameObject.tag == "Enemy Invulnerable Bounce")
+            other.gameObject.tag == "Enemy Invulnerable Bounce" ||
+            other.gameObject.tag == "Slime Red")
         {
             rb2d.velocity = new Vector2(0, 0);
             Instantiate(bulletDestroyAnimation, transform.position, Quaternion.identity);
             sr.enabled = false;
             rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
             Invoke("DestroyBall", 1f);
+        }
+
+        if (other.gameObject.tag == "Bomb Worm")
+        {
+            if (!BombWormController.instance.enraged)
+            {
+                BombWormController.instance.isChanging = true;
+                Destroy(gameObject);
+            }
+
+            else if (BombWormController.instance.enraged)
+            {
+                rb2d.velocity = new Vector2(0, 0);
+                Instantiate(bulletDestroyAnimation, transform.position, Quaternion.identity);
+                sr.enabled = false;
+                rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+                Invoke("DestroyBall", 1f);
+            }
         }
     }
 
@@ -82,11 +110,6 @@ public class FireBall : MonoBehaviour
         {
             isGrounded = false;
         }
-    }
-
-    void ChangeDirection()
-    {
-        VelocityX = -VelocityX;
     }
 
     void DestroyBall()
