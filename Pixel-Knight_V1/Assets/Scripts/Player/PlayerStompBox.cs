@@ -47,12 +47,6 @@ public class PlayerStompBox : MonoBehaviour
                 CrawlerController.instance.crouchTimerCountdown = 1f;
             }
 
-            if (other.CompareTag("Mushroom"))
-            {
-                PlayerController.instance.BounceOnMushroom();
-                MushroomController.instance.mushroomIsActive = true;
-            }
-
             if (other.CompareTag("Slime"))
             {
                 if (!SlimeGreenController.instance.isGrounded)
@@ -129,6 +123,12 @@ public class PlayerStompBox : MonoBehaviour
                     PlayerController.instance.BounceOnEnemy();
                 }
             }
+        }
+
+        if (other.CompareTag("Mushroom"))
+        {
+            PlayerController.instance.BounceOnMushroom();
+            MushroomController.instance.mushroomIsActive = true;
         }
     }
 }

@@ -26,7 +26,7 @@ public class SkullController : MonoBehaviour
 
     void Update()
     {
-        positionX = rotationCenter.position.x + Mathf.Cos(angle) * rotationRadius;
+        /*positionX = rotationCenter.position.x + Mathf.Cos(angle) * rotationRadius;
         positionY = rotationCenter.position.y + Mathf.Sin(angle) * rotationRadius;
         transform.position = new Vector2(positionX, positionY);
         angle = angle + Time.deltaTime * rotationSpeed;
@@ -34,7 +34,7 @@ public class SkullController : MonoBehaviour
         if(angle >= 360)
         {
             angle = 0;
-        }
+        }*/
 
         if (positionY < transform.parent.position.y)
         {
@@ -44,6 +44,19 @@ public class SkullController : MonoBehaviour
         else if (positionY > transform.parent.position.y)
         {
             sr.flipX = true;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        positionX = rotationCenter.position.x + Mathf.Cos(angle) * rotationRadius;
+        positionY = rotationCenter.position.y + Mathf.Sin(angle) * rotationRadius;
+        transform.position = new Vector2(positionX, positionY);
+        angle = angle + Time.deltaTime * rotationSpeed;
+
+        if (angle >= 360)
+        {
+            angle = 0;
         }
     }
 }
