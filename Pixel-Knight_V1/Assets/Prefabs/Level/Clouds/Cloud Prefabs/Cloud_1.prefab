@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 562009213899331194}
   - component: {fileID: 562009213899331195}
   - component: {fileID: 562009213899331192}
+  - component: {fileID: -4650551937214259735}
   m_Layer: 0
   m_Name: Cloud_1
-  m_TagString: Untagged
+  m_TagString: Cloud
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -119,3 +120,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c43cadee76a79fd4f88393768955f0d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!70 &-4650551937214259735
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 562009213899331193}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 8.75, y: 3.25}
+  m_Direction: 1

@@ -18,7 +18,7 @@ public class CloudSpawnerController : MonoBehaviour
         if(!isSpawning)
         {
             isSpawning = true;
-            Invoke("StartSpawning", Random.Range(3f, 6f));
+            Invoke("StartSpawning", Random.Range(8f, 10f));
         }
         //StartCoroutine(SpawnClouds());
         

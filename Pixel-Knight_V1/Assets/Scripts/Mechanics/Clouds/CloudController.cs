@@ -6,7 +6,7 @@ public class CloudController : MonoBehaviour
 {
     Rigidbody2D rb2d;
 
-    float velocityX = 2;
+    float velocityX = 1;
 
     private void Awake()
     {

@@ -28,6 +28,7 @@ TagManager:
   - Bomb Worm
   - Bomb Explosion
   - Ceiling
+  - Cloud
   layers:
   - Default
   - TransparentFX
