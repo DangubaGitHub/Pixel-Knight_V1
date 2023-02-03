@@ -6,7 +6,7 @@ public class IceBall : MonoBehaviour
 {
     Rigidbody2D rb2d;
 
-    float force = 15;
+    float force = 25;
 
     [SerializeField] GameObject enemyDeathEffect;
     [SerializeField] GameObject bulletDestroyAnimation;
@@ -73,5 +73,10 @@ public class IceBall : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+    }
+
+    private void OnBecameInvisible()
+    {
+        Destroy(gameObject);
     }
 }

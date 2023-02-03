@@ -132,4 +132,8 @@ public class FireBall : MonoBehaviour
         currentState = newState;
     }
 
+    private void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+    }
 }

@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 460d222a5f62d9b4da72d7f7b9384beb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VelocityX: 15
+  VelocityX: 20
   VelocityY: 14
   enemyDeathEffect: {fileID: 7149189125103132212, guid: afb8bf30d0a47a6439bce4ed7a8f9ee0, type: 3}
   bulletDestroyAnimation: {fileID: 7349369448258019166, guid: b56535cd7769b804d9fa14565f2beab6, type: 3}
