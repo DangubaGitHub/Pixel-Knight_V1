@@ -45,7 +45,7 @@ public class RunningZombieController : MonoBehaviour
 
     void Update()
     {
-        isActive = Physics2D.OverlapCircle(PlayerCheck.position, PlayerCheckRadius, PlayerLayer);
+        //isActive = Physics2D.OverlapCircle(PlayerCheck.position, PlayerCheckRadius, PlayerLayer);
 
         if (isActive)
         {
@@ -111,7 +111,8 @@ public class RunningZombieController : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other)
     {
         if(other.CompareTag("Ground") ||
-            other.CompareTag("Ground 2"))
+            other.CompareTag("Ground 2") ||
+            other.CompareTag("Turn Around Trigger"))
         {
             ChangeDirection();
         }
@@ -146,6 +147,16 @@ public class RunningZombieController : MonoBehaviour
     void ChangeDirection()
     {
         moveSpeed = -moveSpeed;
+    }
+
+    private void OnBecameVisible()
+    {
+        isActive = true;
+    }
+
+    private void OnBecameInvisible()
+    {
+        isActive = false;
     }
 
     public void ChangeAnimationState(string newState)

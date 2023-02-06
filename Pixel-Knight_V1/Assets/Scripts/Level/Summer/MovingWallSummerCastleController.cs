@@ -12,7 +12,7 @@ public class MovingWallSummerCastleController : MonoBehaviour
     //////////////////////////////////////////////////////////// Entrance //////////
 
     [SerializeField] bool entrance;
-    [SerializeField] bool isInside;
+    public bool isInside;
     [SerializeField] float entranceVelocityY;
 
     //////////////////////////////////////////////////////////// Exit //////////
@@ -36,7 +36,7 @@ public class MovingWallSummerCastleController : MonoBehaviour
 
             if (isInside)
             {
-                EntranceMovingUp();
+                EntranceMovingDown();
 
                 Invoke("StopMovement", 1.1f);
             }
@@ -53,7 +53,7 @@ public class MovingWallSummerCastleController : MonoBehaviour
         }
     }
 
-    void EntranceMovingUp()
+    void EntranceMovingDown()
     {
         rb2d.velocity = new Vector2(0, -entranceVelocityY);
     }

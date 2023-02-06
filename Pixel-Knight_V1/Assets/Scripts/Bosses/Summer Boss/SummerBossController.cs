@@ -53,7 +53,30 @@ public class SummerBossController : MonoBehaviour
         {
             if (isAlive)
             {
+                if (isGrounded)
+                {
+                    ChangeAnimationState(IDLE);
+                    rb2d.velocity = new Vector2(velocityX, rb2d.velocity.y);
 
+                    if (Time.time > nextJumpTime)
+                    {
+                        rb2d.velocity = new Vector2(rb2d.velocity.x, velocityY);
+                        nextJumpTime = Time.time + Random.Range(2, 4);
+                    }
+                }
+
+                if (!isGrounded)
+                {
+                    if (rb2d.velocity.y > 0)
+                    {
+                        ChangeAnimationState(UP);
+                    }
+
+                    else if (rb2d.velocity.y < 0)
+                    {
+                        ChangeAnimationState(DOWN);
+                    }
+                }
             }
 
             else
@@ -74,6 +97,11 @@ public class SummerBossController : MonoBehaviour
         {
             isGrounded = true;
         }
+
+        if (other.CompareTag("Wall"))
+        {
+            ChangeDirection();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -82,6 +110,19 @@ public class SummerBossController : MonoBehaviour
         {
             isGrounded = false;
         }
+    }
+
+    void IsActiveCheck()
+    {
+        if (MovingWallSummerCastleController.instance.isInside)
+        {
+            isActive = true;
+        }
+    }
+
+    void ChangeDirection()
+    {
+        velocityX = -velocityX;
     }
 
     public void ChangeAnimationState(string newState)
