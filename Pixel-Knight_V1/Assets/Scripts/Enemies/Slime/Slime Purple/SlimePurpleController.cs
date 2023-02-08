@@ -24,9 +24,6 @@ public class SlimePurpleController : MonoBehaviour
     ////////////////////////////// Activation //////////
 
     [Header("Activation")]
-    [SerializeField] LayerMask PlayerLayer;
-    [SerializeField] Transform PlayerCheck;
-    [SerializeField] float PlayerCheckRadius;
     [SerializeField] bool isActive;
 
     [SerializeField] GameObject Player;
@@ -63,8 +60,6 @@ public class SlimePurpleController : MonoBehaviour
 
     void Update()
     {
-        isActive = Physics2D.OverlapCircle(PlayerCheck.position, PlayerCheckRadius, PlayerLayer);
-
         if (isActive)
         {
             if (isAlive)
@@ -115,34 +110,6 @@ public class SlimePurpleController : MonoBehaviour
                     elementActive = true;
                     nextElementBurst = Time.time + Random.Range(1, 3);
                 }
-
-                /*if (isGrounded)
-                {
-                    ChangeAnimationState(MOVE);
-                    rb2d.velocity = new Vector2(velocityX, 0);
-
-                    if (Time.time > nextElementBurst)
-                    {
-                        elementActive = true;
-                        ChangeAnimationState(ELEMENT);
-                        rb2d.velocity = new Vector2(0 , 0);
-                        Invoke("EndElement", 2.5f);
-                        nextElementBurst = Time.time + Random.Range(2, 4);
-                    }
-                }
-
-                if (!isGrounded)
-                {
-                    if (rb2d.velocity.y > 0)
-                    {
-                        ChangeAnimationState(UP);
-                    }
-
-                    else if (rb2d.velocity.y < 0)
-                    {
-                        ChangeAnimationState(DOWN);
-                    }
-                }*/
             }
 
             else if (!isAlive && isGrounded)
@@ -214,15 +181,7 @@ public class SlimePurpleController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "Wall" ||
-            other.gameObject.tag == "Turn Around Trigger" ||
-            other.gameObject.tag == "Enemy" ||
-            other.gameObject.tag == "Slime" ||
-            other.gameObject.tag == "Slime Red" ||
-            other.gameObject.tag == "Slime Purple" ||
-            other.gameObject.tag == "Slime Blue" ||
-            other.gameObject.tag == "Enemy Wizard" ||
-            other.gameObject.tag == "Enemy Invulnerable Bounce" ||
-            other.gameObject.tag == "Enemy Invulnerable Damaging")
+            other.gameObject.tag == "Turn Around Trigger")
         {
             ChangeDirection();
         }
@@ -241,6 +200,16 @@ public class SlimePurpleController : MonoBehaviour
     void ChangeDirection()
     {
         velocityX = -velocityX;
+    }
+
+    private void OnBecameVisible()
+    {
+        isActive = true;
+    }
+
+    private void OnBecameInvisible()
+    {
+        isActive = false;
     }
 
     public void ChangeAnimationState(string newState)

@@ -29,9 +29,6 @@ public class BombWormController : MonoBehaviour
     ////////////////////////////// Activation //////////
 
     [Header("Activation")]
-    [SerializeField] LayerMask PlayerLayer;
-    [SerializeField] Transform PlayerCheck;
-    [SerializeField] float PlayerCheckRadius;
     [SerializeField] bool isActive;
 
     [SerializeField] GameObject Player;
@@ -74,8 +71,6 @@ public class BombWormController : MonoBehaviour
 
     void Update()
     {
-        isActive = Physics2D.OverlapCircle(PlayerCheck.position, PlayerCheckRadius, PlayerLayer);
-
         if (isActive)
         {
             if (!foundDirection)
@@ -247,6 +242,16 @@ public class BombWormController : MonoBehaviour
     public void Bomb()
     {
         Instantiate(bombPrefab, firePoint.position, Quaternion.identity);
+    }
+
+    private void OnBecameVisible()
+    {
+        isActive = true;
+    }
+
+    private void OnBecameInvisible()
+    {
+        isActive = false;
     }
 
     public void ChangeAnimationState(string newState)

@@ -14,10 +14,7 @@ public class LaserEyeController : MonoBehaviour
     ////////////////////////////// Activation //////////
 
     [Header("Activation")]
-    [SerializeField] LayerMask PlayerLayer;
-    [SerializeField] Transform PlayerCheck;
-    [SerializeField] float PlayerCheckRadius;
-    [SerializeField] bool isActive;
+    public bool isActive;
 
     [SerializeField] GameObject Player;
 
@@ -49,8 +46,6 @@ public class LaserEyeController : MonoBehaviour
 
     void Update()
     {
-        isActive = Physics2D.OverlapCircle(PlayerCheck.position, PlayerCheckRadius, PlayerLayer);
-
         if (isActive)
         {
             if (!isOpening)

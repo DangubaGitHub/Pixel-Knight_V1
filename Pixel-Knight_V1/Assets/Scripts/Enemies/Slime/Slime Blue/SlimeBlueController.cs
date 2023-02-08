@@ -26,9 +26,6 @@ public class SlimeBlueController : MonoBehaviour
     ////////////////////////////// Activation //////////
 
     [Header("Activation")]
-    [SerializeField] LayerMask PlayerLayer;
-    [SerializeField] Transform PlayerCheck;
-    [SerializeField] float PlayerCheckRadius;
     [SerializeField] bool isActive;
 
     [SerializeField] GameObject Player;
@@ -64,8 +61,6 @@ public class SlimeBlueController : MonoBehaviour
 
     void Update()
     {
-        isActive = Physics2D.OverlapCircle(PlayerCheck.position, PlayerCheckRadius, PlayerLayer);
-
         if (isActive)
         {
             if (isAlive)
@@ -163,7 +158,6 @@ public class SlimeBlueController : MonoBehaviour
         if (other.CompareTag("Wall"))
         {
             nearWall = true;
-            //ChangeDirection();//////////
         }
     }
 
@@ -184,15 +178,7 @@ public class SlimeBlueController : MonoBehaviour
         }
 
         if (other.gameObject.tag == "Wall" ||
-            other.gameObject.tag == "Turn Around Trigger" ||
-            other.gameObject.tag == "Enemy" ||
-            other.gameObject.tag == "Slime" ||
-            other.gameObject.tag == "Slime Red" ||
-            other.gameObject.tag == "Slime Blue" ||
-            other.gameObject.tag == "Slime Purple" ||
-            other.gameObject.tag == "Enemy Wizard" ||
-            other.gameObject.tag == "Enemy Invulnerable Bounce" ||
-            other.gameObject.tag == "Enemy Invulnerable Damaging")
+            other.gameObject.tag == "Turn Around Trigger")
         {
             ChangeDirection();
         }
@@ -237,6 +223,16 @@ public class SlimeBlueController : MonoBehaviour
     public void Jump()
     {
         rb2d.velocity = new Vector2(velocityX, velocityY);
+    }
+
+    private void OnBecameVisible()
+    {
+        isActive = true;
+    }
+
+    private void OnBecameInvisible()
+    {
+        isActive = false;
     }
 
     public void ChangeAnimationState(string newState)

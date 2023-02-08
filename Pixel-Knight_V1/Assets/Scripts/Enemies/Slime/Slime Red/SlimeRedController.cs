@@ -18,9 +18,6 @@ public class SlimeRedController : MonoBehaviour
     ////////////////////////////// Activation //////////
 
     [Header("Activation")]
-    [SerializeField] LayerMask PlayerLayer;
-    [SerializeField] Transform PlayerCheck;
-    [SerializeField] float PlayerCheckRadius;
     [SerializeField] bool isActive;
 
     [SerializeField] GameObject Player;
@@ -57,8 +54,6 @@ public class SlimeRedController : MonoBehaviour
 
     void Update()
     {
-        isActive = Physics2D.OverlapCircle(PlayerCheck.position, PlayerCheckRadius, PlayerLayer);
-
         if (isActive)
         {
             if (isAlive)
@@ -173,15 +168,7 @@ public class SlimeRedController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "Wall" ||
-            other.gameObject.tag == "Turn Around Trigger" ||
-            other.gameObject.tag == "Enemy" ||
-            other.gameObject.tag == "Slime" ||
-            other.gameObject.tag == "Slime Red" ||
-            other.gameObject.tag == "Slime Purple" ||
-            other.gameObject.tag == "Slime Blue" ||
-            other.gameObject.tag == "Enemy Wizard" ||
-            other.gameObject.tag == "Enemy Invulnerable Bounce" ||
-            other.gameObject.tag == "Enemy Invulnerable Damaging")
+            other.gameObject.tag == "Turn Around Trigger")
         {
             ChangeDirection();
         }
@@ -190,6 +177,16 @@ public class SlimeRedController : MonoBehaviour
     void ChangeDirection()
     {
         velocityX = -velocityX;
+    }
+
+    private void OnBecameVisible()
+    {
+        isActive = true;
+    }
+
+    private void OnBecameInvisible()
+    {
+        isActive = false;
     }
 
     public void ChangeAnimationState(string newState)

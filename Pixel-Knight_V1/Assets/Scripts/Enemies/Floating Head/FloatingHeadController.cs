@@ -12,10 +12,7 @@ public class FloatingHeadController : MonoBehaviour
     ////////////////////////////// Activation //////////
 
     [Header("Activation")]
-    [SerializeField] LayerMask PlayerLayer;
-    [SerializeField] Transform PlayerCheck;
-    [SerializeField] float PlayerCheckRadius;
-    [SerializeField] bool isActive;
+    public bool isActive;
 
     [SerializeField] GameObject Player;
 
@@ -41,8 +38,6 @@ public class FloatingHeadController : MonoBehaviour
 
     void Update()
     {
-        isActive = Physics2D.OverlapCircle(PlayerCheck.position, PlayerCheckRadius, PlayerLayer);
-
         if (isActive)
         {
             ChangeAnimationState(MOVE);

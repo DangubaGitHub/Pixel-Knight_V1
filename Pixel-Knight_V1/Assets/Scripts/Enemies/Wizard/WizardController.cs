@@ -5,6 +5,7 @@ using UnityEngine;
 public class WizardController : MonoBehaviour
 {
     ////////////////////////////// Shooting //////////
+    
     [Header("Shooting")]
     [SerializeField] GameObject magicProjectile;
     [SerializeField] Transform firePoint;
@@ -12,9 +13,6 @@ public class WizardController : MonoBehaviour
     ////////////////////////////// Activation //////////
 
     [Header("Activation")]
-    [SerializeField] LayerMask PlayerLayer;
-    [SerializeField] Transform PlayerCheck;
-    [SerializeField] float PlayerCheckRadius;
     [SerializeField] bool isActive;
     [SerializeField] bool foundDirection;
 
@@ -34,6 +32,7 @@ public class WizardController : MonoBehaviour
 
     Rigidbody2D rb2d;
     Animator anim;
+    SpriteRenderer sr;
     public static WizardController instance;
 
     private void Awake()
@@ -45,8 +44,6 @@ public class WizardController : MonoBehaviour
 
     void Update()
     {
-        isActive = Physics2D.OverlapCircle(PlayerCheck.position, PlayerCheckRadius, PlayerLayer);
-
         if(isActive)
         {
             ChangeAnimationState(ATTACK);
@@ -83,6 +80,16 @@ public class WizardController : MonoBehaviour
     public void Shoot()
     {
         Instantiate(magicProjectile, firePoint.position, Quaternion.identity);
+    }
+
+    private void OnBecameVisible()
+    {
+        isActive = true;
+    }
+
+    private void OnBecameInvisible()
+    {
+        isActive = false;
     }
 
     public void ChangeAnimationState(string newState)
