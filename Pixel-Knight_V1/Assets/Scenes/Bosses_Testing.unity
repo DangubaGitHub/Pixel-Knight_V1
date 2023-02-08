@@ -433,7 +433,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 279690760}
-  m_Layer: 0
+  m_Layer: 23
   m_Name: Instanciate Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10356,11 +10356,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6980365112062961677, guid: f53ca69df1ac5144785b79f90781413a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 67.4
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 6980365112062961677, guid: f53ca69df1ac5144785b79f90781413a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.663
+      value: 18.33
       objectReference: {fileID: 0}
     - target: {fileID: 6980365112062961677, guid: f53ca69df1ac5144785b79f90781413a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -11998,9 +11998,9 @@ GameObject:
   - component: {fileID: 654181170}
   - component: {fileID: 654181169}
   - component: {fileID: 654181168}
-  m_Layer: 0
+  m_Layer: 23
   m_Name: Summer Boss G
-  m_TagString: Untagged
+  m_TagString: Summer Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12086,9 +12086,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2be858df16fc3fd43b5422b34fd9bd6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocityX: 0
-  velocityY: 0
-  foundDirection: 0
+  velocityX: 15
+  velocityY: 30
+  minVelocityX: 5
+  minVelocityY: 5
   isGrounded: 0
   isActive: 0
   isAlive: 0
@@ -12105,7 +12106,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -8.379111}
+  m_Offset: {x: 0, y: -8.354019}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -12116,7 +12117,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 11.9530525, y: 0.628664}
+  m_Size: {x: 4.3368807, y: 0.6788473}
   m_EdgeRadius: 0
 --- !u!70 &654181170
 CapsuleCollider2D:
@@ -12149,7 +12150,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 9
+  m_GravityScale: 5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -15303,11 +15304,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 284459842131218729, guid: 4e7ff2a962c285b49ae758cbbc124298, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 67.4
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 284459842131218729, guid: 4e7ff2a962c285b49ae758cbbc124298, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.663
+      value: 18.33
       objectReference: {fileID: 0}
     - target: {fileID: 284459842131218729, guid: 4e7ff2a962c285b49ae758cbbc124298, type: 3}
       propertyPath: m_LocalPosition.z
@@ -15921,11 +15922,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7906635542142775226, guid: bd68a7e675761b240a52f42c363684a7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 67.39982
+      value: 44.999847
       objectReference: {fileID: 0}
     - target: {fileID: 7906635542142775226, guid: bd68a7e675761b240a52f42c363684a7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.999696
+      value: 8.99948
       objectReference: {fileID: 0}
     - target: {fileID: 7906635542142775226, guid: bd68a7e675761b240a52f42c363684a7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -15970,7 +15971,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1832570259}
-  m_Layer: 0
+  m_Layer: 23
   m_Name: Instanciate Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -6,9 +6,12 @@ public class SummerBossController : MonoBehaviour
 {
     ////////////////////////////// Movement //////////
 
+    [Header("Movement")]
     public float velocityX;
     public float velocityY;
-    [SerializeField] bool foundDirection;
+    public float minVelocityX = 5f;
+    public float minVelocityY = 5f;
+    //[SerializeField] bool foundDirection;
     public bool isGrounded;
 
     float timeBetweenJumps;
@@ -17,16 +20,16 @@ public class SummerBossController : MonoBehaviour
     ////////////////////////////// Activation //////////
 
     [Header("Activation")]
-    [SerializeField] bool isActive;
+    public bool isActive;
     public bool isAlive;
 
     ////////////////////////////// Animation Controlls //////////
 
     const string STILL = "Giant_Slime_Still";
-    const string IDLE = "Giant_Slime__Idle";
-    const string UP = "Giant_Slime__Up";
-    const string DOWN = "Giant_Slime__Down";
-    const string DEATH = "Giant_Slime__Death";
+    const string IDLE = "Giant_Slime_Idle";
+    const string UP = "Giant_Slime_Up";
+    const string DOWN = "Giant_Slime_Down";
+    const string DEATH = "Giant_Slime_Death";
 
     string currentState;
 
@@ -34,6 +37,8 @@ public class SummerBossController : MonoBehaviour
 
     Rigidbody2D rb2d;
     Animator anim;
+    SpriteRenderer sr;
+    CapsuleCollider2D capsuleColl;
     public static SummerBossController instance;
 
     private void Awake()
@@ -41,6 +46,8 @@ public class SummerBossController : MonoBehaviour
         instance = this;
         rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        sr = GetComponent<SpriteRenderer>();
+        capsuleColl = GetComponent<CapsuleCollider2D>();
     }
 
     void Start()
@@ -56,17 +63,19 @@ public class SummerBossController : MonoBehaviour
                 if (isGrounded)
                 {
                     ChangeAnimationState(IDLE);
-                    rb2d.velocity = new Vector2(velocityX, rb2d.velocity.y);
+                    //rb2d.velocity = new Vector2(velocityX, rb2d.velocity.y);
 
                     if (Time.time > nextJumpTime)
                     {
                         rb2d.velocity = new Vector2(rb2d.velocity.x, velocityY);
-                        nextJumpTime = Time.time + Random.Range(2, 4);
+                        nextJumpTime = Time.time + 3;
                     }
                 }
 
-                if (!isGrounded)
+                else if (!isGrounded)
                 {
+                    rb2d.velocity = new Vector2(velocityX, rb2d.velocity.y);
+
                     if (rb2d.velocity.y > 0)
                     {
                         ChangeAnimationState(UP);
@@ -79,15 +88,30 @@ public class SummerBossController : MonoBehaviour
                 }
             }
 
-            else
+            else if(!isAlive && isGrounded)
             {
-
+                ChangeAnimationState(DEATH);
+                rb2d.velocity = new Vector2(0, 0);
+                rb2d.gravityScale = 0;
+                capsuleColl.enabled = false;
+                Invoke("DelayDestruction", 1f);
             }
         }
 
         else
         {
+            ChangeAnimationState(STILL);
+            rb2d.velocity = new Vector2(0, 0);
+        }
 
+        if (rb2d.velocity.x > 0)
+        {
+            sr.flipX = false;
+        }
+
+        if (rb2d.velocity.x < 0)
+        {
+            sr.flipX = true;
         }
     }
 
@@ -98,10 +122,10 @@ public class SummerBossController : MonoBehaviour
             isGrounded = true;
         }
 
-        if (other.CompareTag("Wall"))
+        /*if (other.CompareTag("Summer Boss"))
         {
-            ChangeDirection();
-        }
+            rb2d.velocity = new Vector2(rb2d.velocity.x, minVelocityY);
+        }*/
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -112,17 +136,22 @@ public class SummerBossController : MonoBehaviour
         }
     }
 
-    void IsActiveCheck()
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        if (MovingWallSummerCastleController.instance.isInside)
+        if (other.gameObject.tag == "Wall")
         {
-            isActive = true;
+            ChangeDirection();
         }
     }
 
     void ChangeDirection()
     {
         velocityX = -velocityX;
+    }
+
+    void DelayDestruction()
+    {
+        Destroy(gameObject);
     }
 
     public void ChangeAnimationState(string newState)

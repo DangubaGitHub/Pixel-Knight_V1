@@ -29,6 +29,7 @@ TagManager:
   - Bomb Explosion
   - Ceiling
   - Cloud
+  - Summer Boss
   layers:
   - Default
   - TransparentFX
@@ -53,7 +54,7 @@ TagManager:
   - Ceiling
   - Moving Wall
   - Cloud
-  - 
+  - Summer Boss
   - 
   - 
   - 

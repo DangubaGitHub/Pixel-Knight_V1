@@ -73,6 +73,7 @@ public class MovingWallSummerCastleController : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isInside = true;
+            SummerBossController.instance.isActive = true;
             capsuleCollider.enabled = !capsuleCollider.enabled;
         }
     }
