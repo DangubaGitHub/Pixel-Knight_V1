@@ -14,9 +14,6 @@ public class CrawlerController : MonoBehaviour
     ////////////////////////////// Activation //////////
 
     [Header("Activation")]
-    [SerializeField] LayerMask PlayerLayer;
-    [SerializeField] Transform PlayerCheck;
-    [SerializeField] float PlayerCheckRadius;
     [SerializeField] bool isActive;
     [SerializeField] bool foundDirection;
 
@@ -47,8 +44,6 @@ public class CrawlerController : MonoBehaviour
 
     void Update()
     {
-        isActive = Physics2D.OverlapCircle(PlayerCheck.position, PlayerCheckRadius, PlayerLayer);
-
         if (isActive)
         {
             if (!foundDirection)
@@ -117,12 +112,12 @@ public class CrawlerController : MonoBehaviour
     {
         if (other.CompareTag("Wall"))
         {
-            moveSpeed = -moveSpeed;
+            ChangeDirection();
         }
 
         if (other.CompareTag("Enemy"))
         {
-            moveSpeed = -moveSpeed;
+            ChangeDirection();
         }
     }
 
@@ -131,7 +126,7 @@ public class CrawlerController : MonoBehaviour
         if (other.CompareTag("Ground") ||
             other.CompareTag("Ground 2"))
         {
-            moveSpeed = -moveSpeed;
+            ChangeDirection();
         }
     }
 
@@ -146,19 +141,39 @@ public class CrawlerController : MonoBehaviour
 
             else if (PlayerAnimationManager.instance.isArmor)
             {
-                moveSpeed = -moveSpeed;
+                ChangeDirection();
             }
 
             else if (PlayerAnimationManager.instance.isFire)
             {
-                moveSpeed = -moveSpeed;
+                ChangeDirection();
             }
 
             else if (PlayerAnimationManager.instance.isIce)
             {
-                moveSpeed = -moveSpeed;
+                ChangeDirection();
             }
         }
+
+        if (other.gameObject.tag == "Turn Around Trigger")
+        {
+            ChangeDirection();
+        }
+    }
+
+    void ChangeDirection()
+    {
+        moveSpeed = -moveSpeed;
+    }
+
+    private void OnBecameVisible()
+    {
+        isActive = true;
+    }
+
+    private void OnBecameInvisible()
+    {
+        isActive = false;
     }
 
     public void ChangeAnimationState(string newState)

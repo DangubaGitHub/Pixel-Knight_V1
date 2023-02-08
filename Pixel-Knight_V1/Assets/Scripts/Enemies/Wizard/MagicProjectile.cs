@@ -44,6 +44,11 @@ public class MagicProjectile : MonoBehaviour
         }
     }
 
+    private void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+    }
+
     public void ChangeAnimationState(string newState)
     {
         if (currentState == newState) return;

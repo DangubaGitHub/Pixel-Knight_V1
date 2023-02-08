@@ -30,9 +30,6 @@ public class JumpingZombieController : MonoBehaviour
     ////////////////////  Activation  ///
 
     [Header("Activation")]
-    [SerializeField] LayerMask PlayerLayer;
-    [SerializeField] Transform PlayerCheck;
-    [SerializeField] float PlayerCheckRadius;
     [SerializeField] bool isActive;
 
     Rigidbody2D rb2d;
@@ -51,8 +48,6 @@ public class JumpingZombieController : MonoBehaviour
 
     void Update()
     {
-        isActive = Physics2D.OverlapCircle(PlayerCheck.position, PlayerCheckRadius, PlayerLayer);
-
         if (isActive)
         {
             ////////////////////  ANIMATIONS  ///
@@ -128,6 +123,16 @@ public class JumpingZombieController : MonoBehaviour
         {
             isGrounded = false;
         }
+    }
+
+    private void OnBecameVisible()
+    {
+        isActive = true;
+    }
+
+    private void OnBecameInvisible()
+    {
+        isActive = false;
     }
 
     void ChangeAnimationState(string newState)

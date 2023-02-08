@@ -19,13 +19,11 @@ public class BiterVerticalSpawner : MonoBehaviour
     {
         spawnTimerCountdown -= Time.deltaTime;
 
-        if(spawnTimerCountdown <= 0)
+        if (spawnTimerCountdown <= 0)
         {
             Instantiate(biterVerticalPrefab, biterVertivalSpawnPoint.position, transform.rotation);
 
             spawnTimerCountdown = spawnTime;
         }
-
-
     }
 }

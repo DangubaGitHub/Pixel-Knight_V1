@@ -7,15 +7,10 @@ public class RunningZombieController : MonoBehaviour
     ////////////////////////////// Movement //////////
 
     [SerializeField] float moveSpeed;
-    //[SerializeField] GameObject enemyDeathEffect;
-    //[SerializeField] bool touchesWall;
 
     ////////////////////////////// Activation //////////
 
     [Header("Activation")]
-    [SerializeField] LayerMask PlayerLayer;
-    [SerializeField] Transform PlayerCheck;
-    [SerializeField] float PlayerCheckRadius;
     [SerializeField] bool isActive;
     [SerializeField] bool foundDirection;
 
@@ -45,8 +40,6 @@ public class RunningZombieController : MonoBehaviour
 
     void Update()
     {
-        //isActive = Physics2D.OverlapCircle(PlayerCheck.position, PlayerCheckRadius, PlayerLayer);
-
         if (isActive)
         {
             ChangeAnimationState(ZOMBIE_RUN);
@@ -111,8 +104,7 @@ public class RunningZombieController : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other)
     {
         if(other.CompareTag("Ground") ||
-            other.CompareTag("Ground 2") ||
-            other.CompareTag("Turn Around Trigger"))
+            other.CompareTag("Ground 2"))
         {
             ChangeDirection();
         }
@@ -141,6 +133,11 @@ public class RunningZombieController : MonoBehaviour
             {
                 ChangeAnimationState(ZOMBIE_STILL);
             }
+        }
+
+        if (other.gameObject.tag == "Turn Around Trigger")
+        {
+            ChangeDirection();
         }
     }
 

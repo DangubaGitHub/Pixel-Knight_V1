@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 4145433723221072827}
   - component: {fileID: 4145433723221072826}
   - component: {fileID: 4145433723221072829}
-  - component: {fileID: 3184729155661853770}
   m_Layer: 13
   m_Name: Magic Projectile
   m_TagString: Magic Projectile
@@ -180,16 +179,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: 15
---- !u!114 &3184729155661853770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4145433723221072828}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72d64f1059c81774abe3b52b49b6dc02, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeUntilDestroy: 5
+  hitPlayer: 0

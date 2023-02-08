@@ -80,8 +80,6 @@ public class WizardController : MonoBehaviour
         transform.localScale = characterScale;
     }
 
-    
-
     public void Shoot()
     {
         Instantiate(magicProjectile, firePoint.position, Quaternion.identity);
