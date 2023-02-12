@@ -137,7 +137,8 @@ public class PlayerHealthController : MonoBehaviour
            other.gameObject.tag == "Slime Red" ||
            other.gameObject.tag == "Slime Blue" ||
            other.gameObject.tag == "Skeleton Sword" ||
-           other.gameObject.tag == "Bomb Worm")
+           other.gameObject.tag == "Bomb Worm" ||
+           other.gameObject.tag == "Summer Boss")
         {
             if(PlayerAnimationManager.instance.isArmor == true)
             {
@@ -315,6 +316,47 @@ public class PlayerHealthController : MonoBehaviour
                 Invincible();
                 LostIce();
                 Destroy(other.gameObject);
+            }
+
+            else if (PlayerAnimationManager.instance.isBasic == true && invincibleLength <= 0)
+            {
+                WizardController.instance.isVisible = true;
+                PlayerController.instance.isDead = true;
+                Died();
+                Invoke("AfterDeath", 2f);
+                Invoke("CallPauseMenuAfterDeath", 4); /////////////////////////////////// Testing //////////
+            }
+        }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////// Stomper Code Untested /////////
+
+        if (other.gameObject.tag == "Ground" && other.gameObject.tag == "Stomper")
+        {
+            if (PlayerAnimationManager.instance.isArmor == true)
+            {
+                Invoke("ChangeState", 0.1f);
+                LostArmor();
+                Died();
+                Invoke("AfterDeath", 2f);
+                Invoke("CallPauseMenuAfterDeath", 4); /////////////////////////////////// Testing //////////
+            }
+
+            else if (PlayerAnimationManager.instance.isFire == true)
+            {
+                Invoke("ChangeState", 0.1f);
+                LostFire();
+                Died();
+                Invoke("AfterDeath", 2f);
+                Invoke("CallPauseMenuAfterDeath", 4); /////////////////////////////////// Testing //////////
+            }
+
+            else if (PlayerAnimationManager.instance.isIce == true)
+            {
+                Invoke("ChangeState", 0.1f);
+                LostIce();
+                Died();
+                Invoke("AfterDeath", 2f);
+                Invoke("CallPauseMenuAfterDeath", 4); /////////////////////////////////// Testing //////////
             }
 
             else if (PlayerAnimationManager.instance.isBasic == true && invincibleLength <= 0)
