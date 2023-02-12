@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float jumpTime;
     bool isJumping;
 
+    [SerializeField] bool touchesCeiling;
+
     public float mushroomBounceForce;
 
     [Header("Magic")]
@@ -84,14 +86,14 @@ public class PlayerController : MonoBehaviour
 
                 isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
-                if (Input.GetButtonDown("Jump") && isGrounded)
+                if (Input.GetButtonDown("Jump") && isGrounded && !touchesCeiling)
                 {
                     isJumping = true;
                     jumpTimeCounter = jumpTime;
                     rb2d.velocity = new Vector2(rb2d.velocity.x, jumpSpeed);
                 }
 
-                if (Input.GetButton("Jump") && isJumping == true)
+                if (Input.GetButton("Jump") && isJumping == true && !touchesCeiling)
                 {
                     if (jumpTimeCounter > 0)
                     {
@@ -188,6 +190,24 @@ public class PlayerController : MonoBehaviour
         if (knockBackCounter <= 0)
         {
             rb2d.velocity = new Vector2(moveX * speedX * Time.deltaTime, rb2d.velocity.y);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Ceiling")
+        {
+            //rb2d.velocity = new Vector2(rb2d.velocity.x, 0);
+            touchesCeiling = true;
+            jumpTimeCounter = 0;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Ceiling")
+        {
+            touchesCeiling = false;
         }
     }
 
