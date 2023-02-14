@@ -14,7 +14,7 @@ public class LargeSlimeController : MonoBehaviour
     [SerializeField] float velocityX;
     [SerializeField] float velocityY;
 
-    float minVelocityX = 20f;
+    //float minVelocityX = 20f;
     float minVelocityY = 20f;
 
     [SerializeField] bool isGrounded;

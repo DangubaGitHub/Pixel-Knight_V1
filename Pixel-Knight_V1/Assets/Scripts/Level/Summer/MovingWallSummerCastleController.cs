@@ -73,7 +73,7 @@ public class MovingWallSummerCastleController : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isInside = true;
-            GiantSlimeController.instance.isActive = true;
+            SlimeKnightController.instance.isActive = true;
             capsuleCollider.enabled = !capsuleCollider.enabled;
         }
     }

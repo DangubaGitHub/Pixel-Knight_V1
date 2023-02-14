@@ -4,17 +4,31 @@ using UnityEngine;
 
 public class SlimeKnightController : MonoBehaviour
 {
-    [SerializeField] bool isActive;
+    [Header("Activation")]
+    public bool isActive;
     public bool isAlive;
     bool isArmor;
     bool isNoArmor;
 
     //////////////////////////////////////////////////////////// Movement //////////
 
-    public float velocityX;
-    public float velocityY;
+
+    [Header("Movement")]
+    public float armorVelocityX;
+    public float armorVelocityY;
+
+    public float noArmorVelocityX;
+    public float noArmorJumpVelocityX;
+    public float noArmorJumpVelocityY;
+    
 
     public bool isGrounded;
+
+    float nextArmorJumpTime;
+    [SerializeField] float timeBetweenArmorjumps;
+
+    float nextNoArmorJump;
+    [SerializeField] float timeBetweenNoArmorJumps;
 
     //////////////////////////////////////////////////////////// Declerations //////////
 
@@ -29,7 +43,10 @@ public class SlimeKnightController : MonoBehaviour
 
     void Start()
     {
-        
+        //isGrounded = true;
+        isAlive = true;
+        isArmor = true;
+        armorVelocityX = -armorVelocityX;
     }
 
     void Update()
@@ -40,25 +57,93 @@ public class SlimeKnightController : MonoBehaviour
             {
                 if (isArmor)
                 {
+                    if (isGrounded)
+                    {
+                        if (Time.time > nextArmorJumpTime)
+                        {
+                            rb2d.velocity = new Vector2(rb2d.velocity.x, armorVelocityY);
+                            nextArmorJumpTime = Time.time + timeBetweenArmorjumps;
+                        }
+                    }
 
+                    if (!isGrounded)
+                    {
+                        rb2d.velocity = new Vector2(armorVelocityX, rb2d.velocity.y);
+                    }
                 }
 
                 else if (isNoArmor)
                 {
+                    if (isGrounded)
+                    {
+                        rb2d.velocity = new Vector2(noArmorVelocityX, rb2d.velocity.y);
 
+                        if (Time.time > nextNoArmorJump)
+                        {
+                            rb2d.velocity = new Vector2(rb2d.velocity.x, noArmorJumpVelocityY);
+                            nextNoArmorJump = Time.time + timeBetweenNoArmorJumps;
+                        }
+                    }
+
+                    else if (!isGrounded)
+                    {
+                        rb2d.velocity = new Vector2(noArmorJumpVelocityX, noArmorJumpVelocityY);
+                    }
                 }
             }
 
             else if (!isAlive)
             {
-
+                rb2d.velocity = new Vector2(0, 0);
             }
         }
 
         else
         {
+            rb2d.velocity = new Vector2(0, 0);
+        }
+    }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Ground"))
+        {
+            isGrounded = true;
         }
 
+        if (other.CompareTag("Player"))
+        {
+            if (PlayerAnimationManager.instance.isBasic && PlayerHealthController.instance.invincibleLength <= 0)
+            {
+                rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+            }
+
+            else
+            {
+                rb2d.velocity = new Vector2(rb2d.velocity.x, 30f);
+            }
+
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Ground"))
+        {
+            isGrounded = false;
+        }
+    }
+
+    void ChangeDirections()
+    {
+        armorVelocityX = -armorVelocityX;
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Wall")
+        {
+            ChangeDirections();
+        }
     }
 }
