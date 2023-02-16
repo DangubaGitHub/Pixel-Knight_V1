@@ -30,6 +30,8 @@ public class SlimeKnightController : MonoBehaviour
     float nextNoArmorJump;
     [SerializeField] float timeBetweenNoArmorJumps;
 
+    [SerializeField] Transform playerTransform;
+
     //////////////////////////////////////////////////////////// Declerations //////////
 
     Rigidbody2D rb2d;
@@ -59,6 +61,8 @@ public class SlimeKnightController : MonoBehaviour
                 {
                     if (isGrounded)
                     {
+                        rb2d.velocity = new Vector2(0, rb2d.velocity.y);
+
                         if (Time.time > nextArmorJumpTime)
                         {
                             rb2d.velocity = new Vector2(rb2d.velocity.x, armorVelocityY);
@@ -104,6 +108,40 @@ public class SlimeKnightController : MonoBehaviour
         }
     }
 
+    void ChangeDirections()
+    {
+        armorVelocityX = -armorVelocityX;
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Ground")
+        {
+            isGrounded = true;
+        }
+
+        if (other.gameObject.tag == "Wall")
+        {
+            ChangeDirections();
+        }
+
+        if (other.gameObject.tag == "Player")
+        {
+            if (transform.position.y > playerTransform.position.y)
+            {
+                rb2d.velocity = new Vector2(rb2d.velocity.x, 30f);
+            }
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Ground")
+        {
+            isGrounded = false;
+        }
+    }
+    /*
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Ground"))
@@ -113,6 +151,11 @@ public class SlimeKnightController : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
+            if (transform.position.y > playerTransform.position.y)
+            {
+                rb2d.velocity = new Vector2(rb2d.velocity.x, 30f);
+            }
+
             if (PlayerAnimationManager.instance.isBasic && PlayerHealthController.instance.invincibleLength <= 0)
             {
                 rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
@@ -122,7 +165,6 @@ public class SlimeKnightController : MonoBehaviour
             {
                 rb2d.velocity = new Vector2(rb2d.velocity.x, 30f);
             }
-
         }
     }
 
@@ -133,17 +175,5 @@ public class SlimeKnightController : MonoBehaviour
             isGrounded = false;
         }
     }
-
-    void ChangeDirections()
-    {
-        armorVelocityX = -armorVelocityX;
-    }
-
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.tag == "Wall")
-        {
-            ChangeDirections();
-        }
-    }
+    */
 }
