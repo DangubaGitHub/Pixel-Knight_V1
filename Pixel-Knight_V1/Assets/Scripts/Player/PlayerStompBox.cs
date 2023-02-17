@@ -123,6 +123,11 @@ public class PlayerStompBox : MonoBehaviour
                     PlayerController.instance.BounceOnEnemy();
                 }
             }
+
+            if (other.CompareTag("Summer Boss"))
+            {
+                PlayerController.instance.BounceOnEnemy();
+            }
         }
 
         if (other.CompareTag("Mushroom"))
