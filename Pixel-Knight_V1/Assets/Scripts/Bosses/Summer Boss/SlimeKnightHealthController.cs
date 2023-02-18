@@ -4,14 +4,30 @@ using UnityEngine;
 
 public class SlimeKnightHealthController : MonoBehaviour
 {
+    public int health;
+    float invulnerable;
+
     void Start()
     {
-        
+        health = 3;
     }
 
     void Update()
     {
-        
+        if (invulnerable > 0)
+        {
+            invulnerable -= Time.deltaTime;
+        }
+
+        if (SlimeKnightAnimationController.instance.hurt)
+        {
+            Invoke("StopHurting", 2);
+        }
+
+        if (health <= 0)
+        {
+            SlimeKnightController.instance.isAlive = false;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -35,6 +51,27 @@ public class SlimeKnightHealthController : MonoBehaviour
                 SlimeKnightAnimationController.instance.two_Hit = false;
                 SlimeKnightAnimationController.instance.three_Hit = true;
             }
+
+            else if (SlimeKnightAnimationController.instance.three_Hit)
+            {
+                SlimeKnightAnimationController.instance.three_Hit = false;
+                SlimeKnightAnimationController.instance.noArmor = true;
+                SlimeKnightAnimationController.instance.noArmor = true;
+            }
+
+            else if (SlimeKnightAnimationController.instance.noArmor && invulnerable <=0)
+            {
+                SlimeKnightAnimationController.instance.noArmor = false;
+                SlimeKnightAnimationController.instance.hurt = true;
+                invulnerable = 2;
+                health--;
+            }
         }
+    }
+
+    void StopHurting()
+    {
+        SlimeKnightAnimationController.instance.hurt = false;
+        SlimeKnightAnimationController.instance.noArmor = true;
     }
 }

@@ -7,11 +7,10 @@ public class SlimeKnightController : MonoBehaviour
     [Header("Activation")]
     public bool isActive;
     public bool isAlive;
-    bool isArmor;
-    bool isNoArmor;
+    public bool isArmor;
+    public bool isNoArmor;
 
     //////////////////////////////////////////////////////////// Movement //////////
-
 
     [Header("Movement")]
     public float armorVelocityX;
@@ -23,6 +22,8 @@ public class SlimeKnightController : MonoBehaviour
     
 
     public bool isGrounded;
+
+    public bool isHurt;
 
     float nextArmorJumpTime;
     [SerializeField] float timeBetweenArmorjumps;
@@ -78,27 +79,35 @@ public class SlimeKnightController : MonoBehaviour
 
                 else if (isNoArmor)
                 {
-                    if (isGrounded)
+                    if (!isHurt)
                     {
-                        rb2d.velocity = new Vector2(noArmorVelocityX, rb2d.velocity.y);
-
-                        if (Time.time > nextNoArmorJump)
+                        if (isGrounded)
                         {
-                            rb2d.velocity = new Vector2(rb2d.velocity.x, noArmorJumpVelocityY);
-                            nextNoArmorJump = Time.time + timeBetweenNoArmorJumps;
+                            rb2d.velocity = new Vector2(noArmorVelocityX, rb2d.velocity.y);
+
+                            if (Time.time > nextNoArmorJump)
+                            {
+                                rb2d.velocity = new Vector2(rb2d.velocity.x, noArmorJumpVelocityY);
+                                nextNoArmorJump = Time.time + timeBetweenNoArmorJumps;
+                            }
+                        }
+
+                        else if (!isGrounded)
+                        {
+                            rb2d.velocity = new Vector2(noArmorJumpVelocityX, noArmorJumpVelocityY);
                         }
                     }
 
-                    else if (!isGrounded)
+                    else if (isHurt)
                     {
-                        rb2d.velocity = new Vector2(noArmorJumpVelocityX, noArmorJumpVelocityY);
+                        rb2d.velocity = new Vector2(0, 0);
                     }
                 }
             }
 
             else if (!isAlive)
             {
-                rb2d.velocity = new Vector2(0, 0);
+                rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
             }
         }
 

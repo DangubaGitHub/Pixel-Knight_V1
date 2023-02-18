@@ -16444,11 +16444,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9cce8254a3b748439001da09db2669d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slimeKnite: {fileID: 1559737299}
+  lostArmorAir: {fileID: 0}
+  lostArmorGround: {fileID: 0}
+  slimeKnightDeath: {fileID: 0}
   zero_Hit: 0
   one_Hit: 0
   two_Hit: 0
   three_Hit: 0
   noArmor: 0
+  hurt: 0
 --- !u!114 &1559737301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16463,12 +16468,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActive: 0
   isAlive: 0
+  isArmor: 0
+  isNoArmor: 0
   armorVelocityX: 15
   armorVelocityY: 50
   noArmorVelocityX: 30
   noArmorJumpVelocityX: 45
   noArmorJumpVelocityY: 45
   isGrounded: 0
+  isHurt: 0
   timeBetweenArmorjumps: 3
   timeBetweenNoArmorJumps: 5
   playerTransform: {fileID: 1489793572}
@@ -16547,6 +16555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0b9734d386a1f44ea359fd2ed1301e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
 --- !u!1001 &1716227301
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -6,11 +6,21 @@ public class SlimeKnightAnimationController : MonoBehaviour
 {
     //////////////////////////////////////////////////////////// Player State //////////
 
+    [Header("VFX")]
+    [SerializeField] Transform slimeKnite;
+    [SerializeField] GameObject lostArmorAir;
+    [SerializeField] GameObject lostArmorGround;
+    [SerializeField] GameObject slimeKnightDeath;
+
+    //////////////////////////////////////////////////////////// Player States //////////
+
+    [Header("Player States")]
     public bool zero_Hit;
     public bool one_Hit;
     public bool two_Hit;
     public bool three_Hit;
     public bool noArmor;
+    public bool hurt;
 
     //////////////////////////////////////////////////////////// Animation //////////
 
@@ -28,7 +38,6 @@ public class SlimeKnightAnimationController : MonoBehaviour
 
     ///////////////////////////////////// one_Hit ///////
 
-    const string ONE_STILL = "SK_1_Hit_Still";
     const string ONE_IDLE_RIGHT = "SK_1_Hit_Idle_Right";
     const string ONE_IDLE_LEFT = "SK_1_Hit_Idle_Left";
     const string ONE_UP_RIGHT = "SK_1_Hit_Up_Right";
@@ -38,7 +47,6 @@ public class SlimeKnightAnimationController : MonoBehaviour
 
     ///////////////////////////////////// two_Hit ///////
 
-    const string TWO_STILL = "SK_2_Hit_Still";
     const string TWO_IDLE_RIGHT = "SK_2_Hit_Idle_Right";
     const string TWO_IDLE_LEFT = "SK_2_Hit_Idle_Left";
     const string TWO_UP_RIGHT = "SK_2_Hit_Up_Right";
@@ -48,7 +56,6 @@ public class SlimeKnightAnimationController : MonoBehaviour
 
     ///////////////////////////////////// three_Hit ///////
 
-    const string THREE_STILL = "SK_3_Hit_Still";
     const string THREE_IDLE_RIGHT = "SK_3_Hit_Idle_Right";
     const string THREE_IDLE_LEFT = "SK_3_Hit_Idle_Left";
     const string THREE_UP_RIGHT = "SK_3_Hit_Up_Right";
@@ -58,15 +65,22 @@ public class SlimeKnightAnimationController : MonoBehaviour
 
     ///////////////////////////////////// no Armor ///////
 
-    const string NO_ARMOR_STILL = "No_Armor_Still";
-    const string NO_ARMOR_IDLE_RIGHT = "No_Armor_Idle_Right";
-    const string NO_ARMOR_IDLE_LEFT = "No_Armor_Idle_Left";
-    const string NO_ARMOR_UP_RIGHT = "No_Armor_Up_Right";
-    const string NO_ARMOR_UP_LEFT = "No_Armor_Up_Left";
-    const string NO_ARMOR_DOWN_RIGHT = "No_Armor_Down_Right";
-    const string NO_ARMOR_DOWN_LEFT = "No_Armor_Down_Left";
-    const string NO_ARMOR_HURT_RIGHT = "No_Armor_Hurt_Right";
-    const string NO_ARMOR_HURT_LEFT = "No_Armor_Hurt_Left";
+    const string NO_ARMOR_IDLE_RIGHT = "SK_No_Armor_Idle_Right";
+    const string NO_ARMOR_IDLE_LEFT = "SK_No_Armor_Idle_Left";
+    const string NO_ARMOR_UP_RIGHT = "SK_No_Armor_Up_Right";
+    const string NO_ARMOR_UP_LEFT = "SK_No_Armor_Up_Left";
+    const string NO_ARMOR_DOWN_RIGHT = "SK_No_Armor_Down_Right";
+    const string NO_ARMOR_DOWN_LEFT = "SK_No_Armor_Down_Left";
+
+    ///////////////////////////////////// no Armor Hurt ///////
+
+    const string HURT_IDLE_RIGHT = "SK_No_Armor_Hurt_Idle_Right";
+    const string HURT_IDLE_LEFT = "SK_No_Armor_Hurt_Idle_Left";
+    const string HURT_UP_RIGHT = "SK_No_Armor_Hurt_Up_Right";
+    const string HURT_UP_LEFT = "SK_No_Armor_Hurt_Up_Left";
+    const string HURT_DOWN_RIGHT = "SK_No_Armor_Hurt_Down_Right";
+    const string HURT_DOWN_LEFT = "SK_No_Armor_Hurt_Down_Left";
+
 
     ///////////////////////////////////// Effects ///////
 
@@ -283,7 +297,92 @@ public class SlimeKnightAnimationController : MonoBehaviour
 
             else if (noArmor)
             {
+                if (SlimeKnightController.instance.isGrounded)
+                {
+                    if (SlimeKnightController.instance.armorVelocityX > 0)
+                    {
+                        ChangeAnimationState(NO_ARMOR_IDLE_RIGHT);
+                    }
 
+                    else if (SlimeKnightController.instance.armorVelocityX < 0)
+                    {
+                        ChangeAnimationState(NO_ARMOR_IDLE_LEFT);
+                    }
+                }
+
+                else if (!SlimeKnightController.instance.isGrounded)
+                {
+                    if (SlimeKnightController.instance.armorVelocityX > 0)
+                    {
+                        if (rb2d.velocity.y > 0)
+                        {
+                            ChangeAnimationState(NO_ARMOR_UP_RIGHT);
+                        }
+
+                        else if (rb2d.velocity.y < 0)
+                        {
+                            ChangeAnimationState(NO_ARMOR_DOWN_RIGHT);
+                        }
+                    }
+
+                    if (SlimeKnightController.instance.armorVelocityX < 0)
+                    {
+                        if (rb2d.velocity.y > 0)
+                        {
+                            ChangeAnimationState(NO_ARMOR_UP_LEFT);
+                        }
+
+                        else if (rb2d.velocity.y < 0)
+                        {
+                            ChangeAnimationState(NO_ARMOR_DOWN_LEFT);
+                        }
+                    }
+                }
+            }
+
+            else if (hurt)
+            {
+                if (SlimeKnightController.instance.isGrounded)
+                {
+                    if (SlimeKnightController.instance.armorVelocityX > 0)
+                    {
+                        ChangeAnimationState(HURT_IDLE_RIGHT);
+                    }
+
+                    else if (SlimeKnightController.instance.armorVelocityX < 0)
+                    {
+                        ChangeAnimationState(HURT_IDLE_LEFT);
+                    }
+                }
+
+                else if (!SlimeKnightController.instance.isGrounded)
+                {
+                    if (SlimeKnightController.instance.armorVelocityX > 0)
+                    {
+                        if (rb2d.velocity.y > 0)
+                        {
+                            ChangeAnimationState(HURT_UP_RIGHT);
+                        }
+
+                        else if (rb2d.velocity.y < 0)
+                        {
+                            ChangeAnimationState(HURT_DOWN_RIGHT);
+                        }
+                    }
+
+                    if (SlimeKnightController.instance.armorVelocityX < 0)
+                    {
+                        if (rb2d.velocity.y > 0)
+                        {
+                            ChangeAnimationState(HURT_UP_LEFT);
+                        }
+
+                        else if (rb2d.velocity.y < 0)
+                        {
+                            ChangeAnimationState(HURT_DOWN_LEFT);
+                        }
+                    }
+                }
             }
         }
     }
