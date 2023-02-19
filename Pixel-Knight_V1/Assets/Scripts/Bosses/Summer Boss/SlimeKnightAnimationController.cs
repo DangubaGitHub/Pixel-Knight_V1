@@ -8,8 +8,8 @@ public class SlimeKnightAnimationController : MonoBehaviour
 
     [Header("VFX")]
     [SerializeField] Transform slimeKnite;
-    [SerializeField] GameObject lostArmorAir;
-    [SerializeField] GameObject lostArmorGround;
+    [SerializeField] GameObject lostArmorEffectr;
+    [SerializeField] Transform lostArmorEffectPoint;
     [SerializeField] GameObject slimeKnightDeath;
 
     //////////////////////////////////////////////////////////// Player States //////////
@@ -80,12 +80,13 @@ public class SlimeKnightAnimationController : MonoBehaviour
     const string HURT_UP_LEFT = "SK_No_Armor_Hurt_Up_Left";
     const string HURT_DOWN_RIGHT = "SK_No_Armor_Hurt_Down_Right";
     const string HURT_DOWN_LEFT = "SK_No_Armor_Hurt_Down_Left";
+    const string DEAD_RIGHT = "SK_No_Armor_Dead_Right";
+    const string DEAD_LEFT = "SK_No_Armor_Dead_Left";
 
 
     ///////////////////////////////////// Effects ///////
 
-    const string LOST_ARMOR_AIR = "Lost_Armor_Air";
-    const string LOST_ARMOR_GROUND = "Lost_Armor_Ground";
+    const string LOST_ARMOR = "Lost_Armor_Effect";
     const string DEATH_ANIMATION = "Death_Animation";
 
     //////////////////////////////////////////////////////////// DEclerations //////////
@@ -384,6 +385,25 @@ public class SlimeKnightAnimationController : MonoBehaviour
                     }
                 }
             }
+        }
+
+        else if (!SlimeKnightController.instance.isAlive)
+        {
+            if (SlimeKnightController.instance.armorVelocityX > 0)
+            {
+                ChangeAnimationState(DEAD_RIGHT);
+            }
+
+            else if (SlimeKnightController.instance.armorVelocityX < 0)
+            {
+                ChangeAnimationState(DEAD_LEFT);
+            }
+        }
+
+        if (SlimeKnightHealthController.instance.lostArmor == true)
+        {
+            Instantiate(lostArmorEffectr, lostArmorEffectPoint.position, Quaternion.identity);
+            SlimeKnightHealthController.instance.lostArmor = false;
         }
     }
 

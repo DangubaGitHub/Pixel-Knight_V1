@@ -6,6 +6,14 @@ public class SlimeKnightHealthController : MonoBehaviour
 {
     public int health;
     float invulnerable;
+    public bool lostArmor;
+
+    public static SlimeKnightHealthController instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     void Start()
     {
@@ -21,7 +29,7 @@ public class SlimeKnightHealthController : MonoBehaviour
 
         if (SlimeKnightAnimationController.instance.hurt)
         {
-            Invoke("StopHurting", 2);
+            Invoke("StopHurting", 1);
         }
 
         if (health <= 0)
@@ -36,24 +44,31 @@ public class SlimeKnightHealthController : MonoBehaviour
         {
             if (SlimeKnightAnimationController.instance.zero_Hit)
             {
+                SummerBossExtras();
                 SlimeKnightAnimationController.instance.zero_Hit = false;
                 SlimeKnightAnimationController.instance.one_Hit = true;
             }
 
             else if (SlimeKnightAnimationController.instance.one_Hit)
             {
+                SummerBossExtras();
                 SlimeKnightAnimationController.instance.one_Hit = false;
                 SlimeKnightAnimationController.instance.two_Hit = true;
             }
 
             else if (SlimeKnightAnimationController.instance.two_Hit)
             {
+                SummerBossExtras();
                 SlimeKnightAnimationController.instance.two_Hit = false;
                 SlimeKnightAnimationController.instance.three_Hit = true;
             }
 
             else if (SlimeKnightAnimationController.instance.three_Hit)
             {
+                SlimeKnightController.instance.isNoArmor = true;
+                SlimeKnightController.instance.isArmor = false;
+                lostArmor = true;
+                SummerBossExtras();
                 SlimeKnightAnimationController.instance.three_Hit = false;
                 SlimeKnightAnimationController.instance.noArmor = true;
                 SlimeKnightAnimationController.instance.noArmor = true;
@@ -61,12 +76,20 @@ public class SlimeKnightHealthController : MonoBehaviour
 
             else if (SlimeKnightAnimationController.instance.noArmor && invulnerable <=0)
             {
+                SummerBossExtras();
                 SlimeKnightAnimationController.instance.noArmor = false;
                 SlimeKnightAnimationController.instance.hurt = true;
-                invulnerable = 2;
+                invulnerable = 1;
                 health--;
             }
         }
+    }
+
+    void SummerBossExtras()
+    {
+        PlayerHealthController.instance.shortInvulnerability = 0.5f;
+        invulnerable = 0.5f;
+        PlayerController.instance.BounceOnEnemy();
     }
 
     void StopHurting()

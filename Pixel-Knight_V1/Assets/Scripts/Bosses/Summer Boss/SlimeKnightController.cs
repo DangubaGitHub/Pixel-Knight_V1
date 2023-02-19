@@ -36,11 +36,13 @@ public class SlimeKnightController : MonoBehaviour
     //////////////////////////////////////////////////////////// Declerations //////////
 
     Rigidbody2D rb2d;
+    CapsuleCollider2D capsuleCollider;
     public static SlimeKnightController instance;
 
     private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        capsuleCollider = GetComponent<CapsuleCollider2D>();
         instance = this;
     }
 
@@ -50,6 +52,7 @@ public class SlimeKnightController : MonoBehaviour
         isAlive = true;
         isArmor = true;
         armorVelocityX = -armorVelocityX;
+        noArmorVelocityX = -noArmorVelocityX;
     }
 
     void Update()
@@ -79,12 +82,16 @@ public class SlimeKnightController : MonoBehaviour
 
                 else if (isNoArmor)
                 {
+                    isArmor = false;
+
                     if (!isHurt)
                     {
+                        rb2d.velocity = new Vector2(noArmorVelocityX, rb2d.velocity.y);
+
+
                         if (isGrounded)
                         {
-                            rb2d.velocity = new Vector2(noArmorVelocityX, rb2d.velocity.y);
-
+                            
                             if (Time.time > nextNoArmorJump)
                             {
                                 rb2d.velocity = new Vector2(rb2d.velocity.x, noArmorJumpVelocityY);
@@ -92,10 +99,10 @@ public class SlimeKnightController : MonoBehaviour
                             }
                         }
 
-                        else if (!isGrounded)
+                        /*else if (!isGrounded)
                         {
                             rb2d.velocity = new Vector2(noArmorJumpVelocityX, noArmorJumpVelocityY);
-                        }
+                        }*/
                     }
 
                     else if (isHurt)
@@ -108,6 +115,7 @@ public class SlimeKnightController : MonoBehaviour
             else if (!isAlive)
             {
                 rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+                capsuleCollider.enabled = false;
             }
         }
 
@@ -120,6 +128,7 @@ public class SlimeKnightController : MonoBehaviour
     void ChangeDirections()
     {
         armorVelocityX = -armorVelocityX;
+        noArmorVelocityX = -noArmorVelocityX;
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -139,6 +148,11 @@ public class SlimeKnightController : MonoBehaviour
             if (transform.position.y > playerTransform.position.y)
             {
                 rb2d.velocity = new Vector2(rb2d.velocity.x, 30f);
+            }
+
+            else
+            {
+                ChangeDirections();
             }
         }
     }

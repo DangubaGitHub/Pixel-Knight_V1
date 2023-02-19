@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerHealthController : MonoBehaviour
 {
 
+    public float shortInvulnerability;
+
     public float invincibleLength;
 
     public static PlayerHealthController instance;
@@ -35,11 +37,16 @@ public class PlayerHealthController : MonoBehaviour
 
     void Start()
     {
-     
+        shortInvulnerability = 0;
     }
 
     void Update()
     {
+        if (shortInvulnerability > 0)
+        {
+            shortInvulnerability -= Time.deltaTime;
+        }
+
         if(invincibleLength > 0)
         {
             invincibleLength -= Time.deltaTime;
@@ -130,7 +137,7 @@ public class PlayerHealthController : MonoBehaviour
     void OnCollisionEnter2D(Collision2D other)
     {
         if(other.gameObject.tag == "Enemy" || 
-            other.gameObject.tag == "Spikes" ||
+           other.gameObject.tag == "Spikes" ||
            other.gameObject.tag == "Enemy Invulnerable Damaging" || 
            other.gameObject.tag == "Enemy Invulnerable Bounce" ||
            other.gameObject.tag == "Slime" ||
@@ -140,33 +147,36 @@ public class PlayerHealthController : MonoBehaviour
            other.gameObject.tag == "Bomb Worm" ||
            other.gameObject.tag == "Summer Boss")
         {
-            if(PlayerAnimationManager.instance.isArmor == true)
+            if (shortInvulnerability <= 0)
             {
-                Invoke("ChangeState", 0.1f);
-                Invincible();
-                LostArmor();
-            }
+                if (PlayerAnimationManager.instance.isArmor == true)
+                {
+                    Invoke("ChangeState", 0.1f);
+                    Invincible();
+                    LostArmor();
+                }
 
-            else if(PlayerAnimationManager.instance.isFire == true)
-            {
-                Invoke("ChangeState", 0.1f);
-                Invincible();
-                LostFire();
-            }
+                else if (PlayerAnimationManager.instance.isFire == true)
+                {
+                    Invoke("ChangeState", 0.1f);
+                    Invincible();
+                    LostFire();
+                }
 
-            else if (PlayerAnimationManager.instance.isIce == true)
-            {
-                Invoke("ChangeState", 0.1f);
-                Invincible();
-                LostIce();
-            }
+                else if (PlayerAnimationManager.instance.isIce == true)
+                {
+                    Invoke("ChangeState", 0.1f);
+                    Invincible();
+                    LostIce();
+                }
 
-            else if (PlayerAnimationManager.instance.isBasic == true && invincibleLength <= 0)
-            {
-                PlayerController.instance.isDead = true;
-                Died();
-                Invoke("AfterDeath", 2f);
-                Invoke("CallPauseMenuAfterDeath", 3); /////////////////////////////////// Testing //////////
+                else if (PlayerAnimationManager.instance.isBasic == true && invincibleLength <= 0)
+                {
+                    PlayerController.instance.isDead = true;
+                    Died();
+                    Invoke("AfterDeath", 2f);
+                    Invoke("CallPauseMenuAfterDeath", 3); /////////////////////////////////// Testing //////////
+                }
             }
         }
 
