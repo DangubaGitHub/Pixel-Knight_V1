@@ -100,6 +100,64 @@ public class FireBall : MonoBehaviour
                 Invoke("DestroyBall", 1f);
             }
         }
+
+        if (other.gameObject.tag == ("Summer Boss"))
+        {
+            if (SlimeKnightAnimationController.instance.zero_Hit)
+            {
+                rb2d.velocity = new Vector2(0, 0);
+                Instantiate(bulletDestroyAnimation, transform.position, Quaternion.identity);
+                sr.enabled = false;
+                rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+                Invoke("DestroyBall", 1f);
+            }
+
+            if (SlimeKnightAnimationController.instance.one_Hit)
+            {
+                rb2d.velocity = new Vector2(0, 0);
+                Instantiate(bulletDestroyAnimation, transform.position, Quaternion.identity);
+                sr.enabled = false;
+                rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+                Invoke("DestroyBall", 1f);
+            }
+
+            if (SlimeKnightAnimationController.instance.two_Hit)
+            {
+                rb2d.velocity = new Vector2(0, 0);
+                Instantiate(bulletDestroyAnimation, transform.position, Quaternion.identity);
+                sr.enabled = false;
+                rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+                Invoke("DestroyBall", 1f);
+            }
+
+            if (SlimeKnightAnimationController.instance.three_Hit)
+            {
+                rb2d.velocity = new Vector2(0, 0);
+                Instantiate(bulletDestroyAnimation, transform.position, Quaternion.identity);
+                sr.enabled = false;
+                rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+                Invoke("DestroyBall", 1f);
+            }
+
+            if (SlimeKnightAnimationController.instance.hurt)
+            {
+                rb2d.velocity = new Vector2(0, 0);
+                Instantiate(bulletDestroyAnimation, transform.position, Quaternion.identity);
+                sr.enabled = false;
+                rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+                Invoke("DestroyBall", 1f);
+            }
+
+            /*if (!SlimeKnightHealthController.instance.lostArmor /*||
+                SlimeKnightAnimationController.instance.noArmor && SlimeKnightHealthController.instance.invulnerable > 0)
+            {
+                rb2d.velocity = new Vector2(0, 0);
+                Instantiate(bulletDestroyAnimation, transform.position, Quaternion.identity);
+                sr.enabled = false;
+                rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+                Invoke("DestroyBall", 1f);
+            }*/
+        }
     }
 
     private void OnCollisionExit2D(Collision2D other)

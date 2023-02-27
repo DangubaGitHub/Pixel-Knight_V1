@@ -73,6 +73,16 @@ public class IceBall : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+
+        if (other.gameObject.tag == ("Summer Boss"))
+        {
+            if (!SlimeKnightHealthController.instance.lostArmor ||
+               SlimeKnightAnimationController.instance.noArmor && SlimeKnightHealthController.instance.invulnerable > 0)
+            {
+                Instantiate(bulletDestroyAnimation, transform.position, Quaternion.identity);
+                Destroy(gameObject);
+            }
+        }
     }
 
     private void OnBecameInvisible()

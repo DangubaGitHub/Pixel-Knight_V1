@@ -5,7 +5,7 @@ using UnityEngine;
 public class SlimeKnightHealthController : MonoBehaviour
 {
     public int health;
-    float invulnerable;
+    public float invulnerable;
     public bool lostArmor;
 
     public static SlimeKnightHealthController instance;
@@ -71,12 +71,29 @@ public class SlimeKnightHealthController : MonoBehaviour
                 SummerBossExtras();
                 SlimeKnightAnimationController.instance.three_Hit = false;
                 SlimeKnightAnimationController.instance.noArmor = true;
-                SlimeKnightAnimationController.instance.noArmor = true;
+                //SlimeKnightAnimationController.instance.noArmor = true;
             }
 
             else if (SlimeKnightAnimationController.instance.noArmor && invulnerable <=0)
             {
                 SummerBossExtras();
+                SlimeKnightAnimationController.instance.noArmor = false;
+                SlimeKnightAnimationController.instance.hurt = true;
+                invulnerable = 1;
+                health--;
+            }
+        }
+
+        
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == ("Player Magic"))
+        {
+            if (SlimeKnightAnimationController.instance.noArmor)
+            {
+                Destroy(other.gameObject);
                 SlimeKnightAnimationController.instance.noArmor = false;
                 SlimeKnightAnimationController.instance.hurt = true;
                 invulnerable = 1;

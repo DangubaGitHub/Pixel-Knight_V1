@@ -30,6 +30,7 @@ TagManager:
   - Ceiling
   - Cloud
   - Summer Boss
+  - Player Magic
   layers:
   - Default
   - TransparentFX
