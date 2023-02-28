@@ -44,6 +44,7 @@ public class SlimeKnightController : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         capsuleCollider = GetComponent<CapsuleCollider2D>();
         instance = this;
+        
     }
 
     void Start()
@@ -114,6 +115,7 @@ public class SlimeKnightController : MonoBehaviour
 
             else if (!isAlive)
             {
+                //SlimeKnightAnimationController.instance.coroutineRunning = true;
                 rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
                 capsuleCollider.enabled = false;
             }

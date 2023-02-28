@@ -11,6 +11,9 @@ public class SlimeKnightAnimationController : MonoBehaviour
     [SerializeField] GameObject lostArmorEffectr;
     [SerializeField] Transform lostArmorEffectPoint;
     [SerializeField] GameObject slimeKnightDeath;
+    [SerializeField] float timeBetweenNextExplosion;
+
+    public bool animationRunning;
 
     //////////////////////////////////////////////////////////// Player States //////////
 
@@ -21,6 +24,23 @@ public class SlimeKnightAnimationController : MonoBehaviour
     public bool three_Hit;
     public bool noArmor;
     public bool hurt;
+
+    //////////////////////////////////////////////////////////// Death Animation //////////
+
+    [Header("Death Animation Points")]
+    [SerializeField] Transform point1;
+    [SerializeField] Transform point2;
+    [SerializeField] Transform point3;
+    [SerializeField] Transform point4;
+    [SerializeField] Transform point5;
+    [SerializeField] Transform finalPoint;
+    //[SerializeField] Transform[] explosionPoints;
+
+    [Header("Death Animation Prefabs")]
+    [SerializeField] GameObject bossExplosion1Prefab;
+    [SerializeField] GameObject bossExplosion2Prefab;
+    [SerializeField] GameObject bossExplosion3Prefab;
+    //[SerializeField] GameObject[] explosionPrefabs;
 
     //////////////////////////////////////////////////////////// Animation //////////
 
@@ -105,11 +125,27 @@ public class SlimeKnightAnimationController : MonoBehaviour
     void Start()
     {
         zero_Hit = true;
+        //StartCoroutine(DeathExplosionAnimation());
+        //coroutineRunning = false;
     }
 
     void Update()
     {
-        
+        /*if(coroutineRunning)
+        {
+            StartCoroutine(DeathExplosionAnimation());
+            coroutineRunning = false;
+        }*/
+
+        if (!SlimeKnightController.instance.isAlive)
+        {
+            if (!animationRunning)
+            {
+                ExplosionAnimation();
+                animationRunning = true;
+            }
+            
+        }
     }
 
     private void FixedUpdate()
@@ -405,6 +441,152 @@ public class SlimeKnightAnimationController : MonoBehaviour
             Instantiate(lostArmorEffectr, lostArmorEffectPoint.position, Quaternion.identity);
             SlimeKnightHealthController.instance.lostArmor = false;
         }
+
+       
+    }
+
+    /*IEnumerator DeathExplosionAnimation()
+    {
+
+    
+                yield return new WaitForSeconds(.5f);
+
+                //Instantiate(bossExplosion1Prefab, point2.position, Quaternion.identity);
+
+                yield return new WaitForSeconds(timeBetweenNextExplosion);
+
+                //Instantiate(bossExplosion2Prefab, point5.position, Quaternion.identity);
+
+                yield return new WaitForSeconds(timeBetweenNextExplosion);
+
+                //Instantiate(bossExplosion3Prefab, point1.position, Quaternion.identity);
+
+                yield return new WaitForSeconds(timeBetweenNextExplosion);
+
+                //Instantiate(bossExplosion1Prefab, point4.position, Quaternion.identity);
+
+                yield return new WaitForSeconds(timeBetweenNextExplosion);
+
+                //Instantiate(bossExplosion2Prefab, point3.position, Quaternion.identity);
+
+                yield return new WaitForSeconds(timeBetweenNextExplosion);
+
+                //Instantiate(bossExplosion3Prefab, point2.position, Quaternion.identity);
+
+                yield return new WaitForSeconds(timeBetweenNextExplosion);
+
+                //Instantiate(bossExplosion1Prefab, point5.position, Quaternion.identity);
+
+                yield return new WaitForSeconds(timeBetweenNextExplosion);
+
+                //Instantiate(bossExplosion2Prefab, point1.position, Quaternion.identity);
+
+                yield return new WaitForSeconds(timeBetweenNextExplosion);
+
+                //Instantiate(bossExplosion3Prefab, point4.position, Quaternion.identity);
+
+                yield return new WaitForSeconds(timeBetweenNextExplosion);
+
+                //Instantiate(bossExplosion1Prefab, point3.position, Quaternion.identity);
+
+                yield return new WaitForSeconds(timeBetweenNextExplosion);
+
+                //Instantiate(bossExplosion2Prefab, point2.position, Quaternion.identity);
+
+                yield return new WaitForSeconds(timeBetweenNextExplosion);
+
+                //Instantiate(bossExplosion3Prefab, point5.position, Quaternion.identity);
+
+                yield return new WaitForSeconds(timeBetweenNextExplosion);
+
+                Instantiate(lostArmorEffectr, finalPoint.position, Quaternion.identity);
+                MovingWallSummerCastleController.instance.bossIsDead = true;
+                Destroy(gameObject);
+         
+    }*/
+
+    void ExplosionAnimation()
+    {
+        Invoke("Explosion1", .5f);
+        Invoke("Explosion2", .7f);
+        Invoke("Explosion3", .9f);
+        Invoke("Explosion4", 1.1f);
+        Invoke("Explosion5", 1.3f);
+        Invoke("Explosion6", 1.5f);
+        Invoke("Explosion7", 1.7f);
+        Invoke("Explosion8", 1.9f);
+        Invoke("Explosion9", 2.1f);
+        Invoke("Explosion10", 2.3f);
+        Invoke("Explosion11", 2.5f);
+        Invoke("Explosion12", 2.7f);
+        Invoke("FinalExplosion", 2.9f);
+    }
+
+    void Explosion1()
+    {
+        Instantiate(bossExplosion1Prefab, point2.position, Quaternion.identity);
+    }
+
+    void Explosion2()
+    {
+        Instantiate(bossExplosion2Prefab, point5.position, Quaternion.identity);
+    }
+
+    void Explosion3()
+    {
+        Instantiate(bossExplosion3Prefab, point1.position, Quaternion.identity);
+    }
+
+    void Explosion4()
+    {
+        Instantiate(bossExplosion1Prefab, point4.position, Quaternion.identity);
+    }
+
+    void Explosion5()
+    {
+        Instantiate(bossExplosion2Prefab, point3.position, Quaternion.identity);
+    }
+
+    void Explosion6()
+    {
+        Instantiate(bossExplosion3Prefab, point2.position, Quaternion.identity);
+    }
+
+    void Explosion7()
+    {
+        Instantiate(bossExplosion1Prefab, point5.position, Quaternion.identity);
+    }
+
+    void Explosion8()
+    {
+        Instantiate(bossExplosion2Prefab, point1.position, Quaternion.identity);
+    }
+
+    void Explosion9()
+    {
+        Instantiate(bossExplosion3Prefab, point4.position, Quaternion.identity);
+    }
+
+    void Explosion10()
+    {
+        Instantiate(bossExplosion1Prefab, point3.position, Quaternion.identity);
+    }
+
+    void Explosion11()
+    {
+        Instantiate(bossExplosion2Prefab, point2.position, Quaternion.identity);
+    }
+
+    void Explosion12()
+    {
+        Instantiate(bossExplosion3Prefab, point5.position, Quaternion.identity);
+    }
+
+    void FinalExplosion()
+    {
+        Instantiate(lostArmorEffectr, finalPoint.position, Quaternion.identity);
+        MovingWallSummerCastleController.instance.bossIsDead = true;
+        Destroy(gameObject, .35f);
     }
 
     public void ChangeAnimationState(string newState)

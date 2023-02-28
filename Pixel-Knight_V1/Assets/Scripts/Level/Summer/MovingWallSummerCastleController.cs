@@ -18,7 +18,7 @@ public class MovingWallSummerCastleController : MonoBehaviour
     //////////////////////////////////////////////////////////// Exit //////////
 
     [SerializeField] bool exit;
-    [SerializeField] bool bossIsDead;
+    public bool bossIsDead;
     [SerializeField] float exitVelocityY;
 
     private void Awake()
