@@ -42,6 +42,8 @@ public class FireBall : MonoBehaviour
 
     }
 
+    ////////////////////////////////////////////////////////////////////// Collision //////////
+    /*
     void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "Enemy" ||
@@ -147,16 +149,6 @@ public class FireBall : MonoBehaviour
                 rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
                 Invoke("DestroyBall", 1f);
             }
-
-            /*if (!SlimeKnightHealthController.instance.lostArmor /*||
-                SlimeKnightAnimationController.instance.noArmor && SlimeKnightHealthController.instance.invulnerable > 0)
-            {
-                rb2d.velocity = new Vector2(0, 0);
-                Instantiate(bulletDestroyAnimation, transform.position, Quaternion.identity);
-                sr.enabled = false;
-                rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
-                Invoke("DestroyBall", 1f);
-            }*/
         }
     }
 
@@ -165,6 +157,125 @@ public class FireBall : MonoBehaviour
         if (other.gameObject.tag == "Ground" ||
             other.gameObject.tag == "Ground 2" ||
             other.gameObject.tag == "Spikes")
+        {
+            isGrounded = false;
+        }
+    }*/
+
+    ////////////////////////////////////////////////////////////////////// Trigger //////////
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Enemy") ||
+            other.CompareTag("Slime") ||
+            other.CompareTag("Slime Purple") ||
+            other.CompareTag("Slime Blue") ||
+            other.CompareTag("Enemy Wizard"))
+        {
+            Instantiate(enemyDeathEffect, other.transform.position, other.transform.rotation);
+            Destroy(other.gameObject);
+            Destroy(gameObject);
+        }
+
+        if (other.CompareTag("Ground") ||
+            other.CompareTag("Ground 2") ||
+            other.CompareTag("Spikes"))
+        {
+            isGrounded = true;
+        }
+
+        if (other.CompareTag("Wall"))
+        {
+            rb2d.velocity = new Vector2(0, 0);
+            Instantiate(bulletDestroyAnimation, transform.position, Quaternion.identity);
+            sr.enabled = false;
+            rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+            Invoke("DestroyBall", 1f);
+        }
+
+        if (other.CompareTag("Enemy Invulnerable Damaging") ||
+            other.CompareTag("Enemy Invulnerable Bounce") ||
+            other.CompareTag("Slime Red"))
+        {
+            rb2d.velocity = new Vector2(0, 0);
+            Instantiate(bulletDestroyAnimation, transform.position, Quaternion.identity);
+            sr.enabled = false;
+            rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+            Invoke("DestroyBall", 1f);
+        }
+
+        if (other.CompareTag("Bomb Worm"))
+        {
+            if (!BombWormController.instance.enraged)
+            {
+                BombWormController.instance.isChanging = true;
+                Destroy(gameObject);
+            }
+
+            else if (BombWormController.instance.enraged)
+            {
+                rb2d.velocity = new Vector2(0, 0);
+                Instantiate(bulletDestroyAnimation, transform.position, Quaternion.identity);
+                sr.enabled = false;
+                rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+                Invoke("DestroyBall", 1f);
+            }
+        }
+
+        if (other.CompareTag("Summer Boss"))
+        {
+            if (SlimeKnightAnimationController.instance.zero_Hit)
+            {
+                rb2d.velocity = new Vector2(0, 0);
+                Instantiate(bulletDestroyAnimation, transform.position, Quaternion.identity);
+                sr.enabled = false;
+                rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+                Invoke("DestroyBall", 1f);
+            }
+
+            if (SlimeKnightAnimationController.instance.one_Hit)
+            {
+                rb2d.velocity = new Vector2(0, 0);
+                Instantiate(bulletDestroyAnimation, transform.position, Quaternion.identity);
+                sr.enabled = false;
+                rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+                Invoke("DestroyBall", 1f);
+            }
+
+            if (SlimeKnightAnimationController.instance.two_Hit)
+            {
+                rb2d.velocity = new Vector2(0, 0);
+                Instantiate(bulletDestroyAnimation, transform.position, Quaternion.identity);
+                sr.enabled = false;
+                rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+                Invoke("DestroyBall", 1f);
+            }
+
+            if (SlimeKnightAnimationController.instance.three_Hit)
+            {
+                rb2d.velocity = new Vector2(0, 0);
+                Instantiate(bulletDestroyAnimation, transform.position, Quaternion.identity);
+                sr.enabled = false;
+                rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+                Invoke("DestroyBall", 1f);
+            }
+
+            if (SlimeKnightAnimationController.instance.hurt)
+            {
+                rb2d.velocity = new Vector2(0, 0);
+                Instantiate(bulletDestroyAnimation, transform.position, Quaternion.identity);
+                sr.enabled = false;
+                rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+                Invoke("DestroyBall", 1f);
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Ground") ||
+            other.CompareTag("Ground 2") ||
+            other.CompareTag("Spikes"))
         {
             isGrounded = false;
         }

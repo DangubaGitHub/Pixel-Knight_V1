@@ -84,9 +84,19 @@ public class SlimeKnightHealthController : MonoBehaviour
             }
         }
 
-        
+        if (other.CompareTag("Player Magic"))
+        {
+            if (SlimeKnightAnimationController.instance.noArmor)
+            {
+                Destroy(other.gameObject);
+                SlimeKnightAnimationController.instance.noArmor = false;
+                SlimeKnightAnimationController.instance.hurt = true;
+                invulnerable = 1;
+                health--;
+            }
+        }
     }
-
+    /*
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == ("Player Magic"))
@@ -100,7 +110,7 @@ public class SlimeKnightHealthController : MonoBehaviour
                 health--;
             }
         }
-    }
+    }*/
 
     void SummerBossExtras()
     {

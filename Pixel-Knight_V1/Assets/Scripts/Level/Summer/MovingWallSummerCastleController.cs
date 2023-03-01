@@ -46,9 +46,11 @@ public class MovingWallSummerCastleController : MonoBehaviour
         {
             if (bossIsDead)
             {
-                ExitMovingUp();
 
-                Invoke("StopMovement", 1.1f);
+                Invoke("ExitMovingUp", 1f);
+                //ExitMovingUp();
+
+                Invoke("StopMovement", 2.1f);
             }
         }
     }
