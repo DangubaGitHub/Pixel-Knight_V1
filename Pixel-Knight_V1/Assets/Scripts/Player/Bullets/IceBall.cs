@@ -82,6 +82,36 @@ public class IceBall : MonoBehaviour
                 Instantiate(bulletDestroyAnimation, transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }
+
+            if (SlimeKnightAnimationController.instance.zero_Hit)
+            {
+                Instantiate(bulletDestroyAnimation, transform.position, Quaternion.identity);
+                Destroy(gameObject);
+            }
+
+            if (SlimeKnightAnimationController.instance.one_Hit)
+            {
+                Instantiate(bulletDestroyAnimation, transform.position, Quaternion.identity);
+                Destroy(gameObject);
+            }
+
+            if (SlimeKnightAnimationController.instance.two_Hit)
+            {
+                Instantiate(bulletDestroyAnimation, transform.position, Quaternion.identity);
+                Destroy(gameObject);
+            }
+
+            if (SlimeKnightAnimationController.instance.three_Hit)
+            {
+                Instantiate(bulletDestroyAnimation, transform.position, Quaternion.identity);
+                Destroy(gameObject);
+            }
+
+            if (SlimeKnightAnimationController.instance.hurt)
+            {
+                Instantiate(bulletDestroyAnimation, transform.position, Quaternion.identity);
+                Destroy(gameObject);
+            }
         }
     }
 

@@ -479,6 +479,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fire Chest
       objectReference: {fileID: 0}
+    - target: {fileID: 3617828570732312364, guid: 92dfcdd0b267ebd46b978e80610c2566, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92dfcdd0b267ebd46b978e80610c2566, type: 3}
 --- !u!1 &405684266
@@ -10595,6 +10599,67 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!1001 &409759734
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5459147300975896841, guid: e56715e95196a104592ce628fe20e420, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459147300975896841, guid: e56715e95196a104592ce628fe20e420, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 30.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459147300975896841, guid: e56715e95196a104592ce628fe20e420, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 13.129
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459147300975896841, guid: e56715e95196a104592ce628fe20e420, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.3105358
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459147300975896841, guid: e56715e95196a104592ce628fe20e420, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459147300975896841, guid: e56715e95196a104592ce628fe20e420, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459147300975896841, guid: e56715e95196a104592ce628fe20e420, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459147300975896841, guid: e56715e95196a104592ce628fe20e420, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459147300975896841, guid: e56715e95196a104592ce628fe20e420, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459147300975896841, guid: e56715e95196a104592ce628fe20e420, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459147300975896841, guid: e56715e95196a104592ce628fe20e420, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459147300975896882, guid: e56715e95196a104592ce628fe20e420, type: 3}
+      propertyPath: m_Name
+      value: Ice Chest
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459147300975896882, guid: e56715e95196a104592ce628fe20e420, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e56715e95196a104592ce628fe20e420, type: 3}
 --- !u!1001 &418488761
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12089,7 +12154,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 7
 --- !u!66 &604103120
 CompositeCollider2D:
   m_ObjectHideFlags: 0
@@ -16656,7 +16721,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 506873184214610490, guid: 7fdf13abe1d0668419d064bfbe83f036, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 506873184214610490, guid: 7fdf13abe1d0668419d064bfbe83f036, type: 3}
       propertyPath: m_LocalPosition.x
@@ -16806,7 +16871,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1467707581575074763, guid: 6a4b2e43b394db74784ee75eac91ec51, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1467707581575074763, guid: 6a4b2e43b394db74784ee75eac91ec51, type: 3}
       propertyPath: m_LocalPosition.x
@@ -16922,6 +16987,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6595323172695692915, guid: f89811020a52a334c9165c6eff9d90c9, type: 3}
+      propertyPath: m_Size.x
+      value: 12.794672
+      objectReference: {fileID: 0}
+    - target: {fileID: 6595323172695692915, guid: f89811020a52a334c9165c6eff9d90c9, type: 3}
+      propertyPath: m_Size.y
+      value: 0.69783217
+      objectReference: {fileID: 0}
+    - target: {fileID: 6595323172695692915, guid: f89811020a52a334c9165c6eff9d90c9, type: 3}
+      propertyPath: m_Offset.x
+      value: 5.804535
+      objectReference: {fileID: 0}
+    - target: {fileID: 6595323172695692915, guid: f89811020a52a334c9165c6eff9d90c9, type: 3}
+      propertyPath: m_Offset.y
+      value: -5.7500587
+      objectReference: {fileID: 0}
     - target: {fileID: 6907807596019873746, guid: f89811020a52a334c9165c6eff9d90c9, type: 3}
       propertyPath: m_Name
       value: Moving Wall Summer Castle
@@ -16985,7 +17066,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8627615407602171930, guid: 1d04413c265bbf049983c287d076cc20, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 8627615407602171930, guid: 1d04413c265bbf049983c287d076cc20, type: 3}
       propertyPath: m_LocalPosition.x
@@ -17042,7 +17123,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9019241404413059159, guid: 185bf72708757a243b22386f159afa33, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 9019241404413059159, guid: 185bf72708757a243b22386f159afa33, type: 3}
       propertyPath: m_LocalPosition.x

@@ -43,9 +43,9 @@ public class FireBall : MonoBehaviour
     }
 
     ////////////////////////////////////////////////////////////////////// Collision //////////
-    /*
+    
     void OnCollisionEnter2D(Collision2D other)
-    {
+    {/*
         if (other.gameObject.tag == "Enemy" ||
             other.gameObject.tag == "Slime" ||
             other.gameObject.tag == "Slime Purple" ||
@@ -56,7 +56,7 @@ public class FireBall : MonoBehaviour
             Instantiate(enemyDeathEffect, other.transform.position, other.transform.rotation);
             Destroy(other.gameObject);
             Destroy(gameObject);
-        }
+        }*/
 
         if (other.gameObject.tag == "Ground" ||
             other.gameObject.tag == "Ground 2" ||
@@ -64,15 +64,16 @@ public class FireBall : MonoBehaviour
         {
             isGrounded = true;
         }
-
+        
         if (other.gameObject.tag == "Wall")
         {
-            rb2d.velocity = new Vector2(0, 0);
+            //rb2d.velocity = new Vector2(0, 0);
             Instantiate(bulletDestroyAnimation, transform.position, Quaternion.identity);
-            sr.enabled = false;
-            rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
-            Invoke("DestroyBall", 1f);
-        }
+            Destroy(gameObject);
+            //sr.enabled = false;
+            //rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+            //Invoke("DestroyBall", 1f);
+        }/*
 
         if (other.gameObject.tag == "Enemy Invulnerable Damaging" ||
             other.gameObject.tag == "Enemy Invulnerable Bounce" ||
@@ -149,7 +150,7 @@ public class FireBall : MonoBehaviour
                 rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
                 Invoke("DestroyBall", 1f);
             }
-        }
+        }*/
     }
 
     private void OnCollisionExit2D(Collision2D other)
@@ -160,7 +161,7 @@ public class FireBall : MonoBehaviour
         {
             isGrounded = false;
         }
-    }*/
+    }
 
     ////////////////////////////////////////////////////////////////////// Trigger //////////
 
@@ -176,11 +177,12 @@ public class FireBall : MonoBehaviour
             Destroy(other.gameObject);
             Destroy(gameObject);
         }
-
+        /*
         if (other.CompareTag("Ground") ||
             other.CompareTag("Ground 2") ||
             other.CompareTag("Spikes"))
         {
+            Debug.Log("Ground Triggert");
             isGrounded = true;
         }
 
@@ -191,7 +193,7 @@ public class FireBall : MonoBehaviour
             sr.enabled = false;
             rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
             Invoke("DestroyBall", 1f);
-        }
+        }*/
 
         if (other.CompareTag("Enemy Invulnerable Damaging") ||
             other.CompareTag("Enemy Invulnerable Bounce") ||
@@ -226,31 +228,23 @@ public class FireBall : MonoBehaviour
         {
             if (SlimeKnightAnimationController.instance.zero_Hit)
             {
-                rb2d.velocity = new Vector2(0, 0);
+                //rb2d.velocity = new Vector2(0, 0);
                 Instantiate(bulletDestroyAnimation, transform.position, Quaternion.identity);
-                sr.enabled = false;
-                rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
-                Invoke("DestroyBall", 1f);
+                Destroy(gameObject);
+                //sr.enabled = false;
+                //rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+                //Invoke("DestroyBall", 1f);
             }
 
             if (SlimeKnightAnimationController.instance.one_Hit)
             {
-                rb2d.velocity = new Vector2(0, 0);
+                //rb2d.velocity = new Vector2(0, 0);
                 Instantiate(bulletDestroyAnimation, transform.position, Quaternion.identity);
-                sr.enabled = false;
-                rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
-                Invoke("DestroyBall", 1f);
-            }
-
-            if (SlimeKnightAnimationController.instance.two_Hit)
-            {
-                rb2d.velocity = new Vector2(0, 0);
-                Instantiate(bulletDestroyAnimation, transform.position, Quaternion.identity);
-                sr.enabled = false;
-                rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
-                Invoke("DestroyBall", 1f);
-            }
-
+                Destroy(gameObject);
+                //sr.enabled = false;
+                //rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+                //Invoke("DestroyBall", 1f);
+            }     
             if (SlimeKnightAnimationController.instance.three_Hit)
             {
                 rb2d.velocity = new Vector2(0, 0);
@@ -262,15 +256,16 @@ public class FireBall : MonoBehaviour
 
             if (SlimeKnightAnimationController.instance.hurt)
             {
-                rb2d.velocity = new Vector2(0, 0);
+                //rb2d.velocity = new Vector2(0, 0);
                 Instantiate(bulletDestroyAnimation, transform.position, Quaternion.identity);
-                sr.enabled = false;
-                rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
-                Invoke("DestroyBall", 1f);
+                Destroy(gameObject);
+                //sr.enabled = false;
+                //rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+                //Invoke("DestroyBall", 1f);
             }
         }
     }
-
+    /*
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Ground") ||
@@ -279,7 +274,7 @@ public class FireBall : MonoBehaviour
         {
             isGrounded = false;
         }
-    }
+    }*/
 
     void DestroyBall()
     {

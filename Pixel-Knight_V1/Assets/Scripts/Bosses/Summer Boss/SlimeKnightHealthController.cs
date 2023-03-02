@@ -79,7 +79,7 @@ public class SlimeKnightHealthController : MonoBehaviour
                 SummerBossExtras();
                 SlimeKnightAnimationController.instance.noArmor = false;
                 SlimeKnightAnimationController.instance.hurt = true;
-                invulnerable = 1;
+                invulnerable = .9f;
                 health--;
             }
         }
@@ -91,7 +91,7 @@ public class SlimeKnightHealthController : MonoBehaviour
                 Destroy(other.gameObject);
                 SlimeKnightAnimationController.instance.noArmor = false;
                 SlimeKnightAnimationController.instance.hurt = true;
-                invulnerable = 1;
+                invulnerable = .9f;
                 health--;
             }
         }
