@@ -6,6 +6,8 @@ public class LevelManager : MonoBehaviour
 {
     public int goldCoinsCollected;
 
+    public int redCoinsCollected;
+
 
     public static LevelManager instance;
 
@@ -16,11 +18,31 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
-        
+        redCoinsCollected = 0;
     }
 
     void Update()
     {
-        
+        if(redCoinsCollected >= 5) 
+        {
+            PlayerAnimationManager.instance.LiveUpAnimation();
+            redCoinsCollected = 0;
+        }
     }
+
+    public void AddRedCoin()
+    {
+        redCoinsCollected++;
+
+        UIController.instance.RedCoinUpdate();
+    }
+
+    public void AddGoldCoin()
+    {
+        goldCoinsCollected++;
+
+        UIController.instance.GoldCoinUpdate();
+    }
+
+    
 }

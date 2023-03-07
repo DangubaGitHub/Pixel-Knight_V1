@@ -27,6 +27,8 @@ public class PlayerHealthController : MonoBehaviour
     Rigidbody2D rb2d;
     Collider2D capsuleCollider2d;
 
+    public int livesCount;
+
     private void Awake()
     {
         instance = this;
@@ -424,6 +426,20 @@ public class PlayerHealthController : MonoBehaviour
         rb2d.constraints = RigidbodyConstraints2D.None;
         rb2d.constraints = RigidbodyConstraints2D.FreezePositionX;
         rb2d.velocity = new Vector2(0f, 30f);
+    }
+
+    public void TakeLive()
+    {
+        livesCount--;
+
+        UIController.instance.LivesUpdate();
+    }
+
+    public void AddLive()
+    {
+        livesCount++;
+
+        UIController.instance.LivesUpdate();
     }
 
     void CallPauseMenuAfterDeath()

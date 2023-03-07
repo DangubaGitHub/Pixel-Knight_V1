@@ -11,6 +11,10 @@ public class PlayerAnimationManager : MonoBehaviour
 
     string currentState;
 
+
+    [SerializeField] Transform particalPoint;
+    [SerializeField] GameObject liveUpPrefab;
+
     //Basic Player
 
     const string BP_IDLE = "bp_idle";
@@ -229,6 +233,11 @@ public class PlayerAnimationManager : MonoBehaviour
         {
             ChangeAnimationState(BP_FALL);
         }
+    }
+
+    public void LiveUpAnimation()
+    {
+        Instantiate(liveUpPrefab, particalPoint.position, Quaternion.identity);
     }
 
     private void FixedUpdate()
