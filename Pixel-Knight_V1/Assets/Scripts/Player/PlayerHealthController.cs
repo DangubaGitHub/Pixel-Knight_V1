@@ -419,6 +419,7 @@ public class PlayerHealthController : MonoBehaviour
     {
         rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
         capsuleCollider2d.enabled = false;
+        TakeLive();
     }
 
     void AfterDeath()

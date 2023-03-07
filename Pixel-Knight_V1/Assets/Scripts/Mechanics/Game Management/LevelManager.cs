@@ -23,11 +23,11 @@ public class LevelManager : MonoBehaviour
 
     void Update()
     {
-        if(redCoinsCollected >= 5) 
+        /*if(redCoinsCollected >= 5) 
         {
             PlayerAnimationManager.instance.LiveUpAnimation();
             redCoinsCollected = 0;
-        }
+        }*/
     }
 
     public void AddRedCoin()
