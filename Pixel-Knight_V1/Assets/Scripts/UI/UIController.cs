@@ -89,6 +89,9 @@ public class UIController : MonoBehaviour
                 redCoin3.sprite = redCoinFull;
                 redCoin4.sprite = redCoinFull;
                 redCoin5.sprite = redCoinFull;
+
+                PlayerHealthController.instance.AddLive();
+
                 break;
         }
     }

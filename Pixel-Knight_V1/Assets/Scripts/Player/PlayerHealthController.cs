@@ -440,6 +440,13 @@ public class PlayerHealthController : MonoBehaviour
     {
         livesCount++;
 
+        Lives1Up.instance.levelUp = true;
+
+        Invoke("DelayAddLive", .5f);
+    }
+
+    void DelayAddLive()
+    {
         UIController.instance.LivesUpdate();
     }
 
