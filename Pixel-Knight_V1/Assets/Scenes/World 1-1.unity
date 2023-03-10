@@ -1098,7 +1098,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2844705275129449303, guid: 1e451da24b1da224a8ee728574effadd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 23.9
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 2844705275129449303, guid: 1e451da24b1da224a8ee728574effadd, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3993,6 +3993,51 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 436428255988335343, guid: 47114b9c23f26294787a7747a31b42d5, type: 3}
   m_PrefabInstance: {fileID: 1121042456}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1146024394
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1146024395}
+  - component: {fileID: 1146024396}
+  m_Layer: 0
+  m_Name: World Save Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1146024395
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146024394}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 317.7998, y: 864.5063, z: 16.577688}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1146024396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146024394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ac9f432c7e04624a92e3363dd5d68a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentWorld: 
 --- !u!1001 &1188716113
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5193,7 +5238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goldCoinsCollected: 0
   redCoinsCollected: 0
-  currentLevel: 1 - 1
+  currentLevel: 1 - 5
 --- !u!4 &1557897466
 Transform:
   m_ObjectHideFlags: 0

@@ -18,7 +18,7 @@ public class LevelEnd : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            PauseMenu.instance.PauseUnpause();
+            LevelManager.instance.LevelEnd();
         }
     }
 }

@@ -8,11 +8,7 @@ public class LevelManager : MonoBehaviour
 
     public int redCoinsCollected;
 
-
-    //////////////////////////////////////////////////////////// Level Names //////////
-
     public string currentLevel;
-
 
     public static LevelManager instance;
 
@@ -26,6 +22,13 @@ public class LevelManager : MonoBehaviour
         redCoinsCollected = 0;
 
         UIController.instance.LevelUpdate();
+
+        if (PlayerPrefs.HasKey("Coin Count"))
+        {
+            goldCoinsCollected = PlayerPrefs.GetInt("Coin Count");
+
+            UIController.instance.GoldCoinUpdate();
+        }
     }
 
     void Update()
@@ -51,5 +54,8 @@ public class LevelManager : MonoBehaviour
         UIController.instance.GoldCoinUpdate();
     }
 
-    
+    public void LevelEnd()
+    {
+        PlayerPrefs.SetInt("Coin Count", goldCoinsCollected);
+    }
 }
