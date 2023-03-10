@@ -1742,7 +1742,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 1-1+
+  m_Text: 
 --- !u!222 &510150189
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5193,6 +5193,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goldCoinsCollected: 0
   redCoinsCollected: 0
+  currentLevel: 1 - 1
 --- !u!4 &1557897466
 Transform:
   m_ObjectHideFlags: 0
@@ -6068,6 +6069,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5e6e909dc43f464383346be0c6736ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelUp: 0
 --- !u!95 &1834388676
 Animator:
   serializedVersion: 5
@@ -6399,6 +6401,7 @@ MonoBehaviour:
   redCoinFull: {fileID: 21300000, guid: 712704fc041f7194a949e111395e34d4, type: 3}
   goldCoinCountText: {fileID: 1699575331}
   livesCountText: {fileID: 2129740343}
+  levelNameText: {fileID: 510150188}
 --- !u!1 &1966898911
 GameObject:
   m_ObjectHideFlags: 0
@@ -6812,7 +6815,7 @@ SpriteRenderer:
   m_Size: {x: 3.5, y: 2.75}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &2082691638

@@ -22,6 +22,10 @@ public class UIController : MonoBehaviour
     [Header("Lives Count")]
     [SerializeField] Text livesCountText;
 
+
+    [Header("Level Name")]
+    [SerializeField] Text levelNameText;
+
     public static UIController instance;
 
     private void Awake()
@@ -106,5 +110,8 @@ public class UIController : MonoBehaviour
         livesCountText.text = PlayerHealthController.instance.livesCount.ToString();
     }
 
-    
+    public void LevelUpdate()
+    {
+        levelNameText.text = LevelManager.instance.currentLevel;
+    }
 }

@@ -9,6 +9,11 @@ public class LevelManager : MonoBehaviour
     public int redCoinsCollected;
 
 
+    //////////////////////////////////////////////////////////// Level Names //////////
+
+    public string currentLevel;
+
+
     public static LevelManager instance;
 
     private void Awake()
@@ -19,6 +24,8 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         redCoinsCollected = 0;
+
+        UIController.instance.LevelUpdate();
     }
 
     void Update()
