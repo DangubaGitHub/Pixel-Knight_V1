@@ -14,6 +14,6 @@ public class WorldSaveManager : MonoBehaviour
 
    void SaveWorld()
     {
-
+        PlayerPrefs.SetString("Save World", currentWorld); 
     }
 }
