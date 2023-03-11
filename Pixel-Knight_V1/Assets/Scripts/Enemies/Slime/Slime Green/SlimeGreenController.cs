@@ -36,6 +36,8 @@ public class SlimeGreenController : MonoBehaviour
 
     Rigidbody2D rb2d;
     Animator anim;
+    CircleCollider2D circleCollider;
+    BoxCollider2D boxCollider;
     public static SlimeGreenController instance;
 
     private void Awake()
@@ -43,6 +45,8 @@ public class SlimeGreenController : MonoBehaviour
         instance = this;
         rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        circleCollider = GetComponent<CircleCollider2D>();
+        boxCollider = GetComponent<BoxCollider2D>();
     }
 
     void Start()
@@ -99,8 +103,11 @@ public class SlimeGreenController : MonoBehaviour
 
             else if(!isAlive && isGrounded)
             {
+                
                 ChangeAnimationState(DEATH);
+
                 rb2d.velocity = new Vector2(0, 0);
+                
             }
         }
 
@@ -169,6 +176,8 @@ public class SlimeGreenController : MonoBehaviour
     {
         velocityX = -velocityX;
     }
+
+    
 
     private void OnBecameVisible()
     {

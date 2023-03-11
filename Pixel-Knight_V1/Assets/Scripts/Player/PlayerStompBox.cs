@@ -129,7 +129,7 @@ public class PlayerStompBox : MonoBehaviour
         if (other.CompareTag("Mushroom"))
         {
             PlayerController.instance.BounceOnMushroom();
-            MushroomController.instance.mushroomIsActive = true;
+            //MushroomController.instance.mushroomIsActive = true;
         }
     }
 }

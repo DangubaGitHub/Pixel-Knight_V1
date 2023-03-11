@@ -135,7 +135,8 @@ public class RunningZombieController : MonoBehaviour
             }
         }
 
-        if (other.gameObject.tag == "Turn Around Trigger")
+        if (other.gameObject.tag == "Turn Around Trigger" ||
+            other.gameObject.tag == "Wall")
         {
             ChangeDirection();
         }

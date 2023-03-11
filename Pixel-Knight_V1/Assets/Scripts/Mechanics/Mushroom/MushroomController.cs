@@ -15,13 +15,13 @@ public class MushroomController : MonoBehaviour
 
     //////////////////// Declerations ///
 
-    public static MushroomController instance;
+    //public static MushroomController instance;
 
     Animator anim;
 
     private void Awake()
     {
-        instance = this;
+        //instance = this;
         anim = GetComponent<Animator>();
     }
 
@@ -55,5 +55,13 @@ public class MushroomController : MonoBehaviour
         if (currentState == newState) return;
         anim.Play(newState);
         currentState = newState;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            mushroomIsActive = true;
+        }
     }
 }
