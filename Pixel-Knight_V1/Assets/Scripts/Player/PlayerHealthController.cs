@@ -40,6 +40,18 @@ public class PlayerHealthController : MonoBehaviour
     void Start()
     {
         shortInvulnerability = 0;
+
+        if (PlayerPrefs.HasKey("Lives Save"))
+        {
+            livesCount = PlayerPrefs.GetInt("Lives Save");
+            UIController.instance.LivesUpdate();
+        }
+
+        else
+        {
+            livesCount = 5;
+            UIController.instance.LivesUpdate();   
+        }
     }
 
     void Update()
@@ -434,6 +446,8 @@ public class PlayerHealthController : MonoBehaviour
         livesCount--;
 
         UIController.instance.LivesUpdate();
+
+        PlayerPrefs.SetInt("Lives Save", livesCount);
     }
 
     public void AddLive()
@@ -448,6 +462,7 @@ public class PlayerHealthController : MonoBehaviour
     void DelayAddLive()
     {
         UIController.instance.LivesUpdate();
+        PlayerPrefs.SetInt("Lives Save", livesCount);
     }
 
     void CallPauseMenuAfterDeath()
