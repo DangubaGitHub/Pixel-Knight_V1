@@ -26,6 +26,8 @@ public class LaserEyeController : MonoBehaviour
 
     string currentState;
 
+    [SerializeField] GameObject enemyDeathEffect;
+
     ////////////////////////////// Declerations //////////
 
     Rigidbody2D rb2d;
@@ -77,6 +79,21 @@ public class LaserEyeController : MonoBehaviour
         }
 
         transform.localScale = characterScale;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player Stomp Box"))
+        {
+            if (!PlayerController.instance.isGrounded)
+            {
+                PlayerController.instance.BounceOnEnemy();
+
+                Instantiate(enemyDeathEffect, transform.position, Quaternion.identity);
+
+                Destroy(gameObject);
+            }
+        }
     }
 
     public void ShootLaser()

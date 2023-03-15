@@ -26,6 +26,9 @@ public class CrawlerController : MonoBehaviour
     const string CROUCH = "Crawler_Crouch";
     string currentState;
 
+    [SerializeField] GameObject enemyDeathEffect;
+
+
     Animator anim;
     Rigidbody2D rb2d;
     public static CrawlerController instance; 
@@ -118,6 +121,16 @@ public class CrawlerController : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             ChangeDirection();
+        }
+
+        if (other.CompareTag("Player Stomp Box"))
+        {
+            if (!PlayerController.instance.isGrounded)
+            {
+                PlayerController.instance.BounceOnEnemy();
+                isCrouching = true;
+                crouchTimerCountdown = 1f;
+            }
         }
     }
 

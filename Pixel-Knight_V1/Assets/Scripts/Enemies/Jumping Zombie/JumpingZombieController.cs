@@ -102,6 +102,21 @@ public class JumpingZombieController : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player Stomp Box"))
+        {
+            if (!PlayerController.instance.isGrounded)
+            {
+                PlayerController.instance.BounceOnEnemy();
+
+                Instantiate(enemyDeathEffect, transform.position, Quaternion.identity);
+
+                Destroy(gameObject);
+            }
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "Ground" ||

@@ -90,7 +90,7 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!95 &8640061359746375653
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -107,7 +107,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!50 &6807918749442009963
 Rigidbody2D:
   serializedVersion: 4
@@ -157,4 +158,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5526be835b8f6e64099aff58b9540ffa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyDeathEffect: {fileID: 7149189125103132212, guid: afb8bf30d0a47a6439bce4ed7a8f9ee0, type: 3}
   verticalForce: 30

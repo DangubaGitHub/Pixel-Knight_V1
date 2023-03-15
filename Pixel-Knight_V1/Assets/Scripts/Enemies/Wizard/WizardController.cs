@@ -28,6 +28,8 @@ public class WizardController : MonoBehaviour
 
     public bool isVisible;
 
+    [SerializeField] GameObject enemyDeathEffect;
+
     ////////////////////////////// Declerations //////////
 
     Rigidbody2D rb2d;
@@ -90,6 +92,21 @@ public class WizardController : MonoBehaviour
     private void OnBecameInvisible()
     {
         isActive = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player Stomp Box"))
+        {
+            if (!PlayerController.instance.isGrounded)
+            {
+                PlayerController.instance.BounceOnEnemy();
+
+                Instantiate(enemyDeathEffect, transform.position, Quaternion.identity);
+
+                Destroy(gameObject);
+            }
+        }
     }
 
     public void ChangeAnimationState(string newState)

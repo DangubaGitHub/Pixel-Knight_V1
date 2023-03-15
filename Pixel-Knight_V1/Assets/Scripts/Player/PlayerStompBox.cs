@@ -30,7 +30,7 @@ public class PlayerStompBox : MonoBehaviour
     {
         if (PlayerController.instance.rb2d.velocity.y <= 0)
         {
-            if (other.CompareTag("Enemy") ||
+            /*if (other.CompareTag("Enemy") ||
                 other.CompareTag("Enemy Wizard"))
             {
                 Destroy(other.gameObject);
@@ -38,14 +38,14 @@ public class PlayerStompBox : MonoBehaviour
                 PlayerController.instance.BounceOnEnemy();
 
                 Instantiate(enemyDeathEffect, other.transform.position, other.transform.rotation);
-            }
+            }*/
 
-            if (other.CompareTag("Enemy Invulnerable Bounce"))
+            /*if (other.CompareTag("Enemy Invulnerable Bounce"))
             {
                 PlayerController.instance.BounceOnEnemy();
                 CrawlerController.instance.isCrouching = true;
                 CrawlerController.instance.crouchTimerCountdown = 1f;
-            }
+            }*/
 
             if (other.CompareTag("Slime"))
             {

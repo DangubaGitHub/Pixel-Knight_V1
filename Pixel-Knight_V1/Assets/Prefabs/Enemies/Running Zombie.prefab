@@ -190,6 +190,7 @@ MonoBehaviour:
   isActive: 0
   foundDirection: 0
   Player: {fileID: 0}
+  enemyDeathEffect: {fileID: 7149189125103132212, guid: afb8bf30d0a47a6439bce4ed7a8f9ee0, type: 3}
 --- !u!1 &1130781886918566103
 GameObject:
   m_ObjectHideFlags: 0

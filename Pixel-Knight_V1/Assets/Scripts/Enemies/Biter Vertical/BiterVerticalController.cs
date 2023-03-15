@@ -13,6 +13,8 @@ public class BiterVerticalController : MonoBehaviour
 
     string currentState;
 
+    [SerializeField] GameObject enemyDeathEffect;
+
     ////////////////////  Movement  ///
 
     [SerializeField] float verticalForce;
@@ -36,20 +38,38 @@ public class BiterVerticalController : MonoBehaviour
     {
         if(rb2d.velocity.y > 0)
         {
-            gameObject.tag = "Enemy Invulnerable Damaging";
+            //gameObject.tag = "Enemy Invulnerable Damaging";
             ChangeAnimationState(UP);
         }
 
         if(rb2d.velocity.y == 0)
         {
-            gameObject.tag = "Enemy";
+            //gameObject.tag = "Enemy";
             ChangeAnimationState(NEUTRAL);
         }
 
         if(rb2d.velocity.y < 0)
         {
-            gameObject.tag = "Enemy";
+            //gameObject.tag = "Enemy";
             ChangeAnimationState(DOWN);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player Stomp Box"))
+        {
+            if (!PlayerController.instance.isGrounded)
+            {
+                if (rb2d.velocity.y <= 0)
+                {
+                    PlayerController.instance.BounceOnEnemy();
+
+                    Instantiate(enemyDeathEffect, transform.position, Quaternion.identity);
+
+                    Destroy(gameObject);
+                }
+            }
         }
     }
 

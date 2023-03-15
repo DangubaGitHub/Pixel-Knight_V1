@@ -14,6 +14,8 @@ public class BiterHorizontalController : MonoBehaviour
 
     string currentState;
 
+    [SerializeField] GameObject enemyDeathEffect;
+
     ////////////////////  Activation  ///
 
     [Header("Activation")]
@@ -56,9 +58,11 @@ public class BiterHorizontalController : MonoBehaviour
                 foundDirection = true;
             }
 
+            rb2d.velocity = new Vector2(horizontalVelocity, rb2d.velocity.y);
+
             if (isGrounded)
             {
-                rb2d.velocity = new Vector2(horizontalVelocity, verticalForce);
+                rb2d.velocity = new Vector2(rb2d.velocity.x, verticalForce);
             }
         }
 
@@ -95,6 +99,18 @@ public class BiterHorizontalController : MonoBehaviour
             other.CompareTag("Spikes"))
         {
             isGrounded = true;
+        }
+
+        if (other.CompareTag("Player Stomp Box"))
+        {
+            if (!PlayerController.instance.isGrounded)
+            {
+                PlayerController.instance.BounceOnEnemy();
+
+                Instantiate(enemyDeathEffect, transform.position, Quaternion.identity);
+
+                Destroy(gameObject);
+            }
         }
     }
 

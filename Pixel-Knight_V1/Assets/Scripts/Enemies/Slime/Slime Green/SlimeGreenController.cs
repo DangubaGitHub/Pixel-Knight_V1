@@ -142,6 +142,8 @@ public class SlimeGreenController : MonoBehaviour
         {
             isGrounded = true;
         }
+
+
     }
 
     private void OnTriggerStay2D(Collider2D other)

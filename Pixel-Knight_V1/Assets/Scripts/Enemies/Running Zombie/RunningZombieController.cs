@@ -21,7 +21,9 @@ public class RunningZombieController : MonoBehaviour
     const string ZOMBIE_STILL = "Zombie_Still";
     const string ZOMBIE_RUN = "Zombie_Run";
     string currentState;
-    
+
+    [SerializeField] GameObject enemyDeathEffect;
+
     ////////////////////////////// Declerations //////////
 
     Rigidbody2D rb2d;
@@ -98,6 +100,18 @@ public class RunningZombieController : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             ChangeDirection();
+        }
+
+        if (other.CompareTag("Player Stomp Box"))
+        {
+            if (!PlayerController.instance.isGrounded)
+            {
+                PlayerController.instance.BounceOnEnemy();
+
+                Instantiate(enemyDeathEffect, transform.position, Quaternion.identity);
+
+                Destroy(gameObject);
+            }
         }
     }
 
