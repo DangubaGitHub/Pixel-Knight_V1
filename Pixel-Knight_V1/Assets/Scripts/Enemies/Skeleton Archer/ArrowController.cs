@@ -11,11 +11,15 @@ public class ArrowController : MonoBehaviour
 
     public bool hitPlayer;
 
-    public static ArrowController instance;
+    SkeletonArcherController skeletonArcherController;
+    [SerializeField] GameObject skeletonArcher;
+
+    //public static ArrowController instance;
 
     private void Awake()
     {
-        instance = this;
+        skeletonArcherController = skeletonArcher.GetComponent<SkeletonArcherController>();
+        //instance = this;
         player = GameObject.FindGameObjectWithTag("Player");
         rb2d = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();

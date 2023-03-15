@@ -4,13 +4,21 @@ using UnityEngine;
 
 public class FloatingHeadActivation : MonoBehaviour
 {
+    FloatingHeadController floatingHeadController;
+    [SerializeField] GameObject floatingHeadParent;
+
+    private void Awake()
+    {
+        floatingHeadController = floatingHeadParent.GetComponent<FloatingHeadController>();
+    }
+
     private void OnBecameVisible()
     {
-        FloatingHeadController.instance.isActive = true;
+        floatingHeadController.isActive = true;
     }
 
     private void OnBecameInvisible()
     {
-        FloatingHeadController.instance.isActive = false;
+        floatingHeadController.isActive = false;
     }
 }

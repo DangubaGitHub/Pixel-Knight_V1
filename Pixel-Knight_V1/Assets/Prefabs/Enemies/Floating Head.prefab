@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2946793625669401588}
   - component: {fileID: 2946793625669401545}
   - component: {fileID: 2946793625669401590}
+  - component: {fileID: 122321525}
   m_Layer: 8
   m_Name: Floating Head Sprite
   m_TagString: Enemy
@@ -101,6 +102,19 @@ CircleCollider2D:
   m_Offset: {x: -0.110719204, y: -0.5166904}
   serializedVersion: 2
   m_Radius: 1.0109894
+--- !u!114 &122321525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2946793625669401589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32b0cf5ea30c0fb48aff493613cd1e1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floatingHeadParent: {fileID: 2946793625840292004}
 --- !u!1 &2946793625840292004
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,7 +141,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2946793625840292004}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 201.8, y: 0.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -139,7 +153,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &2946793625840292025
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -156,7 +170,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!50 &2946793625840292006
 Rigidbody2D:
   serializedVersion: 4
@@ -192,13 +207,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: 5
   foundDirection: 0
-  PlayerLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  PlayerCheck: {fileID: 2946793626267554420}
-  PlayerCheckRadius: 35
   isActive: 0
   Player: {fileID: 0}
+  enemyDeathEffect: {fileID: 7149189125103132212, guid: afb8bf30d0a47a6439bce4ed7a8f9ee0, type: 3}
 --- !u!1 &2946793626267554421
 GameObject:
   m_ObjectHideFlags: 0

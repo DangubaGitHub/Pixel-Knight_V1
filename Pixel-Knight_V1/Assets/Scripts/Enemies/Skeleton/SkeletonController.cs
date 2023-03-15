@@ -32,6 +32,8 @@ public class SkeletonController : MonoBehaviour
     
     string currentState;
 
+    [SerializeField] GameObject enemyDeathEffect;
+
     ////////////////////////////// Declerations //////////
 
     Rigidbody2D rb2d;
@@ -134,6 +136,15 @@ public class SkeletonController : MonoBehaviour
             {
                 isGrounded = true;
             }
+        }
+
+        if (other.CompareTag("Player Stomp Box"))
+        {
+            PlayerController.instance.BounceOnEnemy();
+
+            Instantiate(enemyDeathEffect, transform.position, Quaternion.identity);
+
+            Destroy(gameObject);
         }
     }
 

@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationCenter: {fileID: 1637508611624918322}
-  rotationSpeed: 2
+  rotationSpeed: 3
   rotationRadius: 6
 --- !u!1 &1637508612908671577
 GameObject:

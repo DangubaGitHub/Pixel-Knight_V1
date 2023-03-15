@@ -41,15 +41,17 @@ public class SlimeBlueController : MonoBehaviour
 
     string currentState;
 
+    [SerializeField] GameObject enemyDeathEffect;
+
     ////////////////////////////// Declerations //////////
 
     Rigidbody2D rb2d;
     Animator anim;
-    public static SlimeBlueController instance;
+    //public static SlimeBlueController instance;
 
     private void Awake()
     {
-        instance = this;
+        //instance = this;
         rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
@@ -126,8 +128,6 @@ public class SlimeBlueController : MonoBehaviour
             else if (!isAlive && isGrounded)
             {
                 ChangeAnimationState(DEATH);
-                rb2d.velocity = new Vector2(0, 0);
-                rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
             }
         }
 
@@ -158,6 +158,26 @@ public class SlimeBlueController : MonoBehaviour
         if (other.CompareTag("Wall"))
         {
             nearWall = true;
+        }
+
+        if (other.CompareTag("Player Stomp Box"))
+        {
+            if (!isGrounded)
+            {
+                PlayerController.instance.BounceOnEnemy();
+
+                Instantiate(enemyDeathEffect, transform.position, Quaternion.identity);
+
+                Destroy(gameObject);
+            }
+
+            else if (isGrounded)
+            {
+                isAlive = false;
+                rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+                PlayerController.instance.BounceOnEnemy();
+                Destroy(gameObject, 1.4f);
+            }
         }
     }
 

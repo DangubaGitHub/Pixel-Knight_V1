@@ -34,15 +34,17 @@ public class SlimeRedController : MonoBehaviour
 
     string currentState;
 
+    [SerializeField] GameObject enemyDeathEffect;
+
     ////////////////////////////// Declerations //////////
 
     Rigidbody2D rb2d;
     Animator anim;
-    public static SlimeRedController instance;
+    //public static SlimeRedController instance;
 
     private void Awake()
     {
-        instance = this;
+        //instance = this;
         rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
@@ -142,6 +144,18 @@ public class SlimeRedController : MonoBehaviour
             if (rb2d.velocity.y <= 0)
             {
                 isGrounded = true;
+            }
+        }
+
+        if (other.CompareTag("Player Stomp Box"))
+        {
+            if (!isGrounded)
+            {
+                PlayerController.instance.BounceOnEnemy();
+
+                Instantiate(enemyDeathEffect, transform.position, Quaternion.identity);
+
+                Destroy(gameObject);
             }
         }
     }

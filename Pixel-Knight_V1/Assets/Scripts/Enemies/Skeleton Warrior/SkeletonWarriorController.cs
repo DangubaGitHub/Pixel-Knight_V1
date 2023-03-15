@@ -33,15 +33,17 @@ public class SkeletonWarriorController : MonoBehaviour
 
     string currentState;
 
+    [SerializeField] GameObject enemyDeathEffect;
+
     ////////////////////////////// Declerations //////////
 
     Rigidbody2D rb2d;
     Animator anim;
-    public static SkeletonWarriorController instance;
+    //public static SkeletonWarriorController instance;
 
     private void Awake()
     {
-        instance = this;
+        //instance = this;
         rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
@@ -120,6 +122,15 @@ public class SkeletonWarriorController : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isAttacking = true;
+        }
+
+        if (other.CompareTag("Player Stomp Box"))
+        {
+            PlayerController.instance.BounceOnEnemy();
+
+            Instantiate(enemyDeathEffect, transform.position, Quaternion.identity);
+
+            Destroy(gameObject);
         }
     }
 

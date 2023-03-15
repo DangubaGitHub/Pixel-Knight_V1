@@ -32,17 +32,19 @@ public class SlimeGreenController : MonoBehaviour
 
     string currentState;
 
+    [SerializeField] GameObject enemyDeathEffect;
+
     ////////////////////////////// Declerations //////////
 
     Rigidbody2D rb2d;
     Animator anim;
     CircleCollider2D circleCollider;
     BoxCollider2D boxCollider;
-    public static SlimeGreenController instance;
+    //public static SlimeGreenController instance;
 
     private void Awake()
     {
-        instance = this;
+        //instance = this;
         rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         circleCollider = GetComponent<CircleCollider2D>();
@@ -105,9 +107,6 @@ public class SlimeGreenController : MonoBehaviour
             {
                 
                 ChangeAnimationState(DEATH);
-
-                rb2d.velocity = new Vector2(0, 0);
-                
             }
         }
 
@@ -143,7 +142,25 @@ public class SlimeGreenController : MonoBehaviour
             isGrounded = true;
         }
 
+        if (other.CompareTag("Player Stomp Box"))
+        {
+            if (!isGrounded)
+            {
+                PlayerController.instance.BounceOnEnemy();
 
+                Instantiate(enemyDeathEffect, transform.position, Quaternion.identity);
+
+                Destroy(gameObject);
+            }
+
+            else if (isGrounded)
+            {
+                isAlive = false;
+                rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+                PlayerController.instance.BounceOnEnemy();
+                Destroy(gameObject, 1.4f);
+            }
+        }
     }
 
     private void OnTriggerStay2D(Collider2D other)

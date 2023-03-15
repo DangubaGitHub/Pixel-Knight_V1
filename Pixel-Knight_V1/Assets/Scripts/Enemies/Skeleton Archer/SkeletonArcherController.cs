@@ -26,15 +26,17 @@ public class SkeletonArcherController : MonoBehaviour
 
     string currentState;
 
+    [SerializeField] GameObject enemyDeathEffect;
+
     ////////////////////////////// Declerations //////////
 
     Rigidbody2D rb2d;
     Animator anim;
-    public static SkeletonArcherController instance;
+    //public static SkeletonArcherController instance;
 
     private void Awake()
     {
-        instance = this;
+        //instance = this;
         rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
@@ -84,6 +86,15 @@ public class SkeletonArcherController : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             inRange = true;
+        }
+
+        if (other.CompareTag("Player Stomp Box"))
+        {
+            PlayerController.instance.BounceOnEnemy();
+
+            Instantiate(enemyDeathEffect, transform.position, Quaternion.identity);
+
+            Destroy(gameObject);
         }
     }
 

@@ -29,6 +29,8 @@ public class SlimePurpleController : MonoBehaviour
     [SerializeField] GameObject Player;
     public bool isAlive;
 
+    [SerializeField] GameObject enemyDeathEffect;
+
     ////////////////////////////// Animation Controlls //////////
 
     const string STILL = "Slime_Purple_Still";
@@ -108,14 +110,13 @@ public class SlimePurpleController : MonoBehaviour
                 if (Time.time > nextElementBurst)
                 {
                     elementActive = true;
-                    nextElementBurst = Time.time + Random.Range(1, 3);
+                    nextElementBurst = Time.time + Random.Range(2, 4);
                 }
             }
 
-            else if (!isAlive && isGrounded)
+            else
             {
                 ChangeAnimationState(DEATH);
-                rb2d.velocity = new Vector2(0, 0);
             }
         }
 
@@ -156,6 +157,14 @@ public class SlimePurpleController : MonoBehaviour
             {
                 isGrounded = true;
             }
+        }
+
+        if (other.CompareTag("Player Stomp Box"))
+        {
+                isAlive = false;
+                rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+                PlayerController.instance.BounceOnEnemy();
+                Destroy(gameObject, 1.4f);
         }
     }
 

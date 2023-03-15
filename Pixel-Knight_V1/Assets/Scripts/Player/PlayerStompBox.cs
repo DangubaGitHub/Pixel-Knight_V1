@@ -47,7 +47,7 @@ public class PlayerStompBox : MonoBehaviour
                 CrawlerController.instance.crouchTimerCountdown = 1f;
             }*/
 
-            if (other.CompareTag("Slime"))
+            /*if (other.CompareTag("Slime"))
             {
                 if (!SlimeGreenController.instance.isGrounded)
                 {
@@ -66,18 +66,18 @@ public class PlayerStompBox : MonoBehaviour
 
                     Destroy(other.gameObject, 1.7f);
                 }
-            }
+            }*/
 
-            if(other.CompareTag("Slime Purple"))
+            /*if(other.CompareTag("Slime Purple"))
             {
                 SlimePurpleController.instance.isAlive = false;
 
                 PlayerController.instance.BounceOnEnemy();
 
                 Destroy(other.gameObject, 1.7f);
-            }
+            }*/
 
-            if (other.CompareTag("Slime Red"))
+            /*if (other.CompareTag("Slime Red"))
             {
                 if (!SlimeRedController.instance.isGrounded)
                 {
@@ -87,9 +87,9 @@ public class PlayerStompBox : MonoBehaviour
 
                     Instantiate(enemyDeathEffect, other.transform.position, other.transform.rotation);
                 }
-            }
+            }*/
 
-            if (other.CompareTag("Slime Blue"))
+            /*if (other.CompareTag("Slime Blue"))
             {
                 if(!SlimeBlueController.instance.isGrounded)
                 {
@@ -108,7 +108,7 @@ public class PlayerStompBox : MonoBehaviour
 
                     Destroy(other.gameObject, 1.7f);
                 }
-            }
+            }*/
 
             if (other.CompareTag("Bomb Worm"))
             {
