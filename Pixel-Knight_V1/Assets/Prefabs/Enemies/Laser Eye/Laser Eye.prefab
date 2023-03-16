@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf217edc838fd924fa673fec3ac3823a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LaserEye: {fileID: 5127424261703354026}
 --- !u!1 &5127424261703354026
 GameObject:
   m_ObjectHideFlags: 0
@@ -345,3 +346,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e00fbf49c5d4e04c82713a2347733dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LaserEye: {fileID: 5127424261703354026}

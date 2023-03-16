@@ -166,6 +166,14 @@ public class SlimePurpleController : MonoBehaviour
                 PlayerController.instance.BounceOnEnemy();
                 Destroy(gameObject, 1.4f);
         }
+
+        if (other.CompareTag("Player Fire Magic") ||
+            other.CompareTag("Player Ice Magic"))
+        {
+            Instantiate(enemyDeathEffect, transform.position, Quaternion.identity);
+            Destroy(other.gameObject);
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerStay2D(Collider2D other)

@@ -30,6 +30,7 @@ public class SkeletonArcherController : MonoBehaviour
     string currentState;
 
     [SerializeField] GameObject enemyDeathEffect;
+    [SerializeField] GameObject bulletDestroyAnimation;
 
     ////////////////////////////// Declerations //////////
 
@@ -103,6 +104,14 @@ public class SkeletonArcherController : MonoBehaviour
 
             Instantiate(enemyDeathEffect, transform.position, Quaternion.identity);
 
+            Destroy(gameObject);
+        }
+
+        if (other.CompareTag("Player Fire Magic") ||
+            other.CompareTag("Player Ice Magic"))
+        {
+            Instantiate(enemyDeathEffect, transform.position, Quaternion.identity);
+            Destroy(other.gameObject);
             Destroy(gameObject);
         }
     }

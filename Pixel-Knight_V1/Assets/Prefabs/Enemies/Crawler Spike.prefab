@@ -224,3 +224,4 @@ MonoBehaviour:
   isActive: 0
   foundDirection: 0
   Player: {fileID: 0}
+  bulletDestroyAnimation: {fileID: 7349369448258019166, guid: b56535cd7769b804d9fa14565f2beab6, type: 3}

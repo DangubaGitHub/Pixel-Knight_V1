@@ -51,6 +51,8 @@ public class BombWormController : MonoBehaviour
 
     public bool enraged;
 
+    [SerializeField] GameObject bulletDestroyAnimation;
+
     ////////////////////////////// Declerations //////////
 
     Rigidbody2D rb2d;
@@ -217,6 +219,22 @@ public class BombWormController : MonoBehaviour
             else if (enraged)
             {
                 PlayerController.instance.BounceOnEnemy();
+            }
+        }
+
+        if (other.CompareTag("Player Fire Magic") ||
+            other.CompareTag("Player Ice Magic"))
+        {
+            if (!enraged)
+            {
+                isChanging = true;
+                Destroy(other.gameObject);
+            }
+
+            else if (enraged)
+            {
+                Instantiate(bulletDestroyAnimation, other.transform.position, Quaternion.identity);
+                Destroy(other.gameObject);
             }
         }
     }

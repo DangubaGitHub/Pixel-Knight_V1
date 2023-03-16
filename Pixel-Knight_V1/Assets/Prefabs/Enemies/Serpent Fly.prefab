@@ -161,6 +161,7 @@ MonoBehaviour:
   rotationCenter: {fileID: 6263620547796737245}
   rotationSpeed: 2
   rotationRadius: 6
+  bulletDestroyAnimation: {fileID: 7349369448258019166, guid: b56535cd7769b804d9fa14565f2beab6, type: 3}
 --- !u!1 &6263620547469779651
 GameObject:
   m_ObjectHideFlags: 0

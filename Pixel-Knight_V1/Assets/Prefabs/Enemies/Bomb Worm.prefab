@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6355674225391209541}
   - component: {fileID: 6355674225391209540}
-  m_Layer: 0
+  m_Layer: 26
   m_Name: Wall Detection Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -265,6 +265,7 @@ MonoBehaviour:
   Player: {fileID: 0}
   isAlive: 0
   enraged: 0
+  bulletDestroyAnimation: {fileID: 7349369448258019166, guid: b56535cd7769b804d9fa14565f2beab6, type: 3}
 --- !u!1 &6355674226267135874
 GameObject:
   m_ObjectHideFlags: 0

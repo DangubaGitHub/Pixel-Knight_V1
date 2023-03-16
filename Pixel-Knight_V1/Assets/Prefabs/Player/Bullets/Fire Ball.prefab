@@ -13,11 +13,11 @@ GameObject:
   - component: {fileID: 2453173839708535656}
   - component: {fileID: 7745181419102637686}
   - component: {fileID: 2649761823612709340}
+  - component: {fileID: 9062155238730882809}
   - component: {fileID: 4821631804765373203}
-  - component: {fileID: 5042224063512320178}
   m_Layer: 6
   m_Name: Fire Ball
-  m_TagString: Player Magic
+  m_TagString: Player Fire Magic
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,7 +112,7 @@ Rigidbody2D:
   m_Constraints: 0
 --- !u!95 &7745181419102637686
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -129,7 +129,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!58 &2649761823612709340
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -145,7 +146,23 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.21875
+  m_Radius: 0.15121128
+--- !u!70 &9062155238730882809
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2453173839708535657}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1.0428505, y: 1.0428505}
+  m_Direction: 0
 --- !u!114 &4821631804765373203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,19 +179,4 @@ MonoBehaviour:
   VelocityY: 14
   enemyDeathEffect: {fileID: 7149189125103132212, guid: afb8bf30d0a47a6439bce4ed7a8f9ee0, type: 3}
   bulletDestroyAnimation: {fileID: 7349369448258019166, guid: b56535cd7769b804d9fa14565f2beab6, type: 3}
---- !u!70 &5042224063512320178
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2453173839708535657}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1.0774896, y: 1.0774896}
-  m_Direction: 0
+  BombWorm: {fileID: 6355674226191785738, guid: 61e13ab1ee423fa4b8d38e0ddc1649e8, type: 3}

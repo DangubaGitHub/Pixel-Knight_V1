@@ -12,6 +12,8 @@ public class SerpentFlyController : MonoBehaviour
     float positionY;
     float angle;
 
+    [SerializeField] GameObject bulletDestroyAnimation;
+
     SpriteRenderer sr;
 
     private void Awake()
@@ -44,6 +46,16 @@ public class SerpentFlyController : MonoBehaviour
         else if (positionY > transform.parent.position.y)
         {
             sr.flipX = true;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player Fire Magic") ||
+            other.CompareTag("Player Ice Magic"))
+        {
+            Instantiate(bulletDestroyAnimation, other.transform.position, Quaternion.identity);
+            Destroy(other.gameObject);
         }
     }
 }

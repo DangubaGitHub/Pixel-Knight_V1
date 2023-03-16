@@ -12,6 +12,8 @@ public class SkullController : MonoBehaviour
     float positionY;
     float angle;
 
+    [SerializeField] GameObject bulletDestroyAnimation;
+
     SpriteRenderer sr;
 
     private void Awake()
@@ -57,6 +59,15 @@ public class SkullController : MonoBehaviour
         if (angle >= 360)
         {
             angle = 0;
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player Fire Magic") ||
+            other.CompareTag("Player Ice Magic"))
+        {
+            Instantiate(bulletDestroyAnimation, other.transform.position, Quaternion.identity);
+            Destroy(other.gameObject);
         }
     }
 }

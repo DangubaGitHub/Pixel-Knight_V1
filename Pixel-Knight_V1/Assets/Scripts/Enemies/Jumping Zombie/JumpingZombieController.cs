@@ -115,6 +115,14 @@ public class JumpingZombieController : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+
+        if (other.CompareTag("Player Fire Magic") ||
+            other.CompareTag("Player Ice Magic"))
+        {
+            Instantiate(enemyDeathEffect, transform.position, Quaternion.identity);
+            Destroy(other.gameObject);
+            Destroy(gameObject);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)

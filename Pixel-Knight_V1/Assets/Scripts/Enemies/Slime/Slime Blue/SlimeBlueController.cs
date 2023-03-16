@@ -42,6 +42,7 @@ public class SlimeBlueController : MonoBehaviour
     string currentState;
 
     [SerializeField] GameObject enemyDeathEffect;
+    [SerializeField] GameObject bulletDestroyAnimation;
 
     ////////////////////////////// Declerations //////////
 
@@ -178,6 +179,19 @@ public class SlimeBlueController : MonoBehaviour
                 PlayerController.instance.BounceOnEnemy();
                 Destroy(gameObject, 1.4f);
             }
+        }
+
+        if (other.CompareTag("Player Fire Magic"))
+        {
+            Instantiate(enemyDeathEffect, transform.position, Quaternion.identity);
+            Destroy(other.gameObject);
+            Destroy(gameObject);
+        }
+
+        if (other.CompareTag("Player Ice Magic"))
+        {
+            Instantiate(bulletDestroyAnimation, other.transform.position, Quaternion.identity);
+            Destroy(other.gameObject);
         }
     }
 

@@ -28,6 +28,8 @@ public class CrawlerSpikeController : MonoBehaviour
 
     string currentState;
 
+    [SerializeField] GameObject bulletDestroyAnimation;
+
     //////////////////// Declerations ///
 
     Rigidbody2D rb2d;
@@ -125,6 +127,13 @@ public class CrawlerSpikeController : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             ChangeDirection();
+        }
+
+        if (other.CompareTag("Player Fire Magic") ||
+            other.CompareTag("Player Ice Magic"))
+        {
+            Instantiate(bulletDestroyAnimation, other.transform.position, Quaternion.identity);
+            Destroy(other.gameObject);
         }
     }
 

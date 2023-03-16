@@ -26,8 +26,7 @@ public class CrawlerController : MonoBehaviour
     const string CROUCH = "Crawler_Crouch";
     string currentState;
 
-    [SerializeField] GameObject enemyDeathEffect;
-
+    [SerializeField] GameObject bulletDestroyAnimation;
 
     Animator anim;
     Rigidbody2D rb2d;
@@ -131,6 +130,13 @@ public class CrawlerController : MonoBehaviour
                 isCrouching = true;
                 crouchTimerCountdown = 1f;
             }
+        }
+
+        if (other.CompareTag("Player Fire Magic") ||
+            other.CompareTag("Player Ice Magic"))
+        {
+            Instantiate(bulletDestroyAnimation, other.transform.position, Quaternion.identity);
+            Destroy(other.gameObject);
         }
     }
 
