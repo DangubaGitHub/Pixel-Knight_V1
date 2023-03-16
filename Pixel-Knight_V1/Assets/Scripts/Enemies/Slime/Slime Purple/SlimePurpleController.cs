@@ -46,11 +46,11 @@ public class SlimePurpleController : MonoBehaviour
 
     Rigidbody2D rb2d;
     Animator anim;
-    public static SlimePurpleController instance;
+    //public static SlimePurpleController instance;
 
     private void Awake()
     {
-        instance = this;
+        //instance = this;
         rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }

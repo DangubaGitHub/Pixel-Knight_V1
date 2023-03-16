@@ -23,6 +23,7 @@ public class ArrowController : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         rb2d = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        sr.sortingOrder = 9;
     }
 
     void Start()
@@ -41,16 +42,18 @@ public class ArrowController : MonoBehaviour
             sr.flipX = false;
         }
 
-        Invoke("ArrowStart", 0.7f);
+        ArrowStart();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Wall") ||
             other.CompareTag("Ground") ||
-            other.CompareTag("Ground 2"))
+            other.CompareTag("Ground 2") ||
+            other.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            sr.sortingOrder = 5;
+            Destroy(gameObject, 0.15f);
         }
     }
 

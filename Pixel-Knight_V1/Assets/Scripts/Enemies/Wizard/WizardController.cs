@@ -35,11 +35,11 @@ public class WizardController : MonoBehaviour
     Rigidbody2D rb2d;
     Animator anim;
     SpriteRenderer sr;
-    public static WizardController instance;
+    //public static WizardController instance;
 
     private void Awake()
     {
-        instance = this;
+        //instance = this;
         rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
@@ -105,6 +105,17 @@ public class WizardController : MonoBehaviour
                 Instantiate(enemyDeathEffect, transform.position, Quaternion.identity);
 
                 Destroy(gameObject);
+            }
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            if (PlayerAnimationManager.instance.isBasic == true && PlayerHealthController.instance.invincibleLength <= 0)
+            {
+                isVisible = true;
             }
         }
     }

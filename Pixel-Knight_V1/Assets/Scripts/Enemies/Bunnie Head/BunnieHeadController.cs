@@ -31,15 +31,17 @@ public class BunnieHeadController : MonoBehaviour
 
     string currentState;
 
+    [SerializeField] GameObject enemyDeathEffect;
+
     ////////////////////////////// Declerations //////////
 
     Rigidbody2D rb2d;
     Animator anim;
-    public static BunnieHeadController instance;
+    //public static BunnieHeadController instance;
 
     private void Awake()
     {
-        instance = this;
+        //instance = this;
         rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
@@ -86,6 +88,18 @@ public class BunnieHeadController : MonoBehaviour
         else
         {
             ChangeAnimationState(STILL);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player Stomp Box"))
+        {
+            PlayerController.instance.BounceOnEnemy();
+
+            Instantiate(enemyDeathEffect, transform.position, Quaternion.identity);
+
+            Destroy(gameObject);
         }
     }
 

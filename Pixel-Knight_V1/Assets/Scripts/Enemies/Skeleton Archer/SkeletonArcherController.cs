@@ -10,6 +10,9 @@ public class SkeletonArcherController : MonoBehaviour
     [SerializeField] Transform firePoint;
     [SerializeField] bool inRange;
 
+    public bool lookingLeft;
+    public bool lookingRight;
+
     ////////////////////////////// Activation //////////
 
     [Header("Activation")]
@@ -33,12 +36,14 @@ public class SkeletonArcherController : MonoBehaviour
     Rigidbody2D rb2d;
     Animator anim;
     //public static SkeletonArcherController instance;
+    Transform skeletonTransform;
 
     private void Awake()
     {
         //instance = this;
         rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        skeletonTransform = GetComponent<Transform>();
     }
 
     void Start()
@@ -71,11 +76,15 @@ public class SkeletonArcherController : MonoBehaviour
         if (Player.transform.position.x <= transform.position.x)
         {
             characterScale.x = -1;
+            lookingLeft = true;
+            lookingRight = false;
         }
 
         else if (Player.transform.position.x > transform.position.x)
         {
             characterScale.x = 1;
+            lookingLeft = false;
+            lookingRight = true;
         }
 
         transform.localScale = characterScale;

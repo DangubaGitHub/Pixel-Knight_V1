@@ -55,11 +55,11 @@ public class BombWormController : MonoBehaviour
 
     Rigidbody2D rb2d;
     Animator anim;
-    public static BombWormController instance;
+    //public static BombWormController instance;
 
     private void Awake()
     {
-        instance = this;
+        //instance = this;
         rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
@@ -113,10 +113,6 @@ public class BombWormController : MonoBehaviour
             }
 
             //////////////////////////////////////////////////////////// Enraged //////////
-
-
-            
-
 
             if (enraged && !isChanging)
             {
@@ -190,10 +186,12 @@ public class BombWormController : MonoBehaviour
 
         transform.localScale = characterScale;
     }
+
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "Wall" ||
-            other.gameObject.tag == "Enemy")
+            other.gameObject.tag == "Enemy" ||
+            other.gameObject.tag == "Turn Around Trigger")
         {
             turning = true;
             ChangeDirection();
@@ -202,9 +200,24 @@ public class BombWormController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("Wall"))
+        if(other.CompareTag("Wall") ||
+            other.CompareTag("Turn Around Trigger"))
         {
             nearWall = true;
+        }
+
+        if (other.CompareTag("Player Stomp Box"))
+        {
+            if (!enraged)
+            {
+                PlayerController.instance.BounceOnEnemy();
+                isChanging = true;
+            }
+
+            else if (enraged)
+            {
+                PlayerController.instance.BounceOnEnemy();
+            }
         }
     }
 

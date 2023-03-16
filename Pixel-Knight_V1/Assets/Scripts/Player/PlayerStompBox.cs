@@ -110,7 +110,7 @@ public class PlayerStompBox : MonoBehaviour
                 }
             }*/
 
-            if (other.CompareTag("Bomb Worm"))
+            /*if (other.CompareTag("Bomb Worm"))
             {
                 if (!BombWormController.instance.enraged)
                 {
@@ -122,7 +122,7 @@ public class PlayerStompBox : MonoBehaviour
                 {
                     PlayerController.instance.BounceOnEnemy();
                 }
-            }
+            }*/
 
         }
 

@@ -31,11 +31,11 @@ public class CrawlerController : MonoBehaviour
 
     Animator anim;
     Rigidbody2D rb2d;
-    public static CrawlerController instance; 
+    //public static CrawlerController instance; 
 
     private void Awake()
     {
-        instance = this;
+        //instance = this;
         anim = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
     }

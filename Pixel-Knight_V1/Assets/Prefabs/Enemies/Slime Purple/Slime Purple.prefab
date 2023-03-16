@@ -93,7 +93,7 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!95 &6722853469921110600
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -110,7 +110,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!50 &6722853469921110601
 Rigidbody2D:
   serializedVersion: 4
@@ -161,7 +162,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -1.7417303}
+  m_Offset: {x: 0, y: -1.7868589}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -172,7 +173,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7865145, y: 0.1311562}
+  m_Size: {x: 0.7865145, y: 0.22141337}
   m_EdgeRadius: 0
 --- !u!114 &6722853469921110596
 MonoBehaviour:
@@ -193,14 +194,10 @@ MonoBehaviour:
   nextElementBurst: 0
   elementBurstPrefab: {fileID: 3923161072222199438, guid: 16220b1f56cd56a418cb04302fd9255d, type: 3}
   firePoint: {fileID: 6722853469995493642}
-  PlayerLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  PlayerCheck: {fileID: 6722853470033590329}
-  PlayerCheckRadius: 35
   isActive: 0
   Player: {fileID: 0}
   isAlive: 0
+  enemyDeathEffect: {fileID: 7149189125103132212, guid: afb8bf30d0a47a6439bce4ed7a8f9ee0, type: 3}
 --- !u!1 &6722853469995493643
 GameObject:
   m_ObjectHideFlags: 0

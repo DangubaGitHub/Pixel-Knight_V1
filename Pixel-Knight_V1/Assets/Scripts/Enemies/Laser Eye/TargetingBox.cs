@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class TargetingBox : MonoBehaviour
 {
+    LaserEyeController laserEyeController;
+    [SerializeField] GameObject LaserEye;
+
+    private void Awake()
+    {
+        laserEyeController = LaserEye.GetComponent<LaserEyeController>();
+    }
+
     void Start()
     {
         
@@ -18,7 +26,7 @@ public class TargetingBox : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            LaserEyeController.instance.isOpening = true;
+            laserEyeController.isOpening = true;
         }
     }
 
@@ -26,7 +34,7 @@ public class TargetingBox : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            LaserEyeController.instance.isOpening = false;
+            laserEyeController.isOpening = false;
         }
     }
 

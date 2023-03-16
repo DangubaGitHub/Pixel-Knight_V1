@@ -29,15 +29,17 @@ public class BatController : MonoBehaviour
 
     string currentState;
 
+    [SerializeField] GameObject enemyDeathEffect;
+
     ////////////////////////////// Declerations //////////
 
     Rigidbody2D rb2d;
     Animator anim;
-    public static BatController instance;
+    //public static BatController instance;
 
     private void Awake()
     {
-        instance = this;
+        //instance = this;
         rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
@@ -101,6 +103,18 @@ public class BatController : MonoBehaviour
         }
 
         transform.localScale = characterScale;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player Stomp Box"))
+        {
+            PlayerController.instance.BounceOnEnemy();
+
+            Instantiate(enemyDeathEffect, transform.position, Quaternion.identity);
+
+            Destroy(gameObject);
+        }
     }
 
     void ChangeHorizontalDirection()

@@ -91,7 +91,7 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!95 &2007722870730243254
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -108,7 +108,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!50 &2007722870730243256
 Rigidbody2D:
   serializedVersion: 4
@@ -162,11 +163,6 @@ MonoBehaviour:
   isGrounded: 0
   enemyDeathEffect: {fileID: 7149189125103132212, guid: afb8bf30d0a47a6439bce4ed7a8f9ee0, type: 3}
   Player: {fileID: 0}
-  PlayerLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  PlayerCheck: {fileID: 2007722871641160533}
-  PlayerCheckRadius: 35
   isActive: 0
 --- !u!1 &2007722871641160534
 GameObject:

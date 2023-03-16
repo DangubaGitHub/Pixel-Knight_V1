@@ -139,7 +139,7 @@ public class PlayerHealthController : MonoBehaviour
 
             else if (PlayerAnimationManager.instance.isBasic == true && invincibleLength <= 0)
             {
-                ArrowController.instance.hitPlayer = true;
+                //ArrowController.instance.hitPlayer = true;
                 PlayerController.instance.isDead = true;
                 Died();
                 Invoke("AfterDeath", 2f);
@@ -344,7 +344,7 @@ public class PlayerHealthController : MonoBehaviour
 
             else if (PlayerAnimationManager.instance.isBasic == true && invincibleLength <= 0)
             {
-                WizardController.instance.isVisible = true;
+                //WizardController.instance.isVisible = true;
                 PlayerController.instance.isDead = true;
                 Died();
                 Invoke("AfterDeath", 2f);
@@ -385,7 +385,7 @@ public class PlayerHealthController : MonoBehaviour
 
             else if (PlayerAnimationManager.instance.isBasic == true && invincibleLength <= 0)
             {
-                WizardController.instance.isVisible = true;
+                //WizardController.instance.isVisible = true;
                 PlayerController.instance.isDead = true;
                 Died();
                 Invoke("AfterDeath", 2f);

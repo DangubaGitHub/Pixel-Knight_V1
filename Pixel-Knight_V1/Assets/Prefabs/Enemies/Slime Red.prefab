@@ -92,7 +92,7 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!95 &8620327364651725125
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -109,7 +109,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!50 &8620327364651725124
 Rigidbody2D:
   serializedVersion: 4
@@ -160,7 +161,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -1.7373298}
+  m_Offset: {x: 0, y: -1.8094434}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -171,7 +172,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.68399096, y: 0.101803064}
+  m_Size: {x: 0.68399096, y: 0.24603009}
   m_EdgeRadius: 0
 --- !u!114 &8620327364651725145
 MonoBehaviour:
@@ -190,14 +191,10 @@ MonoBehaviour:
   foundDirection: 0
   isGrounded: 0
   nextJumpTime: 0
-  PlayerLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  PlayerCheck: {fileID: 8620327365187019006}
-  PlayerCheckRadius: 35
   isActive: 0
   Player: {fileID: 0}
   isAlive: 0
+  enemyDeathEffect: {fileID: 7149189125103132212, guid: afb8bf30d0a47a6439bce4ed7a8f9ee0, type: 3}
 --- !u!1 &8620327365187019005
 GameObject:
   m_ObjectHideFlags: 0

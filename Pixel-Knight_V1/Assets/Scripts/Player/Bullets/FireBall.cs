@@ -167,7 +167,7 @@ public class FireBall : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy") ||
+       /* if (other.CompareTag("Enemy") ||
             other.CompareTag("Slime") ||
             other.CompareTag("Slime Purple") ||
             other.CompareTag("Slime Blue") ||
@@ -193,7 +193,7 @@ public class FireBall : MonoBehaviour
             sr.enabled = false;
             rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
             Invoke("DestroyBall", 1f);
-        }*/
+        }
 
         if (other.CompareTag("Enemy Invulnerable Damaging") ||
             other.CompareTag("Enemy Invulnerable Bounce") ||
@@ -263,7 +263,7 @@ public class FireBall : MonoBehaviour
                 //rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
                 //Invoke("DestroyBall", 1f);
             }
-        }
+        }*/
     }
     /*
     private void OnTriggerExit2D(Collider2D other)

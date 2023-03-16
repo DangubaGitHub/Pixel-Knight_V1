@@ -27,7 +27,7 @@ public class IceBall : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other)
-    {
+    {/*
         if(other.CompareTag("Ground"))
         {
             Instantiate(bulletDestroyAnimation, transform.position, Quaternion.identity);
@@ -112,7 +112,7 @@ public class IceBall : MonoBehaviour
                 Instantiate(bulletDestroyAnimation, transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }
-        }
+        }*/
     }
 
     private void OnBecameInvisible()

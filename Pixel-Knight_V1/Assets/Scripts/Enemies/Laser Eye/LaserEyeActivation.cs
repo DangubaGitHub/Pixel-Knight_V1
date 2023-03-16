@@ -4,13 +4,21 @@ using UnityEngine;
 
 public class LaserEyeActivation : MonoBehaviour
 {
+    LaserEyeController laserEyeController;
+    [SerializeField] GameObject LaserEye;
+
+    private void Awake()
+    {
+        laserEyeController = LaserEye.GetComponent<LaserEyeController>();
+    }
+
     private void OnBecameVisible()
     {
-        LaserEyeController.instance.isActive = true;
+        laserEyeController.isActive = true;
     }
 
     private void OnBecameInvisible()
     {
-        LaserEyeController.instance.isActive = false;
+        laserEyeController.isActive = false;
     }
 }
