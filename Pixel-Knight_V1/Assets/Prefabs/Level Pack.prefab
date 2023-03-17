@@ -32227,6 +32227,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e590a534993f0a04cbcc327e7478d41c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  armorPowerUp: {fileID: 0}
+  firePowerUp: {fileID: 0}
+  icePowerUp: {fileID: 0}
   redCoin1: {fileID: 7321443893079627274}
   redCoin2: {fileID: 7321443893370554414}
   redCoin3: {fileID: 7321443894354926652}

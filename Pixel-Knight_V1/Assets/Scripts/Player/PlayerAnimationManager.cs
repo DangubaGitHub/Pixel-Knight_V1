@@ -432,6 +432,8 @@ public class PlayerAnimationManager : MonoBehaviour
         isIce = false;
         isBasic = false;
 
+        UIController.instance.ArmorPowerUpUpdate();
+
         PlayerPrefs.SetInt("Armor Power", (isArmor ? 1 : 0));
         PlayerPrefs.DeleteKey("Fire Power");
         PlayerPrefs.DeleteKey("Ice Power");
@@ -443,6 +445,8 @@ public class PlayerAnimationManager : MonoBehaviour
         isFire = true;
         isIce = false;
         isBasic = false;
+
+        UIController.instance.FirePowerUpUpdate();
 
         PlayerPrefs.SetInt("Fire Power", (isFire ? 1 : 0));
         PlayerPrefs.DeleteKey("Armor Power");
@@ -456,6 +460,8 @@ public class PlayerAnimationManager : MonoBehaviour
         isIce = true;
         isBasic = false;
 
+        UIController.instance.IcePowerUpUpdate();
+
         PlayerPrefs.SetInt("Ice Power", (isIce ? 1 : 0));
         PlayerPrefs.DeleteKey("Armor Power");
         PlayerPrefs.DeleteKey("Fire Power");
@@ -467,6 +473,8 @@ public class PlayerAnimationManager : MonoBehaviour
         isFire = false;
         isIce = false;
         isBasic = true;
+
+        UIController.instance.Basic();
 
         PlayerPrefs.DeleteKey("Armor Power");
         PlayerPrefs.DeleteKey("Fire Power");

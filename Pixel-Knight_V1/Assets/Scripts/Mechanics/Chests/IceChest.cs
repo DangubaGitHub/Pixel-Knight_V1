@@ -59,10 +59,7 @@ public class IceChest : MonoBehaviour
         ChangeAnimationState(OPEN);
         isOpen = true;
         GameObject item = Instantiate(icePopOut, spawnPoint.position, spawnPoint.rotation);
-        PlayerAnimationManager.instance.isArmor = false;
-        PlayerAnimationManager.instance.isBasic = false;
-        PlayerAnimationManager.instance.isFire = false;
-        PlayerAnimationManager.instance.isIce = true;
+        PlayerAnimationManager.instance.ChangeToIce();
         Destroy(item, 1f);
     }
 

@@ -59,10 +59,7 @@ public class IronChest : MonoBehaviour
         ChangeAnimationState(OPEN);
         isOpen = true;
         GameObject item = Instantiate(ironPopOut, spawnPoint.position, spawnPoint.rotation);
-        PlayerAnimationManager.instance.isArmor = true;
-        PlayerAnimationManager.instance.isBasic = false;
-        PlayerAnimationManager.instance.isFire = false;
-        PlayerAnimationManager.instance.isIce = false;
+        PlayerAnimationManager.instance.ChangeToArmor();
         Destroy(item, 1f);
     }
 

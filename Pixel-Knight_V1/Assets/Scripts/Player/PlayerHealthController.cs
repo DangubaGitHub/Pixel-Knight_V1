@@ -70,6 +70,12 @@ public class PlayerHealthController : MonoBehaviour
         {
             VisibilityFull();
         }
+
+        if(livesCount <= 0) 
+        {
+            PlayerPrefs.DeleteKey("Lives Save");
+        
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -102,7 +108,6 @@ public class PlayerHealthController : MonoBehaviour
                 PlayerController.instance.isDead = true;
                 Died();
                 Invoke("AfterDeath", 2f);
-                Invoke("CallPauseMenuAfterDeath", 4); /////////////////////////////////// Testing //////////
             }
         }
 
@@ -143,7 +148,6 @@ public class PlayerHealthController : MonoBehaviour
                 PlayerController.instance.isDead = true;
                 Died();
                 Invoke("AfterDeath", 2f);
-                Invoke("CallPauseMenuAfterDeath", 4); /////////////////////////////////// Testing //////////
             }
         }
     }
@@ -389,7 +393,6 @@ public class PlayerHealthController : MonoBehaviour
                 PlayerController.instance.isDead = true;
                 Died();
                 Invoke("AfterDeath", 2f);
-                Invoke("CallPauseMenuAfterDeath", 4); /////////////////////////////////// Testing //////////
             }
         }
     }

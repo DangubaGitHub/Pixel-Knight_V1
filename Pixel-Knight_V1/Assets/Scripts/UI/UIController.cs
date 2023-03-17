@@ -5,6 +5,12 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
+    [Header("Power Up's")]
+    [SerializeField] Image armorPowerUp;
+    [SerializeField] Image firePowerUp;
+    [SerializeField] Image icePowerUp;
+
+
     [Header("Red Coins")]
     [SerializeField] Image redCoin1;
     [SerializeField] Image redCoin2;
@@ -113,5 +119,33 @@ public class UIController : MonoBehaviour
     public void LevelUpdate()
     {
         levelNameText.text = LevelManager.instance.currentLevel;
+    }
+
+    public void ArmorPowerUpUpdate()
+    {
+        armorPowerUp.enabled = true;
+        firePowerUp.enabled = false;
+        icePowerUp.enabled = false;
+    }
+
+    public void FirePowerUpUpdate()
+    {
+        armorPowerUp.enabled = false;
+        firePowerUp.enabled = true;
+        icePowerUp.enabled = false;
+    }
+
+    public void IcePowerUpUpdate()
+    {
+        armorPowerUp.enabled = true;
+        firePowerUp.enabled = false;
+        icePowerUp.enabled = false;
+    }
+
+    public void Basic()
+    {
+        armorPowerUp.enabled = false;
+        firePowerUp.enabled = false;
+        icePowerUp.enabled = false;
     }
 }
