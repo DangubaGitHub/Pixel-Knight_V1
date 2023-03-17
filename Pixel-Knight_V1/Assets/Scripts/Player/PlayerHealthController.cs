@@ -189,7 +189,7 @@ public class PlayerHealthController : MonoBehaviour
                     PlayerController.instance.isDead = true;
                     Died();
                     Invoke("AfterDeath", 2f);
-                    Invoke("CallPauseMenuAfterDeath", 3); /////////////////////////////////// Testing //////////
+                    
                 }
             }
         }
@@ -230,7 +230,7 @@ public class PlayerHealthController : MonoBehaviour
                 PlayerController.instance.isDead = true;
                 Died();
                 Invoke("AfterDeath", 2f);
-                Invoke("CallPauseMenuAfterDeath", 4); /////////////////////////////////// Testing //////////
+                
             }
         }
 
@@ -271,7 +271,7 @@ public class PlayerHealthController : MonoBehaviour
                 PlayerController.instance.isDead = true;
                 Died();
                 Invoke("AfterDeath", 2f);
-                Invoke("CallPauseMenuAfterDeath", 4); /////////////////////////////////// Testing //////////
+                
             }
         }
 
@@ -432,6 +432,10 @@ public class PlayerHealthController : MonoBehaviour
         rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
         capsuleCollider2d.enabled = false;
         TakeLive();
+
+        PlayerPrefs.DeleteKey("Armor Power");
+        PlayerPrefs.DeleteKey("Fire Power");
+        PlayerPrefs.DeleteKey("Ice Power");
     }
 
     void AfterDeath()
@@ -472,9 +476,6 @@ public class PlayerHealthController : MonoBehaviour
 
     void ChangeState()
     {
-        PlayerAnimationManager.instance.isIce = false;
-        PlayerAnimationManager.instance.isFire = false;
-        PlayerAnimationManager.instance.isArmor = false;
-        PlayerAnimationManager.instance.isBasic = true;
+        PlayerAnimationManager.instance.ChangeToBasic();
     }
 }

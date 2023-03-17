@@ -59,10 +59,7 @@ public class FireChest : MonoBehaviour
         ChangeAnimationState(OPEN);
         isOpen = true;
         GameObject item = Instantiate(firePopOut, spawnPoint.position, spawnPoint.rotation);
-        PlayerAnimationManager.instance.isArmor = false;
-        PlayerAnimationManager.instance.isBasic = false;
-        PlayerAnimationManager.instance.isFire = true;
-        PlayerAnimationManager.instance.isIce = false;
+        PlayerAnimationManager.instance.ChangeToFire();
         Destroy(item, 1f);
     }
 

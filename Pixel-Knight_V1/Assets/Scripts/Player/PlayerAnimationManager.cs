@@ -11,9 +11,7 @@ public class PlayerAnimationManager : MonoBehaviour
 
     string currentState;
 
-
     [SerializeField] Transform particalPoint;
-    [SerializeField] GameObject liveUpPrefab;
 
     //Basic Player
 
@@ -64,11 +62,53 @@ public class PlayerAnimationManager : MonoBehaviour
 
     void Start()
     {
-        
+        if (PlayerPrefs.HasKey("Armor Power"))
+        {
+            isArmor = (PlayerPrefs.GetInt("Armor Power") !=0);
+            ChangeToArmor();
+        }
+
+        else if (PlayerPrefs.HasKey("Fire Power"))
+        {
+            isFire = (PlayerPrefs.GetInt("Fire Power") !=0);
+            ChangeToFire();
+        }
+
+        else if (PlayerPrefs.HasKey("Ice Power"))
+        {
+            isIce = (PlayerPrefs.GetInt("Ice Power") !=0);
+            ChangeToIce();
+        }
+
+        else
+        {
+            ChangeToBasic();
+        }
     }
 
     void Update()
     {
+        /*if (currentPowerUp == basic)
+        {
+            ChangeToBasic();
+        }
+
+        else if (currentPowerUp == armor)
+        {
+            ChangeToArmor();
+        }
+
+        else if (currentPowerUp == fire)
+        {
+            ChangeToFire();
+        }
+
+        else if (currentPowerUp == ice)
+        {
+            ChangeToIce();
+        }*/
+
+
         Vector3 characterScale = transform.localScale;
 
         if (rb2d.velocity.x < -0.1f)
@@ -235,10 +275,10 @@ public class PlayerAnimationManager : MonoBehaviour
         }
     }
 
-    public void LiveUpAnimation()
+    /*public void LiveUpAnimation()
     {
         Instantiate(liveUpPrefab, particalPoint.position, Quaternion.identity);
-    }
+    }*/
 
     private void FixedUpdate()
     {/*
@@ -383,6 +423,54 @@ public class PlayerAnimationManager : MonoBehaviour
         {
             ChangeAnimationState(BP_FALL);
         }*/
+    }
+
+    public void ChangeToArmor()
+    {
+        isArmor = true;
+        isFire = false;
+        isIce = false;
+        isBasic = false;
+
+        PlayerPrefs.SetInt("Armor Power", (isArmor ? 1 : 0));
+        PlayerPrefs.DeleteKey("Fire Power");
+        PlayerPrefs.DeleteKey("Ice Power");
+    }
+
+    public void ChangeToFire()
+    {
+        isArmor = false;
+        isFire = true;
+        isIce = false;
+        isBasic = false;
+
+        PlayerPrefs.SetInt("Fire Power", (isFire ? 1 : 0));
+        PlayerPrefs.DeleteKey("Armor Power");
+        PlayerPrefs.DeleteKey("Ice Power");
+    }
+
+    public void ChangeToIce()
+    {
+        isArmor = false;
+        isFire = false;
+        isIce = true;
+        isBasic = false;
+
+        PlayerPrefs.SetInt("Ice Power", (isIce ? 1 : 0));
+        PlayerPrefs.DeleteKey("Armor Power");
+        PlayerPrefs.DeleteKey("Fire Power");
+    }
+
+    public void ChangeToBasic()
+    {
+        isArmor = false;
+        isFire = false;
+        isIce = false;
+        isBasic = true;
+
+        PlayerPrefs.DeleteKey("Armor Power");
+        PlayerPrefs.DeleteKey("Fire Power");
+        PlayerPrefs.DeleteKey("Ice Power");
     }
 
     public void ChangeAnimationState(string newState)

@@ -42,9 +42,9 @@ GameObject:
   - component: {fileID: 284459842022788396}
   - component: {fileID: 284459842022788399}
   - component: {fileID: 284459842022788398}
-  m_Layer: 7
+  m_Layer: 25
   m_Name: Stomp Box
-  m_TagString: Untagged
+  m_TagString: Player Stomp Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -199,7 +199,7 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!95 &284459842131218733
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -216,7 +216,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!50 &284459842131218731
 Rigidbody2D:
   serializedVersion: 4
@@ -276,6 +277,7 @@ MonoBehaviour:
     m_Bits: 66056
   isGrounded: 0
   jumpTime: 0.35
+  touchesCeiling: 0
   mushroomBounceForce: 50
   firePoint: {fileID: 284459841684013252}
   fireBulletPrefab: {fileID: 2453173839708535657, guid: 38f341edd5de13241bdf5d5289c1e783, type: 3}
@@ -309,6 +311,7 @@ MonoBehaviour:
   isArmor: 0
   isFire: 0
   isIce: 0
+  particalPoint: {fileID: 0}
 --- !u!114 &284459842131218735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,6 +324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf9cbedfc536f9a4c847bfd6a8bace84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shortInvulnerability: 0
   invincibleLength: 0
   particlePoint: {fileID: 284459843349634149}
   lostFirePrefab: {fileID: 8996890350865598429, guid: 653829557a568db46a47e01f7a093000, type: 3}
@@ -329,6 +333,7 @@ MonoBehaviour:
   lostFireAnim: {fileID: 7519710773554152971, guid: 4466a01207d4d0346b58f49c34930304, type: 3}
   lostIceAnim: {fileID: 3663695582966491770, guid: a652ed70f9b4a924f85d5f6b383204d1, type: 3}
   lostArmorAnim: {fileID: 7623524502277332314, guid: 4b72a272edd873f4f945353772146436, type: 3}
+  livesCount: 0
 --- !u!1 &284459843210550536
 GameObject:
   m_ObjectHideFlags: 0
