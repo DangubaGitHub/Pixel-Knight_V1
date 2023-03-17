@@ -108,7 +108,7 @@ public class SlimeKnightController : MonoBehaviour
 
                     else if (isHurt)
                     {
-                        rb2d.velocity = new Vector2(0, 0);
+                        rb2d.velocity = new Vector2(0, rb2d.velocity.y);
                     }
                 }
             }

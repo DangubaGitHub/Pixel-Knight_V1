@@ -16978,6 +16978,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3779911511784757660, guid: 302d86c3e7fcfb54a9125986d5072e2f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3779911511784757661, guid: 302d86c3e7fcfb54a9125986d5072e2f, type: 3}
+      propertyPath: bulletDestroyAnimation
+      value: 
+      objectReference: {fileID: 7349369448258019166, guid: b56535cd7769b804d9fa14565f2beab6, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 302d86c3e7fcfb54a9125986d5072e2f, type: 3}
 --- !u!1001 &6907807595677111225

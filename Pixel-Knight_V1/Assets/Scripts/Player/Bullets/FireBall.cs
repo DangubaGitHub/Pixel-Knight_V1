@@ -79,7 +79,7 @@ public class FireBall : MonoBehaviour
 
         if (other.CompareTag("Summer Boss"))
         {
-            if (SlimeKnightAnimationController.instance.zero_Hit)
+            /*if (SlimeKnightAnimationController.instance.zero_Hit)
             {
                 //rb2d.velocity = new Vector2(0, 0);
                 Instantiate(bulletDestroyAnimation, transform.position, Quaternion.identity);
@@ -115,7 +115,7 @@ public class FireBall : MonoBehaviour
                 //sr.enabled = false;
                 //rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
                 //Invoke("DestroyBall", 1f);
-            }
+            }*/
         }
     }
  

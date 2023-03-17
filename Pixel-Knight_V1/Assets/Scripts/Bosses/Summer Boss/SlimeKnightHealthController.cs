@@ -8,7 +8,11 @@ public class SlimeKnightHealthController : MonoBehaviour
     public float invulnerable;
     public bool lostArmor;
 
+    [SerializeField] GameObject bulletDestroyAnimation;
+
     public static SlimeKnightHealthController instance;
+
+
 
     private void Awake()
     {
@@ -77,45 +81,58 @@ public class SlimeKnightHealthController : MonoBehaviour
             else if (SlimeKnightAnimationController.instance.noArmor && invulnerable <=0)
             {
                 SummerBossExtras();
+                SlimeKnightController.instance.isHurt = true;
                 SlimeKnightAnimationController.instance.noArmor = false;
                 SlimeKnightAnimationController.instance.hurt = true;
-                invulnerable = .9f;
+                //invulnerable = .9f;
                 health--;
             }
         }
 
-        if (other.CompareTag("Player Magic"))
+        if (other.CompareTag("Player Fire Magic") ||
+            other.CompareTag("Player Ice Magic"))
         {
-            if (SlimeKnightAnimationController.instance.noArmor)
+            if (SlimeKnightAnimationController.instance.zero_Hit)
+            {
+                Instantiate(bulletDestroyAnimation, other.transform.position, Quaternion.identity);
+                Destroy(other.gameObject);
+            }
+
+            else if (SlimeKnightAnimationController.instance.one_Hit)
+            {
+                Instantiate(bulletDestroyAnimation, other.transform.position, Quaternion.identity);
+                Destroy(other.gameObject);
+            }
+
+            else if (SlimeKnightAnimationController.instance.two_Hit)
+            {
+                Instantiate(bulletDestroyAnimation, other.transform.position, Quaternion.identity);
+                Destroy(other.gameObject);
+            }
+
+            else if (SlimeKnightAnimationController.instance.three_Hit)
+            {
+                Instantiate(bulletDestroyAnimation, other.transform.position, Quaternion.identity);
+                Destroy(other.gameObject);
+            }
+
+            else if (SlimeKnightAnimationController.instance.noArmor && invulnerable <= 0)
             {
                 Destroy(other.gameObject);
+                SlimeKnightController.instance.isHurt = true;
                 SlimeKnightAnimationController.instance.noArmor = false;
                 SlimeKnightAnimationController.instance.hurt = true;
-                invulnerable = .9f;
+                invulnerable = .1f;
                 health--;
             }
         }
     }
-    /*
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.tag == ("Player Magic"))
-        {
-            if (SlimeKnightAnimationController.instance.noArmor)
-            {
-                Destroy(other.gameObject);
-                SlimeKnightAnimationController.instance.noArmor = false;
-                SlimeKnightAnimationController.instance.hurt = true;
-                invulnerable = 1;
-                health--;
-            }
-        }
-    }*/
+   
 
     void SummerBossExtras()
     {
-        PlayerHealthController.instance.shortInvulnerability = 0.5f;
-        invulnerable = 0.5f;
+        PlayerHealthController.instance.shortInvulnerability = 1f;
+        invulnerable = 1f;
         PlayerController.instance.BounceOnEnemy();
     }
 
@@ -123,5 +140,6 @@ public class SlimeKnightHealthController : MonoBehaviour
     {
         SlimeKnightAnimationController.instance.hurt = false;
         SlimeKnightAnimationController.instance.noArmor = true;
+        SlimeKnightController.instance.isHurt = false;
     }
 }
