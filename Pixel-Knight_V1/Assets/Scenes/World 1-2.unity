@@ -356,8 +356,9 @@ Transform:
   - {fileID: 1109897001}
   - {fileID: 1105096640}
   - {fileID: 1079886872}
+  - {fileID: 1526076482}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &190793137
 GameObject:
@@ -5576,23 +5577,23 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 161670121}
     m_Modifications:
     - target: {fileID: 1021057517842884302, guid: e0d5605e80fa3144ebca31ca63154561, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 1021057517842884302, guid: e0d5605e80fa3144ebca31ca63154561, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 99.933105
+      value: -198.58258
       objectReference: {fileID: 0}
     - target: {fileID: 1021057517842884302, guid: e0d5605e80fa3144ebca31ca63154561, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.3358269
+      value: -6.240946
       objectReference: {fileID: 0}
     - target: {fileID: 1021057517842884302, guid: e0d5605e80fa3144ebca31ca63154561, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -62.783035
       objectReference: {fileID: 0}
     - target: {fileID: 1021057517842884302, guid: e0d5605e80fa3144ebca31ca63154561, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5632,6 +5633,11 @@ PrefabInstance:
       objectReference: {fileID: 1381366920}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0d5605e80fa3144ebca31ca63154561, type: 3}
+--- !u!4 &1526076482 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1021057517842884302, guid: e0d5605e80fa3144ebca31ca63154561, type: 3}
+  m_PrefabInstance: {fileID: 1526076481}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1543978175
 GameObject:
   m_ObjectHideFlags: 0
@@ -6777,7 +6783,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7321443894174159892, guid: 5a217c771172d674d9bde97d838449d3, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7321443894174159892, guid: 5a217c771172d674d9bde97d838449d3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13471,7 +13477,7 @@ Transform:
   - {fileID: 3244791521697991887}
   - {fileID: 1868245849605058990}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3244791522717482019
 GameObject:
@@ -14147,7 +14153,7 @@ Transform:
   - {fileID: 3326148123266794681}
   - {fileID: 3326148121538426093}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &3426647322681574926
 Transform:
@@ -16866,7 +16872,7 @@ Transform:
   - {fileID: 6007842668180235954}
   - {fileID: 6007842668396506440}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &6007842667101543334
 Transform:
@@ -46386,7 +46392,7 @@ RectTransform:
   - {fileID: 7321443892776821891}
   - {fileID: 7321443892967891716}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -46406,7 +46412,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   armorPowerUp: {fileID: 7321443893261828654}
-  armor: {fileID: 7321443893261828640}
   firePowerUp: {fileID: 7321443894753316083}
   icePowerUp: {fileID: 7321443893725274791}
   redCoin1: {fileID: 7321443892648986987}
@@ -47066,7 +47071,7 @@ Transform:
   - {fileID: 7321443894673420846}
   - {fileID: 307883550}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7321443894149195981
 GameObject:
@@ -47235,7 +47240,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7321443894415424702
 GameObject:
@@ -47268,7 +47273,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goldCoinsCollected: 0
   redCoinsCollected: 0
-  currentLevel: 1 - 1
+  currentLevel: 1 - 2
 --- !u!212 &7321443894450974034
 SpriteRenderer:
   m_ObjectHideFlags: 0

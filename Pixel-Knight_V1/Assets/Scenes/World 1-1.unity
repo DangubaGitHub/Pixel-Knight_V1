@@ -6719,7 +6719,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1224183988
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10745,6 +10745,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e590a534993f0a04cbcc327e7478d41c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  armorPowerUp: {fileID: 295558760}
+  firePowerUp: {fileID: 1224183989}
+  icePowerUp: {fileID: 1966898913}
   redCoin1: {fileID: 889525549}
   redCoin2: {fileID: 129878793}
   redCoin3: {fileID: 1225367323}
@@ -10910,7 +10913,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1966898912
 RectTransform:
   m_ObjectHideFlags: 0
