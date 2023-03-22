@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WorldSaveManager : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class WorldSaveManager : MonoBehaviour
 
    void SaveWorld()
     {
-        PlayerPrefs.SetString("Save World", currentWorld); 
+        currentWorld = SceneManager.GetActiveScene().name;
+        PlayerPrefs.SetString("Save World", currentWorld);
     }
 }
