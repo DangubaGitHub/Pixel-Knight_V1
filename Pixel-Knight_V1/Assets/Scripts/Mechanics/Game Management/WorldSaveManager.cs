@@ -5,7 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class WorldSaveManager : MonoBehaviour
 {
-    [SerializeField] string currentWorld;
+    public string currentWorld;
+
+    public static WorldSaveManager instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     void Start()
     {

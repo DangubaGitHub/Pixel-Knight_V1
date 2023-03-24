@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelLoaderController : MonoBehaviour
 {
-    
+    [SerializeField] bool isTransitionScreen;
 
     const string IN = "Fade_In";
     const string OUT = "Fade_Out";
@@ -26,6 +26,11 @@ public class LevelLoaderController : MonoBehaviour
     void Start()
     {
         ChangeAnimationState(IN);
+
+        if (isTransitionScreen)
+        {
+            StartCoroutine(TransitionScreen());
+        }
     }
 
 
@@ -44,6 +49,16 @@ public class LevelLoaderController : MonoBehaviour
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
+    public void LoadSavedLevel()
+    {
+        StartCoroutine(LoadSavedLevelCoroutine());
+    }
+
+    public void QuitGame()
+    {
+        StartCoroutine(QuitGameCoroutine());
+    }
+
     IEnumerator LoadLevel(int levelIndex)
     {
         ChangeAnimationState(OUT);
@@ -51,6 +66,36 @@ public class LevelLoaderController : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         SceneManager.LoadScene(levelIndex);
+    }
+
+    IEnumerator LoadSavedLevelCoroutine()
+    {
+        ChangeAnimationState(OUT);
+
+        yield return new WaitForSeconds(1);
+
+        string savedWorld = PlayerPrefs.GetString("Save World");
+        SceneManager.LoadScene(savedWorld);
+    }
+
+    IEnumerator QuitGameCoroutine()
+    {
+        ChangeAnimationState(OUT);
+
+        yield return new WaitForSeconds(1);
+
+        Application.Quit();
+    }
+
+    IEnumerator TransitionScreen()
+    {
+        yield return new WaitForSeconds(3);
+
+        ChangeAnimationState(OUT);
+
+        yield return new WaitForSeconds(1);
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void ChangeAnimationState(string newState)
