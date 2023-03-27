@@ -29,6 +29,11 @@ public class MainMenuController : MonoBehaviour
     public void ContinueGame()
     {
         LevelLoaderController.Instance.LoadSavedLevel();
+        PlayerPrefs.DeleteKey("Coin Count");
+        PlayerPrefs.DeleteKey("Lives Save");
+        PlayerPrefs.DeleteKey("Armor Power");
+        PlayerPrefs.DeleteKey("Fire Power");
+        PlayerPrefs.DeleteKey("Ice Power");
     }
 
     public void NewGame()

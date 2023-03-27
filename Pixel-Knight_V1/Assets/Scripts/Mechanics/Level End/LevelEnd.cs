@@ -19,6 +19,7 @@ public class LevelEnd : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             LevelManager.instance.LevelEnd();
+            LevelLoaderController.Instance.LoadNextLevel();
         }
     }
 }
