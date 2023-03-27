@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class LevelLoaderController : MonoBehaviour
 {
     [SerializeField] bool isTransitionScreen;
+    [SerializeField] bool isControllsScreen;
 
     const string IN = "Fade_In";
     const string OUT = "Fade_Out";
@@ -34,9 +35,23 @@ public class LevelLoaderController : MonoBehaviour
     }
 
 
-    void Update()
+    void FixedUpdate()
     {
-        
+        if (isControllsScreen)
+        {
+            if (Input.GetButton("Jump") ||
+                Input.GetButton("Fire") ||
+                Input.GetButton("Cancel"))
+            {
+                ChangeAnimationState(OUT);
+                Invoke("EndControllsScreen", 1);
+            }
+        }
+    }
+
+    void EndControllsScreen()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void FadeOut()
