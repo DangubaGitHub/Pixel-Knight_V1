@@ -91,6 +91,7 @@ public class PlayerController : MonoBehaviour
                     isJumping = true;
                     jumpTimeCounter = jumpTime;
                     rb2d.velocity = new Vector2(rb2d.velocity.x, jumpSpeed);
+                    
                 }
 
                 if (Input.GetButton("Jump") && isJumping == true && !touchesCeiling)
@@ -111,8 +112,6 @@ public class PlayerController : MonoBehaviour
                 {
                     isJumping = false;
                 }
-
-
 
                 if (PlayerAnimationManager.instance.isFire)
                 {
