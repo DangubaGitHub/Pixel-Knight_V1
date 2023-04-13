@@ -91,7 +91,8 @@ public class PlayerController : MonoBehaviour
                     isJumping = true;
                     jumpTimeCounter = jumpTime;
                     rb2d.velocity = new Vector2(rb2d.velocity.x, jumpSpeed);
-                    
+
+                    AudioController.instance.PlaySFX(15);                              /////// SFX //
                 }
 
                 if (Input.GetButton("Jump") && isJumping == true && !touchesCeiling)

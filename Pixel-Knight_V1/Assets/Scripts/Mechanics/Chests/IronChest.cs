@@ -56,6 +56,7 @@ public class IronChest : MonoBehaviour
 
     void ChestPopOut()
     {
+        AudioController.instance.PlaySFX(18);                              /////// SFX //
         ChangeAnimationState(OPEN);
         isOpen = true;
         GameObject item = Instantiate(ironPopOut, spawnPoint.position, spawnPoint.rotation);

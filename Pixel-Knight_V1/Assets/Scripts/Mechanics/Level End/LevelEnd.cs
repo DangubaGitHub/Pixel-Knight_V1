@@ -18,6 +18,7 @@ public class LevelEnd : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            AudioController.instance.PlayLevelEndMusic();
             LevelManager.instance.LevelEnd();
             LevelLoaderController.Instance.LoadNextLevel();
         }

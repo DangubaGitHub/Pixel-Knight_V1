@@ -128,6 +128,7 @@ public class PlayerStompBox : MonoBehaviour
 
         if (other.CompareTag("Mushroom"))
         {
+            AudioController.instance.PlaySFX(13);                              /////// SFX //
             PlayerController.instance.BounceOnMushroom();
             //MushroomController.instance.mushroomIsActive = true;
         }

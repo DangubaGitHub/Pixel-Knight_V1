@@ -27,6 +27,8 @@ public class PickUps : MonoBehaviour
         {
             if (redCoin)
             {
+                AudioController.instance.PlaySFX(19);                              /////// SFX //
+
                 LevelManager.instance.AddRedCoin();
 
                 isCollected = true;
@@ -36,6 +38,8 @@ public class PickUps : MonoBehaviour
 
             if (goldCoin)
             {
+                AudioController.instance.PlaySFX(8);                              /////// SFX //
+
                 LevelManager.instance.AddGoldCoin();
 
                 isCollected = true;

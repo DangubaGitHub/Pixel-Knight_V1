@@ -76,6 +76,8 @@ public class LevelLoaderController : MonoBehaviour
 
     IEnumerator LoadLevel(int levelIndex)
     {
+        yield return new WaitForSeconds(1.4f);
+
         ChangeAnimationState(OUT);
 
         yield return new WaitForSeconds(1);

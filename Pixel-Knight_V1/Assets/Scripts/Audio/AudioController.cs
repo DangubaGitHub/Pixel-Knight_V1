@@ -7,10 +7,17 @@ public class AudioController : MonoBehaviour
     int musicToPlay;
 
     [SerializeField] AudioSource[] SFX;
-    [SerializeField] AudioSource[] music;
-    [SerializeField] AudioSource levelEnd;
     
+    [SerializeField] AudioSource Menu;
+    [SerializeField] AudioSource Summer;
+    [SerializeField] AudioSource Forest;
+    [SerializeField] AudioSource Winter;
+    [SerializeField] AudioSource Cave;
+    [SerializeField] AudioSource Desert;
+    [SerializeField] AudioSource Castle;
+    [SerializeField] AudioSource Outro;
     [SerializeField] AudioSource bossBattle;
+    [SerializeField] AudioSource levelEnd;
 
     [SerializeField] bool isMenu;
     [SerializeField] bool isSummer;
@@ -21,45 +28,52 @@ public class AudioController : MonoBehaviour
     [SerializeField] bool isCastle;
     [SerializeField] bool isOutro;
 
+    public static AudioController instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     void Start()
     {
         if(isMenu) 
         {
-            PlayMusic(6);
+            Menu.Play();
         }
 
         if (isSummer)
         {
-            PlayMusic(3);
+            Summer.Play();
         }
 
         if (isForest)
         {
-            PlayMusic(5);
+            Forest.Play();
         }
 
         if (isWinter)
         {
-            PlayMusic(1);
+            Winter.Play();
         }
         if (isCave)
         {
-            PlayMusic(2);
+            Cave.Play();
         }
 
         if (isDesert)
         {
-            PlayMusic(0);
+            Desert.Play();
         }
 
         if (isCastle)
         {
-            PlayMusic(4);
+            Castle.Play();
         }
 
         if (isOutro)
         {
-            //PlayMusic(7);               // not added yet
+            Outro.Play();
         }
     }
 
@@ -74,27 +88,33 @@ public class AudioController : MonoBehaviour
         SFX[soundToPlay].Play();
     }
 
-    public void PlayMusic(int musicToPlay)
+    /*public void PlayMusic(int musicToPlay)
     {
         music[musicToPlay].Play();
-    }
+    }*/
 
     public void PlayLevelEndMusic()
     {
-        music[musicToPlay].Stop();        // this might not work
+        Menu.Stop();
+        Summer.Stop();
+        Forest.Stop();
+        Winter.Stop();
+        Cave.Stop();
+        Desert.Stop();
+        Castle.Stop();
 
         levelEnd.Play();
     }
 
     public void PlayBossBattleMusic()
     {
-        music[musicToPlay].Stop();        // this might not work
+        Castle.Stop();
 
         bossBattle.Play();
     }
 
     public void EndBossBattleMusic()
     {
-        bossBattle.Stop();
+        //bossBattle.Stop();
     }
 }

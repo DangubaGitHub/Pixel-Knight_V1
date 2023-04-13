@@ -56,6 +56,7 @@ public class IceChest : MonoBehaviour
 
     void ChestPopOut()
     {
+        AudioController.instance.PlaySFX(18);                              /////// SFX //
         ChangeAnimationState(OPEN);
         isOpen = true;
         GameObject item = Instantiate(icePopOut, spawnPoint.position, spawnPoint.rotation);

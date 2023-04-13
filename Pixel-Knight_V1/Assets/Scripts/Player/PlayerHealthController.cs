@@ -450,6 +450,8 @@ public class PlayerHealthController : MonoBehaviour
 
     public void TakeLive()
     {
+        AudioController.instance.PlaySFX(16);                              /////// SFX //
+
         livesCount--;
 
         UIController.instance.LivesUpdate();
@@ -468,6 +470,7 @@ public class PlayerHealthController : MonoBehaviour
 
     void DelayAddLive()
     {
+        AudioController.instance.PlaySFX(17);                              /////// SFX //
         UIController.instance.LivesUpdate();
         PlayerPrefs.SetInt("Lives Save", livesCount);
     }
@@ -479,6 +482,8 @@ public class PlayerHealthController : MonoBehaviour
 
     void ChangeState()
     {
+        AudioController.instance.PlaySFX(14);                              /////// SFX //
+
         PlayerAnimationManager.instance.ChangeToBasic();
     }
 }

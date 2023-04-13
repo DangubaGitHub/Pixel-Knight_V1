@@ -604,7 +604,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &172172291
 Transform:
   m_ObjectHideFlags: 0
@@ -10693,6 +10693,71 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &1264667120
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3334247831383881211, guid: d55b13fc83a24784283d55aacdca20db, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3334247832353434843, guid: d55b13fc83a24784283d55aacdca20db, type: 3}
+      propertyPath: m_Name
+      value: Audio Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 3334247832353434844, guid: d55b13fc83a24784283d55aacdca20db, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3334247832353434844, guid: d55b13fc83a24784283d55aacdca20db, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 290.30374
+      objectReference: {fileID: 0}
+    - target: {fileID: 3334247832353434844, guid: d55b13fc83a24784283d55aacdca20db, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.0930037
+      objectReference: {fileID: 0}
+    - target: {fileID: 3334247832353434844, guid: d55b13fc83a24784283d55aacdca20db, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.7903829
+      objectReference: {fileID: 0}
+    - target: {fileID: 3334247832353434844, guid: d55b13fc83a24784283d55aacdca20db, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3334247832353434844, guid: d55b13fc83a24784283d55aacdca20db, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3334247832353434844, guid: d55b13fc83a24784283d55aacdca20db, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3334247832353434844, guid: d55b13fc83a24784283d55aacdca20db, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3334247832353434844, guid: d55b13fc83a24784283d55aacdca20db, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3334247832353434844, guid: d55b13fc83a24784283d55aacdca20db, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3334247832353434844, guid: d55b13fc83a24784283d55aacdca20db, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3334247832353434845, guid: d55b13fc83a24784283d55aacdca20db, type: 3}
+      propertyPath: isSummer
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d55b13fc83a24784283d55aacdca20db, type: 3}
 --- !u!1 &1276707124
 GameObject:
   m_ObjectHideFlags: 0
@@ -15671,7 +15736,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 284459843080228840}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -391.74, y: -29.123224, z: -32.09319}
+  m_LocalPosition: {x: -150.4, y: -29.123224, z: -32.09319}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -55661,7 +55726,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6980365111624709817}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -391.74, y: -29.123224, z: -42.09319}
+  m_LocalPosition: {x: -150.4, y: -29.123224, z: -42.09319}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -56736,7 +56801,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7906635542349102732}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -385.79428, y: -18.442778, z: -42.09319}
+  m_LocalPosition: {x: -150.40015, y: -18.442017, z: -42.09319}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

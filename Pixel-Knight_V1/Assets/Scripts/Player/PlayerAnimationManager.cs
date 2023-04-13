@@ -432,6 +432,8 @@ public class PlayerAnimationManager : MonoBehaviour
         isIce = false;
         isBasic = false;
 
+        //AudioController.instance.PlaySFX(18);                              /////// SFX //
+
         UIController.instance.ArmorPowerUpUpdate();
 
         PlayerPrefs.SetInt("Armor Power", (isArmor ? 1 : 0));
@@ -446,6 +448,8 @@ public class PlayerAnimationManager : MonoBehaviour
         isIce = false;
         isBasic = false;
 
+        //AudioController.instance.PlaySFX(18);                              /////// SFX //
+
         UIController.instance.FirePowerUpUpdate();
 
         PlayerPrefs.SetInt("Fire Power", (isFire ? 1 : 0));
@@ -459,6 +463,8 @@ public class PlayerAnimationManager : MonoBehaviour
         isFire = false;
         isIce = true;
         isBasic = false;
+
+        //AudioController.instance.PlaySFX(18);                              /////// SFX //
 
         UIController.instance.IcePowerUpUpdate();
 

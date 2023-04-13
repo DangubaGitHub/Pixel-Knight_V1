@@ -36,6 +36,8 @@ public class MushroomController : MonoBehaviour
         {
             ChangeAnimationState(BOUNCE);
 
+            //AudioController.instance.PlaySFX(13);                              /////// SFX //
+
             Invoke("DeactivateMuchroom", .2f);
         }
 
