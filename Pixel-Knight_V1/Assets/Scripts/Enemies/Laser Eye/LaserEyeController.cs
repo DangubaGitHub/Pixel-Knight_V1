@@ -91,6 +91,8 @@ public class LaserEyeController : MonoBehaviour
 
                 Instantiate(enemyDeathEffect, transform.position, Quaternion.identity);
 
+                AudioController.instance.PlaySFX(5);                                             /////// SFX // 
+
                 Destroy(gameObject);
             }
         }
@@ -100,6 +102,9 @@ public class LaserEyeController : MonoBehaviour
         {
             Instantiate(enemyDeathEffect, transform.position, Quaternion.identity);
             Destroy(other.gameObject);
+
+            AudioController.instance.PlaySFX(5);                                             /////// SFX // 
+
             Destroy(gameObject);
         }
     }
@@ -107,6 +112,8 @@ public class LaserEyeController : MonoBehaviour
     public void ShootLaser()
     {
         Instantiate(laserPrefab, firePoint.position, Quaternion.identity);
+
+        AudioController.instance.PlaySFX(11);                                             /////// SFX // 
     }
 
     public void ChangeAnimationState(string newState)

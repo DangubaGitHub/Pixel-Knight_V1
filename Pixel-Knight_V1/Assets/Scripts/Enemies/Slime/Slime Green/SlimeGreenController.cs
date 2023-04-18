@@ -150,6 +150,8 @@ public class SlimeGreenController : MonoBehaviour
 
                 Instantiate(enemyDeathEffect, transform.position, Quaternion.identity);
 
+                AudioController.instance.PlaySFX(5);                                             /////// SFX // 
+
                 Destroy(gameObject);
             }
 
@@ -158,6 +160,9 @@ public class SlimeGreenController : MonoBehaviour
                 isAlive = false;
                 rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
                 PlayerController.instance.BounceOnEnemy();
+
+                StartCoroutine(DelayDeathSFX());
+
                 Destroy(gameObject, 1.4f);
             }
         }
@@ -167,6 +172,9 @@ public class SlimeGreenController : MonoBehaviour
         {
             Instantiate(enemyDeathEffect, transform.position, Quaternion.identity);
             Destroy(other.gameObject);
+
+            AudioController.instance.PlaySFX(5);                                             /////// SFX // 
+
             Destroy(gameObject);
         }
     }
@@ -204,7 +212,12 @@ public class SlimeGreenController : MonoBehaviour
         velocityX = -velocityX;
     }
 
-    
+    IEnumerator DelayDeathSFX()
+    {
+        yield return new WaitForSeconds(.6f);
+
+        AudioController.instance.PlaySFX(5);                                             /////// SFX // 
+    }
 
     private void OnBecameVisible()
     {

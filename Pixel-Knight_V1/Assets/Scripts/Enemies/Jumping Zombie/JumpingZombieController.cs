@@ -112,6 +112,8 @@ public class JumpingZombieController : MonoBehaviour
 
                 Instantiate(enemyDeathEffect, transform.position, Quaternion.identity);
 
+                AudioController.instance.PlaySFX(5);                                             /////// SFX // 
+
                 Destroy(gameObject);
             }
         }
@@ -121,6 +123,9 @@ public class JumpingZombieController : MonoBehaviour
         {
             Instantiate(enemyDeathEffect, transform.position, Quaternion.identity);
             Destroy(other.gameObject);
+
+            AudioController.instance.PlaySFX(5);                                             /////// SFX // 
+
             Destroy(gameObject);
         }
     }

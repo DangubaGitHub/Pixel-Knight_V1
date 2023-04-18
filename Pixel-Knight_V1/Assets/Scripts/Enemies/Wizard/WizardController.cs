@@ -82,6 +82,8 @@ public class WizardController : MonoBehaviour
     public void Shoot()
     {
         Instantiate(magicProjectile, firePoint.position, Quaternion.identity);
+
+        AudioController.instance.PlaySFX(23);                                             /////// SFX // 
     }
 
     private void OnBecameVisible()
@@ -104,6 +106,8 @@ public class WizardController : MonoBehaviour
 
                 Instantiate(enemyDeathEffect, transform.position, Quaternion.identity);
 
+                AudioController.instance.PlaySFX(5);                                             /////// SFX // 
+
                 Destroy(gameObject);
             }
         }
@@ -113,6 +117,9 @@ public class WizardController : MonoBehaviour
         {
             Instantiate(enemyDeathEffect, transform.position, Quaternion.identity);
             Destroy(other.gameObject);
+
+            AudioController.instance.PlaySFX(5);                                             /////// SFX // 
+
             Destroy(gameObject);
         }
     }
