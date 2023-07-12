@@ -74,6 +74,7 @@ public class FireBall : MonoBehaviour
         if (other.CompareTag("Wall"))
         {
             Instantiate(bulletDestroyAnimation, transform.position, Quaternion.identity);
+            AudioController.instance.PlaySFX(12);                                             /////// SFX //
             Destroy(gameObject);
         }
 

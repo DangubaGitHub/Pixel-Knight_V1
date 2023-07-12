@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6443369335023894580}
   - component: {fileID: 6443369335023894577}
   - component: {fileID: 6443369335023894576}
+  - component: {fileID: 2925347164249667375}
   m_Layer: 18
   m_Name: Element Spikes
   m_TagString: Element Spikes
@@ -89,7 +90,7 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!95 &6443369335023894580
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -106,7 +107,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!70 &6443369335023894577
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -136,3 +138,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeUntilDestroy: 1.3
+--- !u!114 &2925347164249667375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6443369335023894581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4173fb424b4a05c4fbd8013cbb3dba1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

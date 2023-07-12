@@ -81,9 +81,11 @@ public class WizardController : MonoBehaviour
 
     public void Shoot()
     {
+        //AudioController.instance.PlaySFX(23);                                             /////// SFX // 
+
         Instantiate(magicProjectile, firePoint.position, Quaternion.identity);
 
-        AudioController.instance.PlaySFX(23);                                             /////// SFX // 
+        
     }
 
     private void OnBecameVisible()

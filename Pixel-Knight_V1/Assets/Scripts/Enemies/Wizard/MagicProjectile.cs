@@ -34,6 +34,8 @@ public class MagicProjectile : MonoBehaviour
 
         float rotation = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, rotation + 180);
+
+        AudioController.instance.PlaySFX(23);                                             /////// SFX //
     }
 
     void Update()

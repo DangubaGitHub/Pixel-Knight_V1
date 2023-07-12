@@ -126,6 +126,8 @@ public class CrawlerController : MonoBehaviour
         {
             if (!PlayerController.instance.isGrounded)
             {
+                AudioController.instance.PlaySFX(10);                                             /////// SFX // 
+
                 PlayerController.instance.BounceOnEnemy();
                 isCrouching = true;
                 crouchTimerCountdown = 1f;

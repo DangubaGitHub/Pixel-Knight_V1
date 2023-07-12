@@ -20,6 +20,7 @@ public class BombController : MonoBehaviour
     public void Explosion()
     {
         Instantiate(explosionPrefab, explosionPoint.position, Quaternion.identity);
+        AudioController.instance.PlaySFX(1);                                             /////// SFX //
     }
 
     public void Destroy()

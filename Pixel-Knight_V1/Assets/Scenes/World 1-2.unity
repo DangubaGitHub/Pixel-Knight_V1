@@ -5015,6 +5015,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mushroom Summer (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1322294973746005496, guid: 80ab97e5def0c0848b47e6fa5ca70172, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1322294973746005501, guid: 80ab97e5def0c0848b47e6fa5ca70172, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -5025,7 +5029,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1322294973746005501, guid: 80ab97e5def0c0848b47e6fa5ca70172, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.4609032
+      value: -2.46
       objectReference: {fileID: 0}
     - target: {fileID: 1322294973746005501, guid: 80ab97e5def0c0848b47e6fa5ca70172, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5965,6 +5969,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1811963949056624589, guid: 065667c6b7a048e43b69aa12b891c7fd, type: 3}
   m_PrefabInstance: {fileID: 1601337284}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1609843876
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3334247832353434843, guid: d55b13fc83a24784283d55aacdca20db, type: 3}
+      propertyPath: m_Name
+      value: Audio Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 3334247832353434844, guid: d55b13fc83a24784283d55aacdca20db, type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 3334247832353434844, guid: d55b13fc83a24784283d55aacdca20db, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 290.30374
+      objectReference: {fileID: 0}
+    - target: {fileID: 3334247832353434844, guid: d55b13fc83a24784283d55aacdca20db, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.0930037
+      objectReference: {fileID: 0}
+    - target: {fileID: 3334247832353434844, guid: d55b13fc83a24784283d55aacdca20db, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.7903829
+      objectReference: {fileID: 0}
+    - target: {fileID: 3334247832353434844, guid: d55b13fc83a24784283d55aacdca20db, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3334247832353434844, guid: d55b13fc83a24784283d55aacdca20db, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3334247832353434844, guid: d55b13fc83a24784283d55aacdca20db, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3334247832353434844, guid: d55b13fc83a24784283d55aacdca20db, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3334247832353434844, guid: d55b13fc83a24784283d55aacdca20db, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3334247832353434844, guid: d55b13fc83a24784283d55aacdca20db, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3334247832353434844, guid: d55b13fc83a24784283d55aacdca20db, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d55b13fc83a24784283d55aacdca20db, type: 3}
 --- !u!1001 &1617819467
 PrefabInstance:
   m_ObjectHideFlags: 0

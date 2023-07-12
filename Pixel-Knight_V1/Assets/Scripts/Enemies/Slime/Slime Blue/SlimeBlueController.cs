@@ -169,6 +169,8 @@ public class SlimeBlueController : MonoBehaviour
 
                 Instantiate(enemyDeathEffect, transform.position, Quaternion.identity);
 
+                AudioController.instance.PlaySFX(5);                                             /////// SFX //
+
                 Destroy(gameObject);
             }
 
@@ -185,6 +187,7 @@ public class SlimeBlueController : MonoBehaviour
         {
             Instantiate(enemyDeathEffect, transform.position, Quaternion.identity);
             Destroy(other.gameObject);
+            AudioController.instance.PlaySFX(5);                                             /////// SFX //
             Destroy(gameObject);
         }
 
@@ -267,6 +270,16 @@ public class SlimeBlueController : MonoBehaviour
     private void OnBecameInvisible()
     {
         isActive = false;
+    }
+
+    public void GroundDeathSound1()
+    {
+        AudioController.instance.PlaySFX(26);                                             /////// SFX //
+    }
+
+    public void GroundDeathSound2()
+    {
+        AudioController.instance.PlaySFX(5);                                             /////// SFX //
     }
 
     public void ChangeAnimationState(string newState)

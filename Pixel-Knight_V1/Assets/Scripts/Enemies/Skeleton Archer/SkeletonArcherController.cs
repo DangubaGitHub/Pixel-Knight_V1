@@ -103,7 +103,7 @@ public class SkeletonArcherController : MonoBehaviour
             PlayerController.instance.BounceOnEnemy();
 
             Instantiate(enemyDeathEffect, transform.position, Quaternion.identity);
-
+            AudioController.instance.PlaySFX(5);                                             /////// SFX //
             Destroy(gameObject);
         }
 
@@ -112,6 +112,7 @@ public class SkeletonArcherController : MonoBehaviour
         {
             Instantiate(enemyDeathEffect, transform.position, Quaternion.identity);
             Destroy(other.gameObject);
+            AudioController.instance.PlaySFX(5);                                             /////// SFX //
             Destroy(gameObject);
         }
     }
@@ -127,6 +128,7 @@ public class SkeletonArcherController : MonoBehaviour
     public void Attack()
     {
         Instantiate(arrowPrefab, firePoint.position, Quaternion.identity);
+        AudioController.instance.PlaySFX(0);                                             /////// SFX //
     }
 
     private void OnBecameVisible()

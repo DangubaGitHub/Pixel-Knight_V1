@@ -213,12 +213,14 @@ public class BombWormController : MonoBehaviour
             if (!enraged)
             {
                 PlayerController.instance.BounceOnEnemy();
+                AudioController.instance.PlaySFX(10);                                             /////// SFX //
                 isChanging = true;
             }
 
             else if (enraged)
             {
                 PlayerController.instance.BounceOnEnemy();
+                AudioController.instance.PlaySFX(10);                                             /////// SFX //
             }
         }
 
@@ -228,12 +230,14 @@ public class BombWormController : MonoBehaviour
             if (!enraged)
             {
                 isChanging = true;
+                AudioController.instance.PlaySFX(12);                                             /////// SFX //
                 Destroy(other.gameObject);
             }
 
             else if (enraged)
             {
                 Instantiate(bulletDestroyAnimation, other.transform.position, Quaternion.identity);
+                AudioController.instance.PlaySFX(12);                                             /////// SFX //
                 Destroy(other.gameObject);
             }
         }

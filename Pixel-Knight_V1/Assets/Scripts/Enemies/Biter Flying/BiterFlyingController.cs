@@ -73,7 +73,7 @@ public class BiterFlyingController : MonoBehaviour
             PlayerController.instance.BounceOnEnemy();
 
             Instantiate(enemyDeathEffect, transform.position, Quaternion.identity);
-
+            AudioController.instance.PlaySFX(5);                                             /////// SFX //
             Destroy(gameObject);
         }
 
@@ -82,6 +82,7 @@ public class BiterFlyingController : MonoBehaviour
         {
             Instantiate(enemyDeathEffect, transform.position, Quaternion.identity);
             Destroy(other.gameObject);
+            AudioController.instance.PlaySFX(5);                                             /////// SFX //
             Destroy(gameObject);
         }
     }

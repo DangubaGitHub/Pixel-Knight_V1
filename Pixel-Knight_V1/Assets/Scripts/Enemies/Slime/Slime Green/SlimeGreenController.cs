@@ -216,7 +216,7 @@ public class SlimeGreenController : MonoBehaviour
     {
         yield return new WaitForSeconds(.6f);
 
-        AudioController.instance.PlaySFX(5);                                             /////// SFX // 
+        //AudioController.instance.PlaySFX(5);                                             /////// SFX // 
     }
 
     private void OnBecameVisible()
@@ -227,6 +227,16 @@ public class SlimeGreenController : MonoBehaviour
     private void OnBecameInvisible()
     {
         isActive = false;
+    }
+
+    public void GroundDeathSound1()
+    {
+        AudioController.instance.PlaySFX(26);                                             /////// SFX //
+    }
+
+    public void GroundDeathSound2()
+    {
+        AudioController.instance.PlaySFX(5);                                             /////// SFX //
     }
 
     public void ChangeAnimationState(string newState)

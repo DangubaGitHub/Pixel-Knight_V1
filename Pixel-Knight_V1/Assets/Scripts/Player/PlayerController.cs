@@ -219,12 +219,14 @@ public class PlayerController : MonoBehaviour
 
     void FireMagic()
     {
-            Instantiate(fireBulletPrefab, firePoint.position, firePoint.rotation);
+        Instantiate(fireBulletPrefab, firePoint.position, firePoint.rotation);
+        AudioController.instance.PlaySFX(7);                                             /////// SFX //
     }
 
     void IceMagic()
     {
         Instantiate(iceBulletPrefab, firePoint.position, firePoint.rotation);
+        AudioController.instance.PlaySFX(9);                                             /////// SFX //
     }
 
     void MagicComplete()
