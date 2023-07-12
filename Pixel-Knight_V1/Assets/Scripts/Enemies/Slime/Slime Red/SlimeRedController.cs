@@ -163,6 +163,7 @@ public class SlimeRedController : MonoBehaviour
         if (other.CompareTag("Player Fire Magic"))
         {
             Instantiate(bulletDestroyAnimation, other.transform.position, Quaternion.identity);
+            AudioController.instance.PlaySFX(12);                                                         /////// SFX //
             Destroy(other.gameObject);
         }
 

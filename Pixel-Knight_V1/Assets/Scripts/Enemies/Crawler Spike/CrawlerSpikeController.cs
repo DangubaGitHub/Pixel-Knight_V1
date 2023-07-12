@@ -133,6 +133,7 @@ public class CrawlerSpikeController : MonoBehaviour
             other.CompareTag("Player Ice Magic"))
         {
             Instantiate(bulletDestroyAnimation, other.transform.position, Quaternion.identity);
+            AudioController.instance.PlaySFX(12);                                                         /////// SFX //
             Destroy(other.gameObject);
         }
     }
