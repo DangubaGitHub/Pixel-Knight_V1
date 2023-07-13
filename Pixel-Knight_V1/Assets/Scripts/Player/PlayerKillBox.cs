@@ -11,5 +11,10 @@ public class PlayerKillBox : MonoBehaviour
             PauseMenu.instance.PauseUnpause();
         }
 
+        if(other.CompareTag("Enemy Invulnerable Damaging"))
+        {
+            Destroy(other.gameObject);
+        }
+
     }
 }
